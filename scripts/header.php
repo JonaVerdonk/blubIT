@@ -9,7 +9,7 @@
 
     //Set the admin session-variable as test
     $_SESSION["admin"] = true;
-    
+
     if ($_SERVER["REQUEST_URI"] === "/") {
         //Include and print everything for index
         include("scripts/databaseConnection.php");
@@ -29,8 +29,8 @@
 //        }
 //        print("<br>");
 //    }
-//    
-//    
+//
+//
     //Example array of links
 //    $links = [
 //        ["/index.php", "Home", 1],
@@ -40,7 +40,7 @@
 //        ["/#", "Link 4", 4],
 //        ["/php/admin.php", "Admin page", 6]
 //    ];
-    
+
     //Print the header tag with the header-img
     print('<header>');
     print('<img id="headerImg" src="../images/headerlogo.PNG" alt="logo">');
@@ -52,14 +52,14 @@
     for ($i = 0; $i < count($links); ++ $i) {
         $url = $links[$i][0];
         $name = $links[$i][1];
-        
+
         $currentUrl = $_SERVER["REQUEST_URI"];
         if ($currentUrl === $url) {
             $id = 'id="currentPage"';
         } else {
             $id = "";
         }
-        
+
         //If the name of the link contains the word admin, check if
         //it should be shown to the user (check if the user is an admin
         //Use strpos !== false because it returns either false or an int, not true or false

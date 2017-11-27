@@ -1,4 +1,5 @@
 <?php
+$contentAdmin = true;
 echo "
 <link rel='stylesheet' type='text/css' href='css/content.css'>
 <div id='content'>
@@ -32,8 +33,14 @@ echo "
         <p>Hier komt tekst</p>
         <div class='content-body-meer'>s
             <a href='#Leesminder'>Lees meer</a>
-        </div>
-    </div>
+        </div>test";
+        if($contentAdmin){
+          echo"
+          <div id='ContentEdit'>
+            <span>Edit</span>
+          </div>";
+        }
+echo"</div>
 </div>
 ";
  ?>

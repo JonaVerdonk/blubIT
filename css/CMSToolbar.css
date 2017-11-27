@@ -1,0 +1,18 @@
+
+#CMSToolbar{
+  width: 150px;
+  height: 75%;
+  background-color: rgba(255,0,0,0.5);
+  position: fixed;
+  top: 12.5%;
+  right: 20px;
+}
+
+#CMSToolbar div{
+  height: 20%;
+  margin-top: 15%;
+  background-color: rgba(0,0,80,0.5);
+  text-align: center;
+  color: white;
+}
+

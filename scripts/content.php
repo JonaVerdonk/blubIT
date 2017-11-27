@@ -1,4 +1,6 @@
 <?php
+
+$contentAdmin = true;
 echo "
 <link rel='stylesheet' type='text/css' href='css/content.css'>
 <div id='content'>
