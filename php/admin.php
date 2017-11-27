@@ -27,7 +27,7 @@
                 <div class="adminItem">
                     <a href="../php/analytics.php">
                         <img src="../images/350x150.png">
-                        <p>Analytics</p>
+                        <p>Test</p>
                     </a>
                 </div>
                 
