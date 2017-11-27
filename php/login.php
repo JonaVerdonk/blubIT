@@ -1,20 +1,19 @@
 <?php
  ob_start();
  session_start();
- if( isset($_SESSION['user'])!="" ){
+ require_once '../scripts/databaseConnection.php';
+
+ // it will never let you open index(login) page if session is set
+ if ( isset($_SESSION['user'])!="" ) {
   header("Location: home.php");
+  exit;
  }
- include_once '../scripts/databaseConnection.php';
 
  $error = false;
 
- if ( isset($_POST['btn-signup']) ) {
+ if( isset($_POST['btn-login']) ) {
 
-  // clean user inputs to prevent sql injections
-  $name = trim($_POST['name']);
-  $name = strip_tags($name);
-  $name = htmlspecialchars($name);
-
+  // prevent sql injections/ clear user invalid inputs
   $email = trim($_POST['email']);
   $email = strip_tags($email);
   $email = htmlspecialchars($email);
@@ -22,64 +21,38 @@
   $pass = trim($_POST['pass']);
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
+  // prevent sql injections / clear user invalid inputs
 
-  // basic name validation
-  if (empty($name)) {
+  if(empty($email)){
    $error = true;
-   $nameError = "Please enter your full name.";
-  } else if (strlen($name) < 3) {
-   $error = true;
-   $nameError = "Name must have atleat 3 characters.";
-  } else if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
-   $error = true;
-   $nameError = "Name must contain alphabets and space.";
-  }
-
-  //basic email validation
-  if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
+   $emailError = "Please enter your email address.";
+  } else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
    $error = true;
    $emailError = "Please enter valid email address.";
-  } else {
-   // check email exist or not
-   $query = "SELECT userEmail FROM users WHERE userEmail='$email'";
-   $result = mysql_query($query);
-   $count = mysql_num_rows($result);
-   if($count!=0){
-    $error = true;
-    $emailError = "Provided Email is already in use.";
-   }
-  }
-  // password validation
-  if (empty($pass)){
-   $error = true;
-   $passError = "Please enter password.";
-  } else if(strlen($pass) < 6) {
-   $error = true;
-   $passError = "Password must have atleast 6 characters.";
   }
 
-  // password encrypt using SHA256();
-  $password = hash('sha256', $pass);
+  if(empty($pass)){
+   $error = true;
+   $passError = "Please enter your password.";
+  }
 
-  // if there's no error, continue to signup
-  if( !$error ) {
+  // if there's no error, continue to login
+  if (!$error) {
 
-   $query = "INSERT INTO users(userName,userEmail,userPass) VALUES('$name','$email','$password')";
-   $res = mysql_query($query);
+   $password = hash('sha256', $pass); // password hashing using SHA256
 
-   if ($res) {
-    $errTyp = "success";
-    $errMSG = "Successfully registered, you may login now";
-    unset($name);
-    unset($email);
-    unset($pass);
+   $res = executeSQL ("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
+   $row = ($res);
+   $count = count($result); // if uname/pass correct it returns must be 1 row
+
+   if( $count == 1 && $row['userPass']==$password ) {
+    $_SESSION['user'] = $row['userId'];
+    header("Location: home.php");
    } else {
-    $errTyp = "danger";
-    $errMSG = "Something went wrong, try again later...";
+    $errMSG = "Incorrect Credentials, Try again...";
    }
 
   }
-
 
  }
 ?>
@@ -87,9 +60,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Coding Cage - Login & Registration System</title>
-<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-<link rel="stylesheet" href="style.css" type="text/css" />
+<title>Inloggen</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
@@ -101,7 +73,7 @@
      <div class="col-md-12">
 
          <div class="form-group">
-             <h2 class="">Sign Up.</h2>
+             <h2 class="">Sign In.</h2>
             </div>
 
          <div class="form-group">
@@ -113,7 +85,7 @@
 
     ?>
     <div class="form-group">
-             <div class="alert alert-<?php echo ($errTyp=="success") ? "success" : $errTyp; ?>">
+             <div class="alert alert-danger">
     <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
                 </div>
              </div>
@@ -123,16 +95,8 @@
 
             <div class="form-group">
              <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-             <input type="text" name="name" class="form-control" placeholder="Enter Name" maxlength="50" value="<?php echo $name ?>" />
-                </div>
-                <span class="text-danger"><?php echo $nameError; ?></span>
-            </div>
-
-            <div class="form-group">
-             <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-             <input type="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40" value="<?php echo $email ?>" />
+             <input type="email" name="email" class="form-control" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
                 </div>
                 <span class="text-danger"><?php echo $emailError; ?></span>
             </div>
@@ -140,7 +104,7 @@
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input type="password" name="pass" class="form-control" placeholder="Enter Password" maxlength="15" />
+             <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15" />
                 </div>
                 <span class="text-danger"><?php echo $passError; ?></span>
             </div>
@@ -150,7 +114,7 @@
             </div>
 
             <div class="form-group">
-             <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Sign Up</button>
+             <button type="submit" class="btn btn-block btn-primary" name="btn-login">Sign In</button>
             </div>
 
             <div class="form-group">
@@ -158,7 +122,7 @@
             </div>
 
             <div class="form-group">
-             <a href="index.php">Sign in Here...</a>
+             <a href="register.php">Sign Up Here...</a>
             </div>
 
         </div>
