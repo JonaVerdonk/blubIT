@@ -28,7 +28,6 @@
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll();
-                return($result);
             } else {
                 $pdo->exec($sql);
             }
@@ -38,6 +37,10 @@
         
         //Close connection
         $pdo = NULL;
+        
+        if (isset($result)) {
+            return($result);
+        }
     }
     
     function testFunction() {
