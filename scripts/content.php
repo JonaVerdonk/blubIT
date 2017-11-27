@@ -1,41 +1,18 @@
 <?php
-
+include("databaseConnection.php.php");
 $contentAdmin = true;
-echo "
-<link rel='stylesheet' type='text/css' href='css/content.css'>
-<div id='content'>
-    <div class='content-body'>
-        <img class='img-home' src='../images/bus.png' alt=''>
-        <p>Tekst</p>
-        <p>Hier komt tekst</p>
-        <div class='content-body-meer'>
-            <a href='#Leesmeer1'>Lees meer</a>
-        </div>
-    </div>
-    <div class='content-body'>
-        <img class='img-home' src='../images/bus.png' alt=''>
-        <p>Tekst</p>
-        <p>Hier komt tekst</p>
-        <div class='content-body-meer'>
-            <a href='#Leesmeer2'>Lees meer</a>
-        </div>
-    </div>
-    <div class='content-body'>
-        <img class='img-home' src='../images/bus.png' alt=''>
-        <p>Tekst</p>
-        <p>Hier komt tekst</p>
-        <div class='content-body-meer'>
-            <a href='#Leesmeer3'>Lees meer</a>
-        </div>
-    </div>
-    <div class='content-body'>
-        <img class='img-home' src='../images/bus.png' alt=''>
-        <p>Tekst</p>
-        <p>Hier komt tekst</p>
-        <div class='content-body-meer'>
-            <a href='#Leesminder'>Lees meer</a>
-        </div>
-    </div>
-</div>
-";
+
+$array = array(1,1,1,1,1,1,11,1,2,3,5,6,3,4,5,6,7,8,3,3,121,1);//Get list of content in page
+
+echo "<link rel='stylesheet' type='text/css' href='css/content.css'> <div id='content'>";
+foreach ($array as $index => $ContentID) {
+  echo "<div class='content-body'>";
+  $textFields = executeSQL("SELECT content FROM Text WHERE contentID = $ContentID");
+  foreach ($textFields as $key => $value) {
+    echo "<p>" . $value[0] . "</p>";
+  }
+  echo"</div>";
+}
+echo "</div>";
+
  ?>
