@@ -23,7 +23,6 @@
         <div id="pageContent">
 
             <div id="adminLinks">
-                Dit is een github test. ignore.
                 <div class="adminItem">
                     <a href="../php/analytics.php">
                         <img src="../images/350x150.png">
