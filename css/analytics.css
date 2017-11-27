@@ -1,0 +1,40 @@
+#button {
+    margin-left: 10%;
+    padding: 20px;
+}
+
+#pageContent {
+    padding-top: 100px;
+}
+
+#graphs {
+    width:90%;
+    margin-left: 5%;
+    text-align: center;
+}
+
+#graphs iframe {
+    display: inline;
+}
+
+@media screen and (max-width: 959px) {
+  #button {
+      margin-left: 10%;
+      padding: 20px;
+  }
+
+  #pageContent {
+      padding-top: 100px;
+  }
+
+  #graphs {
+      width:90%;
+      margin-left: 5%;
+      text-align: center;
+  }
+
+  #graphs iframe {
+      display: inline;
+      width: 100%;
+  }
+}

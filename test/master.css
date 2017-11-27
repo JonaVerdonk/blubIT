@@ -1,0 +1,28 @@
+ul *{
+  float: left;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  list-style: none;
+  color: black;
+}
+
+header{
+  background: url("header.jpg") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100vw;
+  height: 400px;
+  position: absolute;
+  background-position: center;
+  background-position-y: -140px;
+}
+
+body{
+  height: 1000vh;
+}
+
+body{
+  margin: 0px;
+  padding: 0px;
+}
