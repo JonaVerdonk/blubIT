@@ -16,7 +16,14 @@
         }
     }
 
-    function executeSQL($sql) {
+    function executeSQL($sql , $method = 0) {
+
+        ///////////////////////////////////////////
+        //$method = 0 => Both
+        //$method = 1 => Assoc (Name)
+        //$method = 2 => Numeral
+        ////////////////////////////////////////////
+
         //Create a new PDO object
         $pdo = makeConnection();
 
@@ -27,7 +34,12 @@
                 //Return all results in an array
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
-                $result = $stmt->fetchAll();
+                switch($Method){
+                  case 0: $result = $stmt->fetchAll(); break;
+                  case 1: $result = $stmt->fetchAll(PDO::FETCH_ASSOC); break;
+                  case 2: $result = $stmt->fetchAll(PDO::FETCH_NUM); break;
+                }
+
             } else {
                 $pdo->exec($sql);
             }
