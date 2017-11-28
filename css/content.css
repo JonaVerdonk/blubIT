@@ -7,10 +7,11 @@
     display: inline-block;
     width: 210px;
     height: auto;
-    margin-top: 20px;
     text-align: left;
-    margin-right: 80px;
-    margin-left: 0px;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(200,200,200,0.5);
+    border-radius: 3px;
 }
 
 .content-body-meer a:link, a:visited {
@@ -34,16 +35,6 @@
 .img-home{
     height: 200px;
     width: 260px
-}
-
-@media (max-width: 680px) {
-    #content{
-        padding-top: 200px;
-    }
-    .content-body {
-        width: 50%;
-        float: left;
-    }
 }
 
 @media (max-width: 560px) {
