@@ -4,7 +4,7 @@
         $db ="mysql:host=localhost;dbname=blubit_nl_Meijerglasvezel;port=80";
         $user = "blubit_nl_Meijerglasvezel";
         $pass = "b3LKvr6HmaNK";
-        
+
         try {
             //Create new PDO object
             $pdo = new PDO($db, $user, $pass);
@@ -15,11 +15,11 @@
             echo "Connection failed: " . $e->getMessage()."<br>";
         }
     }
-    
+
     function executeSQL($sql) {
         //Create a new PDO object
         $pdo = makeConnection();
-        
+
         try {
             //Check if exec or execute has to be used
             //Exec only if there is nothing returned
@@ -34,15 +34,15 @@
         } catch(PDOException $e) {
             print("Query failed: " . $e->getMessage());
         }
-        
+
         //Close connection
         $pdo = NULL;
-        
+
         if (isset($result)) {
             return($result);
         }
     }
-    
+
     function testFunction() {
         print("The file is succesfully added");
     }

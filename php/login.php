@@ -1,137 +1,56 @@
 <?php
- ob_start();
- session_start();
- require_once '../scripts/databaseConnection.php';
 
- // it will never let you open index(login) page if session is set
- if ( isset($_SESSION['user'])!="" ) {
-  header("Location: home.php");
-  exit;
- }
+include("../scripts/loginScript.php");
 
- $error = false;
 
- if( isset($_POST['btn-login']) ) {
-
-  // prevent sql injections/ clear user invalid inputs
-  $email = trim($_POST['email']);
-  $email = strip_tags($email);
-  $email = htmlspecialchars($email);
-
-  $pass = trim($_POST['pass']);
-  $pass = strip_tags($pass);
-  $pass = htmlspecialchars($pass);
-  // prevent sql injections / clear user invalid inputs
-
-  if(empty($email)){
-   $error = true;
-   $emailError = "Please enter your email address.";
-  } else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
-   $error = true;
-   $emailError = "Please enter valid email address.";
-  }
-
-  if(empty($pass)){
-   $error = true;
-   $passError = "Please enter your password.";
-  }
-
-  // if there's no error, continue to login
-  if (!$error) {
-
-   $password = hash('sha256', $pass); // password hashing using SHA256
-
-   $res = executeSQL ("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
-   $row = ($res);
-   $count = count($result); // if uname/pass correct it returns must be 1 row
-
-   if( $count == 1 && $row['userPass']==$password ) {
-    $_SESSION['user'] = $row['userId'];
-    header("Location: home.php");
-   } else {
-    $errMSG = "Incorrect Credentials, Try again...";
-   }
-
-  }
-
- }
 ?>
-<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Inloggen</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109575524-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-<div class="container">
+          gtag('config', 'UA-109575524-1');
+        </script>
 
- <div id="login-form">
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+        <meta name="viewport" content="width=device-width" initial-scale="1.0">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/login.css">
+        <title></title>
+    </head>
+    <body>
+        <?php include("../scripts/header.php"); ?>
 
-     <div class="col-md-12">
+        <div id="pageContent">
+          <div="both">
+            <div id="login">
+              <h1>Login</h1>
+                <form method="POST" action="">
+                    E-mailadres: <input type="email" name="email" placeholder="Your Email" value="" maxlength="40"><br>
+                    <span class="text-danger"></span><br>
+                    Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15"><br>
+                    <input type="submit" name="btn-login">
 
-         <div class="form-group">
-             <h2 class="">Sign In.</h2>
+                    <span><?php if ($error) {print($errorMsg);} ?></span>
+                </form>
+
             </div>
 
-         <div class="form-group">
-             <hr />
+            <div id="register">
+              <h1>Registreren</h1>
+              Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15"><br>
+              <span class="text-danger"></span><br>
+              E-mailadres: <input type="email" name="email" placeholder="Your Email" value="" maxlength="40"><br>
+
+              <input type="submit" name="nope">
             </div>
-
-            <?php
-   if ( isset($errMSG) ) {
-
-    ?>
-    <div class="form-group">
-             <div class="alert alert-danger">
-    <span class="glyphicon glyphicon-info-sign"></span> <?php echo $errMSG; ?>
-                </div>
-             </div>
-                <?php
-   }
-   ?>
-
-            <div class="form-group">
-             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-             <input type="email" name="email" class="form-control" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
-                </div>
-                <span class="text-danger"><?php echo $emailError; ?></span>
-            </div>
-
-            <div class="form-group">
-             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15" />
-                </div>
-                <span class="text-danger"><?php echo $passError; ?></span>
-            </div>
-
-            <div class="form-group">
-             <hr />
-            </div>
-
-            <div class="form-group">
-             <button type="submit" class="btn btn-block btn-primary" name="btn-login">Sign In</button>
-            </div>
-
-            <div class="form-group">
-             <hr />
-            </div>
-
-            <div class="form-group">
-             <a href="register.php">Sign Up Here...</a>
-            </div>
-
+          </div>
         </div>
 
-    </form>
-    </div>
+        <?php include("../scripts/footer.php"); ?>
 
-</div>
-
-</body>
+    </body>
 </html>
-<?php ob_end_flush(); ?>
