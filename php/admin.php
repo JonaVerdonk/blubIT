@@ -24,14 +24,14 @@
 
             <div id="adminLinks">
                 <div class="adminItem">
-                    <a href="../php/analytics.php">
+                    <a href="analytics.php">
                         <img src="../images/350x150.png">
-                        <p>Test</p>
+                        <p>Analytics</p>
                     </a>
                 </div>
                 
                 <div class="adminItem">
-                    <a href="../php/CMS.php">
+                    <a href="CMS/CMS.php">
                         <img src="../images/350x150.png">
                         <p>CMS</p>
                     </a>

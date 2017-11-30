@@ -8,13 +8,13 @@
     */
 
     //Set the admin session-variable as test
-    if (!isset($_SESSION["roll"])) {
-        $_SESSION["roll"] = "r";
+    if (!isset($_SESSION["role"])) {
+        $_SESSION["role"] = "r";
     }
 
     print('<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>');
     print('<script type="text/javascript" src="/js/header.js"></script>');
-    
+
     include_once("databaseConnection.php");
 
     $links = executeSQL("SELECT * FROM Navbar ORDER BY position");
