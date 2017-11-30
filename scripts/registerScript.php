@@ -1,12 +1,10 @@
 <?php
- ob_start();
- session_start();
- if( isset($_SESSION['user'])!="" ){
-  header("Location: "../scripts/header.php"");
- }
- include_once '../scripts/databaseConnection.php';
+  session_start();
+  include("../scripts/databaseConnection.php.php");
+print "blob";
 
- $error = false;
+$error = false;
+
 
  if ( isset($_POST['btn-signup']) ) {
 

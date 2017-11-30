@@ -9,7 +9,7 @@
 // }
 
 $error = false;
-
+print "stap1";
 if( isset($_POST['btn-login']) ) {
 
   unset($_POST['btn-login']);
@@ -23,7 +23,7 @@ if( isset($_POST['btn-login']) ) {
  $pass = strip_tags($pass);
  $pass = htmlspecialchars($pass);
  // prevent sql injections / clear user invalid inputs
-
+print "okdoei";
  if(empty($email)){
   $error = true;
   $emailError = "Please enter your email address.";
@@ -36,31 +36,34 @@ if( isset($_POST['btn-login']) ) {
   $error = true;
   $passError = "Please enter your password.";
  }
-
+print "blub1";
  // if there's no error, continue to login
  if (!$error) {
-
+print "blub2";
   $password = hash('sha256', $pass); // password hashing using SHA256
-  $res = executeSQL ("SELECT userId, userName, userPass FROM User WHERE userEmail='$email'");
+  print "blub3";
+  //$res = executeSQL ("SELECT userId, userName, userPass FROM User WHERE userEmail='$email'", 0);
+   testFunction();
+  //print "blub90";
  // for ($i = 0; $i < count($res); ++$i){
     // print("userID " . $res["userId"]);
     //  print("userName " . $res["userName"]);
     //   print("userPass " . $res["userPass"]);
- // }
+ }
   // $row = $res;
   // $count = count($res); // if uname/pass correct it returns must be 1 row
 
-
-  // if( $count == 1 && $row[0]['userPass']==$password ) {
-  //  $_SESSION['user'] = $row['userId'];
-  //  header("Location: index.php");
-  // // print("AAAAAAH");
-  // } else {
-  //   //print("BBBBBBBBH");
-  //  $errMSG = "Incorrect Credentials, Try again...";
-  // }
+print "hoi";
+  if( $count == 1 && $row[0]['userPass']==$password ) {
+   $_SESSION['user'] = $row['userId'];
+   header("Location: index.php");
+  // print("AAAAAAH");
+  } else {
+    //print("BBBBBBBBH");
+   $errMSG = "Incorrect Credentials, Try again...";
+  }
 
  }
-
-}
+print "jaaa";
+//}
 ?>
