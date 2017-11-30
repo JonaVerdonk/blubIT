@@ -30,4 +30,9 @@ function IsMobile(){
    //uname contains a mobile tag
   return true;
 }
+
+function clearString($string){
+  //Takes in a string and sanitizes it
+  return htmlspecialchars(strip_tags(trim($string)));
+}
  ?>
