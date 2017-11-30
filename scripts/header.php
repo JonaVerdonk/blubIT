@@ -6,7 +6,6 @@
     * Close connection
     * Print header with logo and links
     */
-
     //Set the admin session-variable as test
     if (!isset($_SESSION["role"])) {
         $_SESSION["role"] = "r";
