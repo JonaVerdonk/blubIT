@@ -1,6 +1,5 @@
 
 <?php
-include("databaseConnection.php.php");
 $contentAdmin = true;
 
 //GET a list of all the contentboxes in the pages

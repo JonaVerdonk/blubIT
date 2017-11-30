@@ -15,9 +15,10 @@
 
     </head>
     <body>
+        <?php include_once("scripts/databaseConnection.php") ?>
         <?php include("scripts/header.php"); ?>
         <?php include("scripts/cmsTool.php"); ?>
-        <?php include("scripts/content.php"); ?>
+        <?php //include("scripts/content.php"); ?>
         <?php include("scripts/footer.php"); ?>
     </body>
 </html>

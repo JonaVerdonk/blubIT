@@ -13,6 +13,7 @@
             return($pdo);
         }catch(PDOException $e){
             echo "Connection failed: " . $e->getMessage()."<br>";
+            return "ERROR";
         }
     }
 
@@ -26,6 +27,11 @@
 
         //Create a new PDO object
         $pdo = makeConnection();
+
+        if($pdo == "ERROR"){
+          return $pdo . " 1";
+        }
+
 
         try {
             //Check if exec or execute has to be used
