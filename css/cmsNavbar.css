@@ -1,0 +1,15 @@
+#navbarTable {
+    margin-left: 10%;
+}
+
+#navbarTable td {
+    padding: 20px;
+}
+
+#navbarTable tr:nth-child(even) {
+    background-color: #eee;
+}
+
+#navbarTable tr:nth-child(odd) {
+    background-color: #ccc;
+}
