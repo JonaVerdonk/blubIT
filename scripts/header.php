@@ -8,8 +8,6 @@
     */
 
     //Set the admin session-variable as test
-    if (!isset($_SESSION["roll"])) {
-        $_SESSION["roll"] = "r";
     }
 
     print('<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>');
@@ -45,7 +43,6 @@
         if (strpos($name, "Admin") !== false) {
             //Check if user is logged in as admin
             //If so, print the link containing admin
-            if ($_SESSION["roll"] == "x") {
                 print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
             }
         } else {
