@@ -16,6 +16,7 @@
     </head>
     <body>
         <?php include("scripts/header.php"); ?>
+        <?php include("scripts/cmsTool.php"); ?>
         <?php include("scripts/content.php"); ?>
         <?php include("scripts/footer.php"); ?>
     </body>

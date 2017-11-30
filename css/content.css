@@ -4,13 +4,15 @@
     height: auto;
 }
 .content-body {
-    display: inline-block;
+    float:left;
     width: 210px;
-    height: auto;
-    margin-top: 20px;
+    height: 40vh;
     text-align: left;
-    margin-right: 80px;
-    margin-left: 0px;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(200,200,200,0.5);
+    border-radius: 3px;
+    overflow-y: auto;
 }
 
 .content-body-meer a:link, a:visited {
@@ -35,21 +37,11 @@
     height: 200px;
     width: 260px
 }
-
-@media (max-width: 680px) {
-    #content{
-        padding-top: 200px;
-    }
-    .content-body {
-        width: 50%;
-        float: left;
-    }
-}
-
 @media (max-width: 560px) {
     .content-body {
-        width: 50%;   
-        margin: 10px 25%;
+        width: calc(100% - 30px);   
+        margin: 10px 5px;
         float: left;
+        height: auto;
     }
 }

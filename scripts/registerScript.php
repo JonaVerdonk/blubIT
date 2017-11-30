@@ -1,7 +1,6 @@
 <?php
   session_start();
   include("../scripts/databaseConnection.php.php");
-print "blob";
 
 $error = false;
 
@@ -53,7 +52,7 @@ $error = false;
   } else if(strlen($pass) < 6) {
    $error = true;
    $passError = "Het wachtwoord moet uit minimaal 6 tekens bestaan.";
- } else if($pass) != ($confirmpass){
+ } else if($pass !== $confirmpass){
    $error = true;
    $passError = "De wachtwoorden komen niet overeen.";
  }
@@ -67,5 +66,4 @@ $error = false;
    executeSQL ("INSERT INTO User(userName,userEmail,userPass) VALUES('$name','$email','$password')");
   }
  }
- print "het is denk ik gelukt?";
 ?>

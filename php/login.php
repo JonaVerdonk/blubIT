@@ -1,7 +1,7 @@
 <?php
 
 include("../scripts/loginScript.php");
-//include("../scripts/registerScript.php");
+include("../scripts/registerScript.php");
 
 ?>
 <html>
