@@ -146,48 +146,19 @@ a[href^="tel:"]:before {
   .footer-reference-container{
     width: calc((100% - 60px)/3);
   }
+  #footer-contact span{
+    font-size: 15px;
+  }
 }
-
+@media (max-width: 680px) {
+  #footer-contact span{
+    font-size: 20px;
+  }
+}
 
 @media (max-width: 480px) {
   body{
     padding-bottom: 240px;
-  }
-  .footer-reference-container{
-    width: calc((100% - 40px)/2);
-  }
-  #footer-contact{
-    position: absolute;
-    left: 5px;
-    top: 40px;
-    color: white;
-    font-size: 20px;
-  }
-  footer{
-    height: 160px;
-  }
-  #footer-bottom{
-    height: 100px;
-  }
-
-  #footer-icon{
-    position: absolute;
-    margin: 0px;
-    width: 75%;
-    left: 25vw;
-  }
-
-  #footer-contact span a{
-    width: 100%;
-    display: block;
-    position: absolute;
-  }
-
-  #footer-contact span{
-    width: 100%;
-    display: block;
-    position: absolute;
-    left: 25vw;
   }
 
 }

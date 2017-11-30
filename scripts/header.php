@@ -6,18 +6,16 @@
     * Close connection
     * Print header with logo and links
     */
-
+    include_once("databaseConnection.php");
     //Set the admin session-variable as test
     $_SESSION["admin"] = true;
 
     if ($_SERVER["REQUEST_URI"] === "/") {
         //Include and print everything for index
-        include("scripts/databaseConnection.php");
         print('<script type="text/javascript" src="js/jquery-3.2.1.js"></script>');
         print('<script type="text/javascript" src="js/header.js"></script>');
     } else {
         //Include and print for other pages
-        include("../scripts/databaseConnection.php");
         print('<script type="text/javascript" src="../js/jquery-3.2.1.js"></script>');
         print('<script type="text/javascript" src="../js/header.js"></script>');
     }
@@ -32,14 +30,14 @@
 //
 //
     //Example array of links
-//    $links = [
-//        ["/index.php", "Home", 1],
-//        ["/php/contact.php", "Contact", 2],
-//        ["", "Link 5", 5],
-//        ["/#", "Link 3", 3],
-//        ["/#", "Link 4", 4],
-//        ["/php/admin.php", "Admin page", 6]
-//    ];
+   // $links = [
+   //     ["/index.php", "Home", 1],
+   //     ["/php/contact.php", "Contact", 2],
+   //     ["", "Link 5", 5],
+   //     ["/#", "Link 3", 3],
+   //     ["/#", "Link 4", 4],
+   //     ["/php/admin.php", "Admin page", 6]
+   // ];
 
     //Print the header tag with the header-img
     print('<header>');
@@ -49,7 +47,7 @@
     print('<button id="navbarButton">Show links</button>');
     print('<ul id="navbarLinks">');
     //Print individual navbar-items
-    for ($i = 0; $i < count($links); ++ $i) {
+    for ($i = 0; $i < count($links);$i++) {
         $url = $links[$i][0];
         $name = $links[$i][1];
 

@@ -35,11 +35,8 @@
             //testFunction();
             print("Voor de DB zooi");
             $password = hash('sha256', $pass); // password hashing using SHA256
-            print("Voor de DB zooi2");
-            $res = executeSQL ("SELECT userId, userName, userPass FROM User WHERE userEmail='$email'");
-            print("Voor de DB zooi3");
+            $res = executeSQL("SELECT userId, userName, userPass FROM User WHERE userEmail='$email'");
             $row = $res;
-            print("Voor de DB zooi4");
             $count = count($res); // if uname/pass correct it returns must be 1 row
 
             print("Na de DB zooi");

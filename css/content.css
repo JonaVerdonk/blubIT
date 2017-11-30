@@ -35,13 +35,13 @@
 
 .img-home{
     height: 200px;
-    width: 260px
+    width: 260px;
 }
 @media (max-width: 560px) {
     .content-body {
         width: calc(100% - 30px);   
         margin: 10px 5px;
         float: left;
-        height: auto;
+        height: auto !important;
     }
 }
