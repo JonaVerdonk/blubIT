@@ -28,6 +28,7 @@ include("../scripts/registerScript.php");
           <div="both">
             <div id="login">
               <h1>Login</h1>
+              <?php print $errorMsg ?>
                 <form method="POST" action="">
                     E-mailadres: <input type="email" name="email" placeholder="Your Email" value="" maxlength="40"><br>
                     <span class="text-danger"></span><br>
@@ -41,6 +42,7 @@ include("../scripts/registerScript.php");
 
             <div id="register">
               <h1>Registreren</h1>
+            <form method="POST" action="">
               Volledige naam: <input type="text" name="name" placeholder="Naam" maxlength="45"><br>
               <span class="text-danger"></span><br>
               E-mailadres: <input type="email" name="email" placeholder="E-mailadres" value="" maxlength="40"><br>
@@ -48,8 +50,10 @@ include("../scripts/registerScript.php");
               Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Wachtwoord" maxlength="40"><br>
               <span class="text-danger"></span><br>
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
-
               <input type="submit" name="btn-signup">
+
+              <span><?php //if ($error) {print($errorMsg);} ?></span>
+          </form>
             </div>
           </div>
         </div>
