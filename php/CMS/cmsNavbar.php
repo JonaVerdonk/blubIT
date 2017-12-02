@@ -25,40 +25,70 @@
 
             <table id="navbarTable"></table>
 
-            <div id="test"></div>
-
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
+                    var data, originalData;
 
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
                         type: "POST",
                         data: {"sql": "SELECT * FROM Navbar ORDER BY position;"},
-                        success: function(data, status) {
-                              //De beste manier om het woord array te spellen
-//                            for (i = 0; i < data.length; ++ i) {
-//                               $("#navbarTable").append("<tr><td>"+data[i][2]+"</td><td>"+data[i][0]+"</td><td>"+data[i][1]+"</td></tr>");
-//                            }
+                        success: function(json, status) {
 
-                            var json = data;
-                            var data = $.parseJSON(json);
+                            data = $.parseJSON(json);
+                            originalData = data;
 
-                            $("#navbarTable").append("<tr><th>Order</th><th>URL</th><th>Name</th></tr>");
-                            for (i = 0; i < data.length; ++ i) {
-                                $("#navbarTable").append("<tr><td class='position'>"+data[i][2]+"</td><td class='url'>"+data[i][0]+"</td><td class='name'>"+data[i][1]+"</td><td><button class='edit'>Edit</button></td></tr>");
-                            }
+                            /*
+                                data
+                                    [0] = URL
+                                    [1] = Name
+                                    [2] = Position
+                            */
 
-                            //Add listeners to edit buttons
-                            var buttons = $(".edit");
 
-                            for (let i = 0; i < buttons.length; ++ i) {
-                                buttons[i].click(function() {
-                                    alert("button");
-                                });
-                            }
+
+                            print();
+
                         }
-                      });
+                    });
+
+                    function print() {
+                        $("#navbarTable").empty();
+                        app("<tr><th>Order</th><th>URL</th><th>Name</th></tr>");
+                        //Sorry voor deze lijn, dit is de enige manier dat ik dit werkend kon krijgen zonder dat jquery automatisch tags begon te sluiten.
+                        for (row = 0; row < data.length; ++ row) {
+                            $("#navbarTable").append("<tr id='"+row+"'><td class='position'><button class='up'>&#9650;</button><br>"+data[row][2]+"<br><button class='down'>&#9660;</button></td><td class='url'>"+data[row][0]+"</td><td class='name'>"+data[row][1]+"</td><td><button value='"+row+"' class='edit'>Edit</button></td></tr>");
+                        }
+
+                        setEditClick();
+                    }
+
+                    function setEditClick() {
+                        var btnEdit = $(".edit");
+
+                        btnEdit.on("click", function() {
+                            var row = $(this).val();
+                            if ($("#"+row+" .edit").html() === "Edit") {
+                                $("#"+row+" .url").html("<input type=text value='"+data[row][0]+"'>");
+                                $("#"+row+" .name").html("<input type=text value='"+data[row][1]+"'>");
+                                $("#"+row+" .edit").html("Save");
+                            } else {
+                                data[row][0] = $("#"+row+" .url input").val();
+                                data[row][1] = $("#"+row+" .name input").val();
+                                $("#"+row+" .edit").html("Edit");
+                                print();
+                            }
+                        });
+                    }
+
+                    function app(str) {
+                        $("#navbarTable").append(str);
+                    }
+
+                    function log(str) {
+                        console.log(str);
+                    }
                 });
             </script>
 
