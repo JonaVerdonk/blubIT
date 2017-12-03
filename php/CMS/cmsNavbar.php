@@ -24,11 +24,13 @@
 
 
             <table id="navbarTable"></table>
+            <br><br>
+            <button id="btnSave" class="notClickable">Save</button>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
-                    var data, originalData;
+                    var data;
 
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
@@ -37,17 +39,12 @@
                         success: function(json, status) {
 
                             data = $.parseJSON(json);
-                            originalData = data;
-
                             /*
                                 data
                                     [0] = URL
                                     [1] = Name
                                     [2] = Position
                             */
-
-
-
                             print();
 
                         }
@@ -55,13 +52,19 @@
 
                     function print() {
                         $("#navbarTable").empty();
+
+                        data.sort(function(a, b) {
+                            return a[2] - b[2];
+                        });
+
                         app("<tr><th>Order</th><th>URL</th><th>Name</th></tr>");
                         //Sorry voor deze lijn, dit is de enige manier dat ik dit werkend kon krijgen zonder dat jquery automatisch tags begon te sluiten.
                         for (row = 0; row < data.length; ++ row) {
-                            $("#navbarTable").append("<tr id='"+row+"'><td class='position'><button class='up'>&#9650;</button><br>"+data[row][2]+"<br><button class='down'>&#9660;</button></td><td class='url'>"+data[row][0]+"</td><td class='name'>"+data[row][1]+"</td><td><button value='"+row+"' class='edit'>Edit</button></td></tr>");
+                            app("<tr id='"+row+"'><td class='position'><button value='"+row+"' class='up'>&#9650;</button><br>"+data[row][2]+"<br><button class='down' value='"+row+"'>&#9660;</button></td><td class='url'>"+data[row][0]+"</td><td class='name'>"+data[row][1]+"</td><td><button value='"+row+"' class='edit'>Edit</button></td></tr>");
                         }
 
                         setEditClick();
+                        setPosClick();
                     }
 
                     function setEditClick() {
@@ -74,10 +77,58 @@
                                 $("#"+row+" .name").html("<input type=text value='"+data[row][1]+"'>");
                                 $("#"+row+" .edit").html("Save");
                             } else {
-                                data[row][0] = $("#"+row+" .url input").val();
-                                data[row][1] = $("#"+row+" .name input").val();
+                                var url = $("#"+row+" .url input").val();
+                                var name = $("#"+row+" .name input").val();
+
+                                data[row][0] = url;
+                                data[row][1] = name;
+
+                                $("#"+row+" .url").html(url);
+                                $("#"+row+" .name").html(name);
+
                                 $("#"+row+" .edit").html("Edit");
+
+                                changed();
+                            }
+                        });
+                    }
+
+                    function setPosClick() {
+                        var btnPosUp = $(".up");
+                        var btnPosDown = $(".down");
+
+                        btnPosUp.on("click", function() {
+                            var row = parseInt($(this).val());
+                            if (row !== 0) {
+                                data[row][2] --;
+                                data[row-1][2] ++;
+                                changed();
                                 print();
+                            }
+                        });
+
+                        btnPosDown.on("click", function() {
+                            var row = parseInt($(this).val());
+                            if (row !== data.length-1) {
+                                log(typeof(row));
+                                data[row][2] ++;
+                                data[row+1][2] --;
+                                changed();
+                                print();
+                            }
+                        });
+                    }
+
+                    function changed() {
+                        $("#btnSave").addClass("clickable");
+                        $("#btnSave").removeClass("notClickable");
+
+                        $("#btnSave").on("click", function() {
+                            $("#btnSave").addClass("notClickable");
+                            $("#btnSave").removeClass("clickable");
+
+                            for (i = 0; i < data.length; ++ i) {
+                                //Database connection
                             }
                         });
                     }

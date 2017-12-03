@@ -10,15 +10,44 @@
     padding: 5px 40px 5px 10px;
 }
 
+.position {
+    text-align: center;
+}
+
 .position button {
     padding: 0;
     margin: 0;
+    background: none;
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 20px;
+}
+.position button:hover {
+    color: #1f2021;
+    transition: color .1s;
 }
 
 #navbarTable tr:nth-child(even) {
     background-color: #eee;
 }
-
 #navbarTable tr:nth-child(odd) {
     background-color: #ccc;
+}
+
+#btnSave {
+    margin-left: 50%;
+    width: 90px;
+    height: 40px;
+    border: none;
+    outline: 0;
+}
+
+.notClickable {
+    background-color: #aaa;
+    color: #666;
+}
+.clickable {
+    background-color: #ccc;
+    color: black;
 }
