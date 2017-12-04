@@ -4,7 +4,7 @@
      include_once("Saltypassword.php");
      include_once("GlobalFunctions.php");
 
-    $error = false;
+    $errorLogin = false;
 
     if( isset($_POST['btn-login']) ) {
         unset($_POST['btn-login']);
@@ -16,20 +16,20 @@
         // prevent sql injections / clear user  invalid inputs
 
         if(empty($email)){
-            $error = true;
-            $emailError = "Please enter your email address.";
+            $errorLogin = true;
+            $errorLoginMsg = "Please enter your email address.";
         } else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
-            $error = true;
-            $emailError = "Please enter valid email address.";
+            $errorLogin = true;
+            $errorLoginMsg = "Please enter valid email address.";
         }
 
         if(empty($pass)){
-            $error = true;
-            $passError = "Please enter your password.";
+            $errorLogin = true;
+            $errorLoginMsg = "Please enter your password.";
         }
 
         // if there's no error, continue to login
-        if (!$error) {
+        if (!$errorLogin) {
             //testFunction();
             $password = hash('sha256', $pass); // password hashing using SHA256
             //$res = executeSQL("SELECT userId, userName, userPass, role FROM User WHERE userEmail='$email'");
@@ -46,11 +46,12 @@
             if($ValidPass && count($SQL)){
               $_SESSION['user'] = $SQL[0]['userId'];
               $_SESSION['role'] = $SQL[0]['role'];
-              print ("ingelogd!");
+              $login = ("Je bent succesvol ingelogd.");
+              $_SESSION['logged_in'] = TRUE;
             }else{
-              $errMSG = "Incorrect Credentials, Try again...";
-              print ("niet ingelogd!");
-            }
+              $errorLogin = true;
+              $errorLoginMsg = "Incorrect Credentials, Try again...";
+           }
         }
 
     }
