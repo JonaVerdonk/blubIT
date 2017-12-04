@@ -16,6 +16,7 @@ include_once("databaseConnection.php");
 
          <meta name="viewport" content="width=device-width" initial-scale="1.0">
          <link rel="stylesheet" type="text/css" href="../css/style.css">
+         <link rel="stylesheet" type="text/css" href="../css/users.css">
          <title></title>
      </head>
      <body>
@@ -26,7 +27,14 @@ include_once("databaseConnection.php");
         $users = executeSQL ("SELECT userId, userName, userEmail, role FROM User", 2);
         //print_r ($users);
 
-        print ("<table>");
+        print ("<table id=table>");
+        print ("<tr>
+                  <th>Gebruikers ID</th>
+                  <th>Gebruikersnaam</th>
+                  <th>E-mail adres</th>
+                  <th>Rechten</th>
+              </tr>");
+
           for ($i = 0; $i < count($users); ++ $i) {
             print ("<tr>");
               for($j = 0; $j < count($users[$i]); ++ $j) {
