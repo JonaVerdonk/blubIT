@@ -8,7 +8,7 @@
     </head>
     <body>
 
-        <?php //include($_SERVER['DOCUMENT_ROOT']."scripts/header.php"); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT']."scripts/header.php"); ?>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109575524-1"></script>
@@ -24,40 +24,157 @@
 
 
             <table id="navbarTable"></table>
-
-            <div id="test"></div>
-
+            <br><br>
+            <button id="btnSave" class="notClickable">Save</button>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
+                    var data, originalLength;
 
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
                         type: "POST",
                         data: {"sql": "SELECT * FROM Navbar ORDER BY position;"},
-                        success: function(data, status) {
-                              //De beste manier om het woord array te spellen
-//                            for (i = 0; i < data.length; ++ i) {
-//                               $("#navbarTable").append("<tr><td>"+data[i][2]+"</td><td>"+data[i][0]+"</td><td>"+data[i][1]+"</td></tr>");
-//                            }
+                        success: function(json, status) {
 
-                            var json = data;
-                            var data = $.parseJSON(json);
-                            $("#navbarTable").append("<tr><th>Order</th><th>URL</th><th>Name</th></tr>");
+                            data = $.parseJSON(json);
+                            originalLength = data.length;
+                            /*
+                                data
+                                    [0] = URL
+                                    [1] = Name
+                                    [2] = Position
+                            */
+                            print();
+
+                        }
+                    });
+
+                    function print() {
+                        $("#navbarTable").empty();
+
+                        data.sort(function(a, b) {
+                            return a[2] - b[2];
+                        });
+
+                        app("<tr><th>Order</th><th>URL</th><th>Name</th></tr>");
+                        //Sorry voor deze lijn, dit is de enige manier dat ik dit werkend kon krijgen zonder dat jquery automatisch tags begon te sluiten.
+                        for (row = 0; row < data.length; ++ row) {
+                            app("<tr id='"+row+"'><td class='position'><button value='"+row+"' class='up'>&#9650;</button><br>"+data[row][2]+"<br><button class='down' value='"+row+"'>&#9660;</button></td><td class='url'>"+data[row][0]+"</td><td class='name'>"+data[row][1]+"</td><td><button value='"+row+"' class='edit'>Edit</button></td></tr>");
+                        }
+                        app("<tr><td id='positionNew'></td><td><input id='urlNew' type='text'></td><td><input id='nameNew' type='text'></td><td><button id='saveNew'>Save new entry</button></td>");
+
+                        setEditClick();
+                        setPosClick();
+
+                        $("#saveNew").on("click", function() {
+                            data[data.length] = [
+                                $("#urlNew").val(),
+                                $("#nameNew").val(),
+                                data.length + 1
+                            ];
+                            changed();
+                            print();
+                        });
+                    }
+
+                    function setEditClick() {
+                        var btnEdit = $(".edit");
+
+                        btnEdit.on("click", function() {
+                            var row = $(this).val();
+                            if ($("#"+row+" .edit").html() === "Edit") {
+                                $("#"+row+" .url").html("<input type=text value='"+data[row][0]+"'>");
+                                $("#"+row+" .name").html("<input type=text value='"+data[row][1]+"'>");
+                                $("#"+row+" .edit").html("Save");
+                            } else {
+                                var url = $("#"+row+" .url input").val();
+                                var name = $("#"+row+" .name input").val();
+
+                                data[row][0] = url;
+                                data[row][1] = name;
+
+                                $("#"+row+" .url").html(url);
+                                $("#"+row+" .name").html(name);
+
+                                $("#"+row+" .edit").html("Edit");
+
+                                changed();
+                            }
+                        });
+                    }
+
+                    function setPosClick() {
+                        var btnPosUp = $(".up");
+                        var btnPosDown = $(".down");
+
+                        btnPosUp.on("click", function() {
+                            var row = parseInt($(this).val());
+                            if (row !== 0) {
+                                data[row][2] --;
+                                data[row-1][2] ++;
+                                changed();
+                                print();
+                            }
+                        });
+
+                        btnPosDown.on("click", function() {
+                            var row = parseInt($(this).val());
+                            if (row !== data.length-1) {
+                                log(typeof(row));
+                                data[row][2] ++;
+                                data[row+1][2] --;
+                                changed();
+                                print();
+                            }
+                        });
+                    }
+
+                    function changed() {
+                        $("#btnSave").addClass("clickable");
+                        $("#btnSave").removeClass("notClickable");
+
+                        $("#btnSave").unbind("click");
+                        $("#btnSave").on("click", function() {
+                            $("#btnSave").addClass("notClickable");
+                            $("#btnSave").removeClass("clickable");
+
+                            var sql = "";
                             for (i = 0; i < data.length; ++ i) {
-                                $("#navbarTable").append("<tr><td class='position'>"+data[i][2]+"</td><td class='url'>"+data[i][0]+"</td><td class='name'>"+data[i][1]+"</td><td><button class='edit' value='edit'></td></tr>");
+                                if (i < originalLength) {
+                                    sql += "UPDATE Navbar SET position="+parseInt(data[i][2])+", url='"+data[i][0]+"', name='"+data[i][1]+"' WHERE position="+parseInt(data[i][2])+";";
+                                } else {
+                                    sql += "INSERT INTO Navbar (url, name, position) VALUES ('"+data[i][0]+"', '"+data[i][1]+"', "+parseInt(data[i][2])+");";
+                                }
                             }
 
-                            //Add listeners to edit buttons
-                            var buttons[] = $(".edit");
-                            alert(buttons.length);
-                        }
-                      });
+                            $.ajax({
+                                url: "../../scripts/executeQuery.php",
+                                type: "POST",
+                                data: {"sql": sql},
+                                success: function(json, status) {
+                                    alert(status);
+                                },
+
+                                error: function(data) {
+                                    alert("Error, most likely related to database connection. Fired from ajax request.");
+                                }
+                            });
+                        });
+                    }
+
+                    function app(str) {
+                        $("#navbarTable").append(str);
+                    }
+
+                    function log(str) {
+                        console.log(str);
+                    }
                 });
             </script>
 
         </div>
 
-        <?php //include($_SERVER['DOCUMENT_ROOT']."scripts/footer.php"); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT']."scripts/footer.php"); ?>
     </body>
 </html>
