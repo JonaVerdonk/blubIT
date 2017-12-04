@@ -3,7 +3,6 @@ session_start();
 include_once("databaseConnection.php");
 
 $error = false;
-print "blub1000";
 
 if (isset($_POST['btn-signup']) ) {
 
@@ -11,15 +10,12 @@ if (isset($_POST['btn-signup']) ) {
   $name = trim($_POST['name']);
   $name = strip_tags($name);
   $name = htmlspecialchars($name);
-  print "blub2";
   $email = trim($_POST['email']);
   $email = strip_tags($email);
   $email = htmlspecialchars($email);
-  print "blub3";
   $pass = trim($_POST['pass']);
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
-  print "blub4";
   $confirmpass = trim($_POST['confirmpass']);
   $confirmpass = strip_tags($confirmpass);
   $confirmpass = htmlspecialchars($confirmpass);
@@ -34,7 +30,7 @@ if (isset($_POST['btn-signup']) ) {
     $error = true;
     $nameError = "Name must contain alphabets and space.";
   }
-  print "blub5";
+
   //basic email validation
   if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
     $error = true;
@@ -46,7 +42,7 @@ if (isset($_POST['btn-signup']) ) {
     if($count!=0){
       $error = true;
       $emailError = "Provided Email is already in use.";
-    }   print "blub5";
+    }
   }
   // password validation
   if (empty($pass)){
@@ -58,17 +54,16 @@ if (isset($_POST['btn-signup']) ) {
   } else if($pass !== $confirmpass){
     $error = true;
     $passError = "De wachtwoorden komen niet overeen.";
-  }  print "blub6";
+  }
 
   // password encrypt using SHA256();
   $password = hash('sha256', $pass);
-  print "blub7";
   print $passError;
   print $nameError;
   // if there's no error, continue to signup
   if( !$error ) {
-    print "blub8";
     executeSQL ("INSERT INTO User(userName,userEmail,userPass, role) VALUES('$name','$email','$password', 'r')");
-    print "blub9";}
+    print "Aangemeld!";
   }
+}
   ?>
