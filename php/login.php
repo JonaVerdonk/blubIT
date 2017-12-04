@@ -52,7 +52,7 @@ include("../scripts/registerScript.php");
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
               <input type="submit" name="btn-signup">
 
-              <span><?php //if ($error) {print($errorMsg);} ?></span>
+              <span><?php if ($error) {print($errorMsg);} ?></span>
           </form>
             </div>
           </div>

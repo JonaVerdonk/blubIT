@@ -1,11 +1,8 @@
 <?php
     session_start();
      include_once("databaseConnection.php");
-<<<<<<< HEAD
      include_once("Saltypassword.php");
      include_once("GlobalFunctions.php");
-=======
->>>>>>> 02697470309f2af0058edd5f4e11d51813c3c74d
 
     $error = false;
 
@@ -35,7 +32,6 @@
         if (!$error) {
             //testFunction();
             $password = hash('sha256', $pass); // password hashing using SHA256
-<<<<<<< HEAD
             //$res = executeSQL("SELECT userId, userName, userPass, role FROM User WHERE userEmail='$email'");
             //$row = $res;
             //$count = count($res); // if uname/pass correct it returns must be 1 row
@@ -54,23 +50,6 @@
             }else{
               $errMSG = "Incorrect Credentials, Try again...";
               print ("niet ingelogd!");
-=======
-            $res = executeSQL("SELECT userId, userName, userPass, role FROM User WHERE userEmail='$email'");
-            $row = $res;
-            $count = count($res); // if uname/pass correct it returns must be 1 row
-
-
-            if( $count == 1 && $row[0]['userPass']==$password ) {
-                $_SESSION['user'] = $row[0]['userId'];
-                $_SESSION['role'] = $row[0]['role'];
-                print ("ingelogd!");
-                //header("Location: /index.php");
-
-
-            } else {
-                $errMSG = "Incorrect Credentials, Try again...";
-                print ("niet ingelogd!");
->>>>>>> 02697470309f2af0058edd5f4e11d51813c3c74d
             }
         }
 
