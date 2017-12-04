@@ -26,11 +26,10 @@
             <table id="navbarTable"></table>
             <br><br>
             <button id="btnSave" class="notClickable">Save</button>
-
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
-                    var data;
+                    var data, originalLength;
 
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
@@ -39,6 +38,7 @@
                         success: function(json, status) {
 
                             data = $.parseJSON(json);
+                            originalLength = data.length;
                             /*
                                 data
                                     [0] = URL
@@ -62,9 +62,20 @@
                         for (row = 0; row < data.length; ++ row) {
                             app("<tr id='"+row+"'><td class='position'><button value='"+row+"' class='up'>&#9650;</button><br>"+data[row][2]+"<br><button class='down' value='"+row+"'>&#9660;</button></td><td class='url'>"+data[row][0]+"</td><td class='name'>"+data[row][1]+"</td><td><button value='"+row+"' class='edit'>Edit</button></td></tr>");
                         }
+                        app("<tr><td id='positionNew'></td><td><input id='urlNew' type='text'></td><td><input id='nameNew' type='text'></td><td><button id='saveNew'>Save new entry</button></td>");
 
                         setEditClick();
                         setPosClick();
+
+                        $("#saveNew").on("click", function() {
+                            data[data.length] = [
+                                $("#urlNew").val(),
+                                $("#nameNew").val(),
+                                data.length + 1
+                            ];
+                            changed();
+                            print();
+                        });
                     }
 
                     function setEditClick() {
@@ -123,13 +134,32 @@
                         $("#btnSave").addClass("clickable");
                         $("#btnSave").removeClass("notClickable");
 
+                        $("#btnSave").unbind("click");
                         $("#btnSave").on("click", function() {
                             $("#btnSave").addClass("notClickable");
                             $("#btnSave").removeClass("clickable");
 
+                            var sql = "";
                             for (i = 0; i < data.length; ++ i) {
-                                //Database connection
+                                if (i < originalLength) {
+                                    sql += "UPDATE Navbar SET position="+parseInt(data[i][2])+", url='"+data[i][0]+"', name='"+data[i][1]+"' WHERE position="+parseInt(data[i][2])+";";
+                                } else {
+                                    sql += "INSERT INTO Navbar (url, name, position) VALUES ('"+data[i][0]+"', '"+data[i][1]+"', "+parseInt(data[i][2])+");";
+                                }
                             }
+
+                            $.ajax({
+                                url: "../../scripts/executeQuery.php",
+                                type: "POST",
+                                data: {"sql": sql},
+                                success: function(json, status) {
+                                    alert(status);
+                                },
+
+                                error: function(data) {
+                                    alert("Error, most likely related to database connection. Fired from ajax request.");
+                                }
+                            });
                         });
                     }
 
