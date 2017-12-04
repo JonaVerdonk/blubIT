@@ -33,24 +33,40 @@ include_once("databaseConnection.php");
                   <th>Gebruikersnaam</th>
                   <th>E-mail adres</th>
                   <th>Rechten</th>
+                  <th>Edit</th>
               </tr>");
 
           for ($i = 0; $i < count($users); ++ $i) {
-            print ("<tr>");
+            print ("<tr id='$i'>");
               for($j = 0; $j < count($users[$i]); ++ $j) {
-                print ("<td>");
+                print ("<td class='$j'>");
                 print ($users[$i][$j]);
                 print ("</td>");
               }
+              print ("<td><button value='$i' class='edit'>Edit</button></td>");
             print ("</tr>");
           }
         print ("</table>");
-
         ?>
+        <form id="form" method="POST" action="edituser.php">
+          <input type="text" id="userid">
+          <input type="submit" id="submit">
+        </form>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function() {
 
-
-
+            var btnEdit = $(".edit");
+            btnEdit.on("click", function() {
+                var row = $(this).val();
+                var id = $("#"+row+" .0").html();
+                alert(id);
+                $("#userid").val(id);
+                $("#submit").click();
+            });
+          });
+        </script>
     <?php include("../scripts/footer.php"); ?>
 
     </body>
