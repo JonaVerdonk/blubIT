@@ -29,22 +29,22 @@
                         <p>Analytics</p>
                     </a>
                 </div>
-                
+
                 <div class="adminItem">
                     <a href="CMS/CMS.php">
                         <img src="../images/350x150.png">
                         <p>CMS</p>
                     </a>
                 </div>
-                
+
                 <div class="adminItem">
-                    <a href="#">
+                    <a href="users.php">
                         <img src="../images/350x150.png">
                         <p>Users</p>
                     </a>
                 </div>
             </div>
-            
+
         </div>
 
         <?php include("../scripts/footer.php"); ?>

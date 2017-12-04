@@ -1,15 +1,33 @@
+#notificationgood{
+  background-color: lightgreen;
+  width: 90%;
+  margin: 5%;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+}
+
+#notificationerror{
+  background-color: #d42222;
+  width: 90%;
+  margin: 5%;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+}
+
 #login, #register{
   width: 40%;
   margin: 5%;
 }
 
 #login{
-  background-color: pink;
+  background-color: white;
     float: left;
 }
 
 #register{
-  background-color: lightgreen;
+  background-color: white;
   float: left;
 }
 

@@ -24,18 +24,32 @@ include("../scripts/registerScript.php");
     <body>
         <?php include("../scripts/header.php"); ?>
 
+
+
         <div id="pageContent">
+
+          <?php if (isset ($registered) || isset ($login)) {
+            print ('<div id="notificationgood">');
+            print ($registered . $login);
+            print ('</div>');
+          }?>
+
+          <?php
+            if ($error || $errorLogin){
+              print ('<div id="notificationerror">');
+              print ($errorMsg . $errorLoginMsg);
+              print ('</div>');
+            }
+          ?>
+
           <div="both">
             <div id="login">
               <h1>Login</h1>
-              <?php print $errorMsg ?>
                 <form method="POST" action="">
                     E-mailadres: <input type="email" name="email" placeholder="Your Email" value="" maxlength="40"><br>
                     <span class="text-danger"></span><br>
                     Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="40"><br>
                     <input type="submit" name="btn-login">
-
-                    <span><?php if ($error) {print($errorMsg);} ?></span>
                 </form>
 
             </div>
@@ -51,8 +65,6 @@ include("../scripts/registerScript.php");
               <span class="text-danger"></span><br>
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
               <input type="submit" name="btn-signup">
-
-              <span><?php //if ($error) {print($errorMsg);} ?></span>
           </form>
             </div>
           </div>
