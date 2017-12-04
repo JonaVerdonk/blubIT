@@ -6,10 +6,15 @@
     * Close connection
     * Print header with logo and links
     */
+    session_start();
 
     //Set the admin session-variable as test
     if (!isset($_SESSION["role"])) {
         $_SESSION["role"] = "r";
+    }
+
+    if (!isset($_SESSION["logged_in"])) {
+        $_SESSION["logged_in"] = false;
     }
 
     print('<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>');
@@ -20,6 +25,7 @@
     $links = executeSQL("SELECT * FROM Navbar ORDER BY position");
 
     //Print the header tag with the header-img
+    print_r($_SESSION);
     print('<header>');
     print('<img id="headerImg" src="/images/headerlogo.PNG" alt="logo">');
     //Print the navbar
@@ -45,13 +51,22 @@
         if (strpos($name, "Admin") !== false) {
             //Check if user is logged in as admin
             //If so, print the link containing admin
-            if ($_SESSION["roll"] == "x") {
+            if ($_SESSION["role"] == "x") {
                 print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
+            }
+        } else if (strpos($name, "log in") !== false || strpos($name, "Log in") !== false || strpos($name, "Login") !== false) {
+            if ($_SESSION["logged_in"] == 1) {
+                print('<li '.$id.'><a class="navbarLink" href="/scripts/logout.php">Log uit</a></li>');
+                print($_SESSION["logged_in"] . " " . $_SESSION["user"]);
+            } else {
+                print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
+                print($_SESSION["logged_in"] . " " . $_SESSION["user"]);
             }
         } else {
             print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
         }
     }
+
     //Print the closing tags
     print('</ul>');
     print('</div>');
