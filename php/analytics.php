@@ -23,8 +23,8 @@
 
         <div id="pageContent">
 
-            <div id="button">
-                <a class="button" href="admin.php">Terug</a>
+            <div class="btnBack">
+                <a href="admin.php">Terug</a>
             </div>
 
             <div id="graphs">

@@ -21,9 +21,13 @@
 
         <div id="pageContent">
 
+            <div class="btnBack">
+                <a href="../admin.php">Terug</a>
+            </div>
+
             <a href="cmsNavbar.php">Navbar</a><br>
             <a href="dbConnection.php">Database connection</a>
-            
+
         </div>
 
         <?php include($_SERVER['DOCUMENT_ROOT']."scripts/footer.php"); ?>
