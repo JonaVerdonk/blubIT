@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+       
 
 <html>
     <head>
@@ -12,30 +12,29 @@
 
   gtag('config', 'UA-109575524-1');
 </script>
-
+        
         <meta name="viewport" content="width=device-width", initial-scale="1.0">
         <link rel="stylesheet" type="text/css" href="../css/contact.css">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <title></title>
     </head>
-    <body>
-        <?php include("../scripts/header.php");?>
-
-        <div id="pageContent">
+    <body> 
+        <?php include("../scripts/header.php"); ?>
+        
+        <div id="content">
             <div id="form">
                 <form action="" method="post">
                     <h1>Contactformulier</h1>
                     <input class="text" type="text" name="bedrijfsnaam" placeholder="Bedrijfsnaam"><br>
-                    <input class="text" type="text" name="firstname" placeholder="*Voornaam" required><br>
-                    <input class="text" type="text" name="lastname" placeholder="*Achternaam" required><br>
+                    <input class="text" type="text" name="firstname" placeholder="*Voornaam" required><br>              
+                    <input class="text" type="text" name="lastname" placeholder="*Achternaam" required><br>              
                     <input class="text" type="email" name="email" placeholder="*Email" required><br>
                     <input class="text" type="text" name="subject" placeholder="*Onderwerp" required><br>
-                    <?php include ("../scripts/Save.php"); ?><br>
                     <textarea id="comment" name="commentaar" type="text" placeholder="Typ hier je bericht"></textarea><br>
                     <input id="submit" type="submit" name="Verstuur" value="Verstuur">
                 </form>
-
-
+                
+            
         </div>
             <div id="contact">
             <h1>Contactgegevens</h1>
@@ -50,8 +49,9 @@
             </p>
             </div>
             </div>
-
+       
         <?php include("../scripts/footer.php"); ?>
-
+            
     </body>
 </html>
+

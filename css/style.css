@@ -7,12 +7,10 @@ html, body {
 
 header {
     width: 100%;
-    /*background-color: #063971;*/
-    background-color: #367bb3;
+    background-color: #063971;
     height: 75px;
     position: fixed;
     margin-bottom: 80px;
-    z-index: 10;
 }
 
 #headerImg {
@@ -65,12 +63,6 @@ header {
 #navbarButton {
     display: none;
     padding: 0;
-}
-
-#username {
-    position: relative;
-    top: 10px;
-    right: 10px;
 }
 
 
