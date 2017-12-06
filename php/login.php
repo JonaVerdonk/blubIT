@@ -2,7 +2,7 @@
 
 include("../scripts/loginScript.php");
 include("../scripts/registerScript.php");
-include("<script src='https://www.google.com/recaptcha/api.js'></script>");
+
 ?>
 <html>
     <head>
@@ -15,7 +15,7 @@ include("<script src='https://www.google.com/recaptcha/api.js'></script>");
 
           gtag('config', 'UA-109575524-1');
         </script>
-
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <meta name="viewport" content="width=device-width" initial-scale="1.0">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="stylesheet" type="text/css" href="../css/login.css">
