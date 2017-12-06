@@ -30,7 +30,7 @@ include_once("databaseConnection.php");
         print ("<table id=table>");
         print ("<tr>
                   <th>Gebruikers ID</th>
-                  <th>Gebruikersnaam</th>
+                  <th>Volledige naam</th>
                   <th>E-mail adres</th>
                   <th>Rechten</th>
                   <th>Edit</th>
@@ -49,7 +49,7 @@ include_once("databaseConnection.php");
         print ("</table>");
         ?>
         <form id="form" method="POST" action="edituser.php">
-          <input type="text" id="userid">
+          <input type="text" name="userid" id="userid">
           <input type="submit" id="submit">
         </form>
 
