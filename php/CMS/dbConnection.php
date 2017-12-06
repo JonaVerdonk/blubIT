@@ -35,6 +35,11 @@
         </script>
 
         <div id="pageContent">
+
+            <div class="btnBack">
+                <a href="CMS.php">Terug</a>
+            </div>
+
           <form id="ReadRef" action="ReadRef.php" method="post">
             <input type="submit" name="" value="Reload References">
           </form>
