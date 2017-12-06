@@ -66,7 +66,14 @@ header {
     padding: 0;
 }
 
-
+#username {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
 
 /*
 Less than 858 is when the navbar
@@ -156,4 +163,21 @@ navbar/img is changed.
     background-color: #1c07ff;
     border-radius: 10px;
     transition: background-color .2s, border-radius .2s;
+}
+
+
+/*Redirect page styling*/
+#redirect {
+    width: 100%;
+    text-align: center;
+}
+#redirect h1 {
+    font-size: 90px;
+    padding: 20px;
+}
+#redirect h2 {
+    font-size: 30px;
+}
+#redirect h2 a {
+    color: black;
 }
