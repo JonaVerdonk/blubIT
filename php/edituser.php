@@ -44,6 +44,7 @@ include_once("/scripts/databaseConnection.php");
            print ("</br>" . $newuserid . $newusername . $newuseremail . "</br>");
            executeSQL ("UPDATE User SET userName = '$newusername', userEmail = '$newuseremail' WHERE userId = $newuserid;");
            print ("</br> Na sql </br>");
+           header ('Location: users.php');
        }else{
        $edituser = executeSQL ("SELECT userId, userName, userEmail, role FROM User WHERE userId = $userid", 2);
 

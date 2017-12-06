@@ -17,26 +17,26 @@ if (isset($_POST['btn-signup']) ) {
   // basic name validation
   if (empty($name)) {
     $error = TRUE;
-    $errorMsg = "Please enter your full name.";
+    $errorMsg = "Voer a.u.b. uw volledige naam in. ";
   } else if (strlen($name) < 3) {
     $error = TRUE;
-    $errorMsg  = "Name must have atleat 3 characters.";
+    $errorMsg  = "Uw volledige naam moet tenminste 3 tekens hebben.";
   } else if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
     $error = TRUE;
-    $errorMsg  = "Name must contain alphabets and space.";
+    $errorMsg  = "Uw volledige naam moet letters en een spatie bevatten.";
   }
 
   //basic email validation
   if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
     $error = TRUE;
-    $errorMsg  = "Please enter valid email address.";
+    $errorMsg  = "Voer a.u.b. een geldig emailadres in. ";
   } else {
     // check email exist or not
     $result = executeSQL ("SELECT userEmail FROM User WHERE userEmail='$email'");
     $count = count($result);
     if($count!=0){
       $error = TRUE;
-      $errorMsg  = "Provided Email is already in use.";
+      $errorMsg  = "Dit emailadres is al in gebruik. Log in met uw bestaande account. Indien u uw wachtwoord vergeten bent kunt u via het contactformulier bij de beheerder een nieuw wachtwoord aanvragen. ";
     }
   }
   // password validation
