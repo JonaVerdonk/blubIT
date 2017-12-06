@@ -1,4 +1,44 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    //positioning of objects
+    //Loop
+    //Get positioning EG. 3, 8, 2, 3 // <- Means 3 columns right that span 8 collumn and 2 rows down that span 3 down
+    //
 
+    $.ajax({
+        url: "/scripts/executeQuery.php",
+        type: "POST",
+        data: {"sql": "SELECT position, contentID FROM Content;"},
+        success: function(json, status) {
+
+            data = $.parseJSON(json);
+            originalLength = data.length;
+            /*
+                array(
+                  [0] => array("position" => "3,8,2,3")
+                  [1] => array("position" => "4,8,7,3")
+                  [2] => array("position" => "5,8,8,3")
+                  [3] => array("position" => "6,8,9,3")
+                )
+
+            */
+
+            for (var i = 0, len = data.length; i < len; i++) {
+              var RAWposition = data[i][0];
+              var position = RAWposition.split(",");
+
+              var GridCol = position[0] + " / span " + position[1];
+              var GridRow = position[2] + " / span " + position[3];
+
+              console.log("data[i][1]: " + data[i][1]);
+              console.log("GridCol: " + GridCol);
+              console.log("GridRow: " + GridRow);
+              $("." + data[i][1]).css({"grid-column" : GridCol , "grid-row" : GridRow});
+            }
+        }
+    });
+  });
+</script>
 <?php
 $contentAdmin = true;
 
@@ -6,27 +46,18 @@ $contentAdmin = true;
   //GET URL
 $url = $_SERVER['PHP_SELF'];
   // SET QUERRY
-$query = "SELECT contentID,height FROM Content WHERE url = \"" . $url . "\"";
+$query = "SELECT contentID FROM Content WHERE url = \"" . $url . "\"";
  // Execute Query
 $array = executeSQL($query, 1);//Get list of content in page
 
 echo "<link rel='stylesheet' type='text/css' href='css/content.css'> <div id='content'>"; //Add the styling
   //Cycle through the array
-  for($i = 0; $i < 100; $i++){
 foreach($array as $indexMain => $Record){
     //Get Data inside the record
   $ContentID = $Record["contentID"];
-  $ContentHeight = $Record["height"]; //Short,medium,long auto,or px
-    //Set height
-  switch($ContentHeight){
-    case "short": $ContentHeight = "20vh"; break; //20vh
-    case "medium": $ContentHeight = "40vh"; break; //40vh
-    case "long": $ContentHeight = "80vh"; break; //80vh
-    case "auto": break;
-    default: $ContentHeight = $ContentHeight . "px"; break; //Px
-  }
+
     //Create the div
-  echo "<div class='content-body col-sm-3' style='height: $ContentHeight'>";
+  echo "<div class='content-body $ContentID'>";
     //Get all the textfields in the contentBox
   $textFields = executeSQL("SELECT content FROM Text WHERE contentID = $ContentID");
     //Cycle and print all text
@@ -40,7 +71,6 @@ foreach($array as $indexMain => $Record){
     echo "<img style='width: $value[0]%;height: $value[1]px' alt='$value[2]' src='$value[3]'>";
   }
   echo"</div>";
-}
 }
 
 echo "</div>";
