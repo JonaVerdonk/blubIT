@@ -1,5 +1,17 @@
 <?php
 include_once("databaseConnection.php");
+if (isset($_POST['btn-edit'])){
+  include_once("databaseConnection.php");
+  print ("Voor sql");
+  $newusername = $_POST['userName'];
+  $newuseremail = $_POST['userEmail'];
+  $newuserid = $_POST['userid'];
+  print ($newuserid . $newusername . $newuseremail);
+  //executeSQL ("INSERT INTO User VALUES (25, 'Sander', 'sander@sander.nl', 'Bla123', 'r');");
+  $edituser = executeSQL ("SELECT userId, userName, userEmail, role FROM User WHERE userId = 20", 2);
+  print_r ($edituser);
+  print ("Na sql");
+}
  ?>
 
  <html>
@@ -25,8 +37,39 @@ include_once("databaseConnection.php");
 
        <?php
 
+       $userid = $_POST["userid"];
 
-        ?>
+       $edituser = executeSQL ("SELECT userId, userName, userEmail, role FROM User WHERE userId = $userid", 2);
+
+       ?>
+       <h1>Pas hier de gegevens van de gebruiker aan</h1>
+       <form id="edituser" method="POST" action="">
+          Gebruikers ID: <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
+          Volledige naam: <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
+          Email adres: <input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
+          Wachtwoord (leeg laten om geen wijziging te maken): <input type="password" name="password" id="password"></br>
+          Wachtwoord bevestigen: <input type="password" name="confirmpassword" id="confirmpassword"></br>
+          Rechten:
+          <?php
+            if (($edituser[0][3]) == "x"){
+              $rolex = true;
+            }elseif (($edituser[0][3]) == "w"){
+              $rolew = true;
+            }else {
+              $roler = true;
+            }
+          ?>
+          <select name="role">
+            <option <?php if ($roler) {print "selected";} ?> value="r">Read</option>
+            <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
+            <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
+          </select></br>
+          <input type="submit" id="btn-edit" name="btn-edit" value="bevestigen">
+        </form>
+
+
+
+
 
 
 
