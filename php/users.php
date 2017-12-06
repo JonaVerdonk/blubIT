@@ -61,7 +61,7 @@ include_once("databaseConnection.php");
             btnEdit.on("click", function() {
                 var row = $(this).val();
                 var id = $("#"+row+" .0").html();
-                alert(id);
+
                 $("#userid").val(id);
                 $("#submit").click();
             });
