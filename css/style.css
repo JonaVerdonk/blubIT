@@ -127,6 +127,11 @@ navbar/img is changed.
 
     #navbarButton {
         display: initial;
+        background: none;
+        font-size: 35px;
+        border: none;
+        color: white;
+        outline: none;
     }
 }
 

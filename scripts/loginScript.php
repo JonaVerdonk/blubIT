@@ -47,7 +47,7 @@
               $_SESSION['user'] = $SQL[0]['userId'];
               $_SESSION['role'] = $SQL[0]['role'];
               $login = ("Je bent succesvol ingelogd.");
-              $_SESSION['logged_in'] = TRUE;
+              $_SESSION['logged_in'] = 1;
             }else{
               $errorLogin = true;
               $errorLoginMsg = "Incorrect Credentials, Try again...";
