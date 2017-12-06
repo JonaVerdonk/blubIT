@@ -11,7 +11,7 @@ body{
 
 footer{
   height: 100px;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left: 0px;
   right: 0px;
@@ -19,12 +19,11 @@ footer{
   font-family: arial;
 }
 #footer-bottom{
-  position: fixed;
+  position: absolute;
   width: 100%;
   bottom: 0px;
   height: 40px;
-  background-color: #32F;
-  display: none;
+  background-color: #367bb3;
 }
 
 .show, #footer-bottom:hover {
@@ -83,6 +82,8 @@ footer{
 #footer-reference{
   height: 61px;
   overflow: hidden;
+  position:fixed;
+  bottom: 40px;
 }
 
 .footer-reference-container{

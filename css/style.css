@@ -7,10 +7,11 @@ html, body {
 
 header {
     width: 100%;
-    background-color: #063971;
+    background-color: #367bb3;
     height: 75px;
     position: fixed;
     margin-bottom: 80px;
+    z-index: 10;
 }
 
 #headerImg {

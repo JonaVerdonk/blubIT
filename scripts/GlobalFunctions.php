@@ -13,10 +13,10 @@ function printRefferences(){
     // REPEAT 5 times
     if(isset($url[$i]) && (filter_var(filter_var($url[$i], FILTER_SANITIZE_URL), FILTER_VALIDATE_URL) === true)){
       //URL is set and URL exists
-      echo "<img class='footer-reference-item' src='../images/" . $url[$i] . "' alt='404: file not found'>";
+      echo "<img class='footer-reference-item' src='/images/" . $url[$i] . "' alt='404: file not found'>";
     }else{
       //URL failed to load
-      echo "<img class='footer-reference-item' src='../images/350x150.png' alt='File not found'>";
+      echo "<img class='footer-reference-item' src='/images/350x150.png' alt='File not found'>";
     }
     echo "</div>";
   }
