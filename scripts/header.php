@@ -14,7 +14,7 @@
     }
 
     if (!isset($_SESSION["logged_in"])) {
-        $_SESSION["logged_in"] = false;
+        $_SESSION["logged_in"] = 0;
     }
 
     print('<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>');
@@ -25,9 +25,14 @@
     $links = executeSQL("SELECT * FROM Navbar ORDER BY position");
 
     //Print the header tag with the header-img
-    print_r($_SESSION);
     print('<header>');
     print('<img id="headerImg" src="/images/headerlogo.PNG" alt="logo">');
+    //Print username if user is logged in
+    print('<div id=username>');
+    if ($_SESSION['logged_in'] == 1) {
+        //print_r(execute_query("SELECT userName FROM user WHERE userId = $_SESSION['user']"));
+    }
+    print('</div>');
     //Print the navbar
     print('<div id="navbar">');
     print('<button id="navbarButton">&#9776;</button>');
@@ -57,10 +62,8 @@
         } else if (strpos($name, "log in") !== false || strpos($name, "Log in") !== false || strpos($name, "Login") !== false) {
             if ($_SESSION["logged_in"] == 1) {
                 print('<li '.$id.'><a class="navbarLink" href="/scripts/logout.php">Log uit</a></li>');
-                print($_SESSION["logged_in"] . " " . $_SESSION["user"]);
             } else {
                 print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
-                print($_SESSION["logged_in"] . " " . $_SESSION["user"]);
             }
         } else {
             print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
