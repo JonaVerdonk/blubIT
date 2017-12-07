@@ -39,8 +39,15 @@ include_once("../scripts/GlobalFunctions.php");
        <?php
 
        $userid = $_POST["userid"];
-       // $blub = testFunction();
-       // print $blub;
+
+
+       if (isset($_POST['deleteuser'])){
+           $newuserid = $_POST['userid'];
+           executeSQL ("DELETE FROM User WHERE userId='$newuserid';");
+           header ('Location: users.php');
+           exit;
+       }
+
        if (isset($_POST['btn-edit'])){
            $newusername = $_POST['userName'];
            $newuseremail = $_POST['userEmail'];
@@ -48,18 +55,20 @@ include_once("../scripts/GlobalFunctions.php");
            $pass = $_POST['password'];
            $confirmpassword = $_POST['confirmpassword'];
            $role = $_POST['role'];
-           print ($role);
-           //basic email validation
+
            if ( !filter_var($newuseremail,FILTER_VALIDATE_EMAIL) ) {
              $error = TRUE;
              $errorMsg  = "Voer a.u.b. een geldig emailadres in. ";
            }
 
            // password validation
-           if (empty($pass) || (!$error)){
+           if ( empty($pass) && !$error){
              //query uitvoeren zonder password update
+             print $pass;
+             print "hoi";
              executeSQL ("UPDATE User SET userName = '$newusername', userEmail = '$newuseremail', role = '$role' WHERE userId = $newuserid;");
              header ('Location: users.php');
+             exit;
            } else if(strlen($pass) < 6) {
              $error = TRUE;
              $errorMsg  = "Het wachtwoord moet uit minimaal 6 tekens bestaan.";
@@ -67,16 +76,18 @@ include_once("../scripts/GlobalFunctions.php");
              $error = TRUE;
              $errorMsg  = "De wachtwoorden komen niet overeen.";
            }
-           print ("Voor hashing");
+
             // password encrypt using SHA256();
            $password = hash('sha256', $pass);
-           print ("na hash");
+
             //Salt the password with cost of 15(Hardware difficulty) and PASSWORD_BCRYPT
            $password = HashPass($password);
-           print ("Na salt");
+
            if (!$error){
+               print "de query wordt uitgevoerd";
            executeSQL ("UPDATE User SET userName = '$newusername', userEmail = '$newuseremail', userPass = '$password', role = '$role' WHERE userId = $newuserid;");
            header ('Location: users.php');
+           exit;
          }else{
            print ("in error");
 
@@ -126,6 +137,7 @@ include_once("../scripts/GlobalFunctions.php");
             <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
             <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
           </select></br></td></tr><table>
+              <input type="submit" id="deleteuser" name="deleteuser" value="Gebruiker verwijderen">
           <input type="submit" id="btnSave" name="btn-edit" class="notClickable" value="Save">
         </form>
       </div>

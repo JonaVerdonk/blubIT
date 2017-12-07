@@ -7,7 +7,7 @@ include("../scripts/registerScript.php");
 <html>
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109575524-1"></script>
+        <script src="https://www.googletagmanager.com/gtag/js?id=UA-109575524-1" async defer></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -15,7 +15,7 @@ include("../scripts/registerScript.php");
 
           gtag('config', 'UA-109575524-1');
         </script>
-
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <meta name="viewport" content="width=device-width" initial-scale="1.0">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="stylesheet" type="text/css" href="../css/login.css">
@@ -66,7 +66,12 @@ include("../scripts/registerScript.php");
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
               <input type="submit" name="btn-signup">
           </form>
+                <form method="POST" action="?" secret="6Led1zsUAAAAAJ-pZ1hIcAzudqKLOV-c5DkriEk9">
+                    <div class="g-recaptcha" data-sitekey="6LeSEDwUAAAAAIo_9WJde77o8BReLbuLaap-tCLE"></div>
+                    <input type="submit" value="Submit">
+                </form>
             </div>
+
           </div>
         </div>
 

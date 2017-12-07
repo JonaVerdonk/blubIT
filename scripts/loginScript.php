@@ -17,15 +17,15 @@
 
         if(empty($email)){
             $errorLogin = true;
-            $errorLoginMsg = "Please enter your email address.";
+            $errorLoginMsg = "Voer a.u.b. uw emailadres in. ";
         } else if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
             $errorLogin = true;
-            $errorLoginMsg = "Please enter valid email address.";
+            $errorLoginMsg = "Voer a.u.b. een geldig emailadres in. ";
         }
 
         if(empty($pass)){
             $errorLogin = true;
-            $errorLoginMsg = "Please enter your password.";
+            $errorLoginMsg = "Voer a.u.b. een wachtwoord in. ";
         }
 
         // if there's no error, continue to login
@@ -52,7 +52,7 @@
 
             }else{
               $errorLogin = true;
-              $errorLoginMsg = "Incorrect Credentials, Try again...";
+              $errorLoginMsg = "Inloggegevens zijn incorrect. Probeert u het a.u.b. opnieuw. Indien u uw email en/of wachtwoord bent vergeten, kunt u via het contactformulier uw gegevens opvragen. ";
            }
         }
 
