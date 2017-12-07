@@ -34,3 +34,7 @@
 #both{
   width: 100%;
 }
+
+#form{
+  display: none;
+}

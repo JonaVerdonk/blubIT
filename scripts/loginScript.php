@@ -46,8 +46,10 @@
             if($ValidPass && count($SQL)){
               $_SESSION['user'] = $SQL[0]['userId'];
               $_SESSION['role'] = $SQL[0]['role'];
-              $login = ("Je bent succesvol ingelogd.");
               $_SESSION['logged_in'] = 1;
+              $_SESSION['username'] = $SQL[0]['userName'];
+              $login = ("Je bent succesvol ingelogd.");
+
             }else{
               $errorLogin = true;
               $errorLoginMsg = "Incorrect Credentials, Try again...";

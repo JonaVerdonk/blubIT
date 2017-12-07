@@ -22,6 +22,9 @@
 
         <div id="pageContent">
 
+            <div class="btnBack">
+                <a href="CMS.php">Terug</a>
+            </div>
 
             <table id="navbarTable"></table>
             <br><br>

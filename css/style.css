@@ -7,10 +7,11 @@ html, body {
 
 header {
     width: 100%;
-    background-color: #063971;
+    background-color: #367bb3;
     height: 75px;
     position: fixed;
     margin-bottom: 80px;
+    z-index: 10;
 }
 
 #headerImg {
@@ -138,7 +139,12 @@ navbar/img is changed.
     padding-top: 160px;
 }
 
-.button {
+.btnBack {
+    margin-left: 10%;
+    padding: 20px;
+}
+
+.btnBack a {
     background-color: #3322FF;
     color: white;
     text-decoration: none;
@@ -146,7 +152,7 @@ navbar/img is changed.
     border-radius: 5px;
     transition: background-color .2s, border-radius .2s;
 }
-.button:hover {
+.btnBack a:hover {
     background-color: #1c07ff;
     border-radius: 10px;
     transition: background-color .2s, border-radius .2s;
