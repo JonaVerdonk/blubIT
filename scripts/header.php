@@ -28,7 +28,7 @@
     print('<header>');
     print('<img id="headerImg" src="/images/headerlogo.PNG" alt="logo">');
     //Print username
-    print("<div id='username'>");
+    print("<div id='navbarUsername'>");
     if ($_SESSION["logged_in"] == 1) {
         print($_SESSION["username"]);
     }
