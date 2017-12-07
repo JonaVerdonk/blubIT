@@ -68,10 +68,10 @@ header {
 
 #navbarUsername {
     position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 20px;
-    color: white;
+    top: 10px;
+    right: 21px;
+    font-size: 18px;
+    color: #F2F2F2;
     text-shadow: 1px 1px 1px black;
 }
 

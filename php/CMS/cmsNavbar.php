@@ -9,8 +9,8 @@
     <body>
 
         <?php include($_SERVER['DOCUMENT_ROOT']."scripts/header.php");
-        if ($_SESSION['role'] == 'x') {
-            header("Location: redirect.php");
+        if ($_SESSION['role'] !== 'x') {
+            header("Location: /php/redirect.php");
         }
         ?>
 
@@ -28,7 +28,7 @@
 
             <div class="btnBack">
                 <a href="CMS.php">Terug</a>
-            </div>
+            </div><br><br>
 
             <table id="navbarTable"></table>
             <br><br>
