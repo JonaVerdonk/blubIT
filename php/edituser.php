@@ -91,26 +91,26 @@ include_once("../scripts/GlobalFunctions.php");
            <a href="users.php">Terug</a>
        </div>
        <div id="both">
-       <h1>Pas hier de gegevens van de gebruiker aan</h1>
+       <h1>Aanpassen gebruikersgegevens</h1>
        <form id="edituser" method="POST" action="">
          <table>
           <tr><td>
-              Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
+            Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
           </td></tr>
           <tr><td>
-          Volledige naam: </td><td> <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
+            Volledige naam: </td><td> <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
           </td></tr>
           <tr><td>
-          Email adres: </td><td><input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
+            Email adres: </td><td><input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
         </td></tr>
         <tr><td>
-          Wachtwoord (leeg laten om geen wijziging te maken): </td><td><input type="password" name="password" id="password"></br>
+            Wachtwoord (leeg laten om geen wijziging te maken): </td><td><input type="password" name="password" id="password"></br>
         </td></tr>
         <tr><td>
-          Wachtwoord bevestigen: </td><td><input type="password" name="confirmpassword" id="confirmpassword"></br>
+            Wachtwoord bevestigen: </td><td><input type="password" name="confirmpassword" id="confirmpassword"></br>
         </td></tr>
         <tr><td>
-          Rechten:
+            Rechten:
           <?php
             if (($edituser[0][3]) == "x"){
               $rolex = true;
@@ -125,9 +125,9 @@ include_once("../scripts/GlobalFunctions.php");
             <option <?php if ($roler) {print "selected";} ?> value="r">Read</option>
             <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
             <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
-          </select></br>
+          </select></br></td></tr><table>
           <input type="submit" id="btn-edit" name="btn-edit" value="bevestigen">
-        </form></td></tr><table>
+        </form>
       </div>
 
 

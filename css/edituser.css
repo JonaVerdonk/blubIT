@@ -1,4 +1,18 @@
 #both{
   margin: 0 auto;
   width: 40%;
+  background-color: white;
+  padding: 10px;
+}
+
+table{
+  font-size: 17px;
+}
+
+input{
+  font-size: 17px;
+}
+
+#userid{
+  background-color: lightgrey;
 }
