@@ -1,7 +1,7 @@
 #notificationgood{
   background-color: lightgreen;
   width: 90%;
-  margin: 5%;
+  margin: 10px auto;
   border-radius: 10px;
   text-align: center;
   padding: 5px;
@@ -10,23 +10,17 @@
 #notificationerror{
   background-color: #d42222;
   width: 90%;
-  margin: 5%;
+  margin: 10px auto;
   border-radius: 10px;
   text-align: center;
   padding: 5px;
 }
 
 #login, #register{
-  width: 40%;
-  margin: 5%;
-}
+  width: 42.5%;
+  margin-left: 5%;
+  margin-top: 5%;
 
-#login{
-  background-color: white;
-    float: left;
-}
-
-#register{
   background-color: white;
   float: left;
 }
@@ -35,6 +29,47 @@
   width: 100%;
 }
 
-#form{
-  display: none;
+input[type=text], input[type=password], input[type=email] {
+    padding: 6px 5px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    outline: 0;
+    margin-left: 5px;
+    margin-top: 10px;
+    border-top: 2px inset #ccc;
+    border-left: 2px inset #ccc;
+    margin-bottom: 2px;
+    transition: border .1s, margin-bottom .1s;
+}
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+    border-top: 4px inset #eee;
+    border-left: 4px inset #eee;
+    margin-bottom: 0px;
+    transition: border .1s, margin-bottom .1s;
+}
+
+input[type=submit] {
+    padding: 10px;
+    border-radius: 5px;
+    outline: 0;
+    border: none;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #ddd;
+    transition: background-color .1s, padding .1s, margin-bottom .1s;
+}
+input[type=submit]:hover {
+    background-color: #ccc;
+    padding: 15px;
+    margin-bottom: 0px;
+    transition: background-color .1s, padding .1s, margin-bottom .1s;
+}
+
+form, h1 {
+    padding: 15px;
+}
+
+h1 {
+    padding-bottom: 0;
 }

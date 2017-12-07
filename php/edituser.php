@@ -20,10 +20,16 @@ include_once("../scripts/GlobalFunctions.php");
 
          <meta name="viewport" content="width=device-width" initial-scale="1.0">
          <link rel="stylesheet" type="text/css" href="../css/style.css">
+         <link rel="stylesheet" type="text/css" href="../css/edituser.css">
 
          <title></title>
      </head>
      <body>
+       <?php include("../scripts/header.php");
+       if ($_SESSION['role'] !== 'x') {
+           header("Location: redirect.php");
+       }
+       ?>
        <?php
 
         ?>
@@ -81,15 +87,30 @@ include_once("../scripts/GlobalFunctions.php");
        $edituser = executeSQL ("SELECT userId, userName, userEmail, role FROM User WHERE userId = $userid", 2);
 
        ?>
-
-       <h1>Pas hier de gegevens van de gebruiker aan</h1>
+       <div class="btnBack">
+           <a href="users.php">Terug</a>
+       </div>
+       <div id="both">
+       <h1>Aanpassen gebruikersgegevens</h1>
        <form id="edituser" method="POST" action="">
-          Gebruikers ID: <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
-          Volledige naam: <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
-          Email adres: <input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
-          Wachtwoord (leeg laten om geen wijziging te maken): <input type="password" name="password" id="password"></br>
-          Wachtwoord bevestigen: <input type="password" name="confirmpassword" id="confirmpassword"></br>
-          Rechten:
+         <table>
+          <tr><td>
+            Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
+          </td></tr>
+          <tr><td>
+            Volledige naam: </td><td> <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
+          </td></tr>
+          <tr><td>
+            Email adres: </td><td><input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
+        </td></tr>
+        <tr><td>
+            Wachtwoord (leeg laten om geen wijziging te maken): </td><td><input type="password" name="password" id="password"></br>
+        </td></tr>
+        <tr><td>
+            Wachtwoord bevestigen: </td><td><input type="password" name="confirmpassword" id="confirmpassword"></br>
+        </td></tr>
+        <tr><td>
+            Rechten:
           <?php
             if (($edituser[0][3]) == "x"){
               $rolex = true;
@@ -99,21 +120,44 @@ include_once("../scripts/GlobalFunctions.php");
               $roler = true;
             }
           ?>
+        </td><td>
           <select name="role">
             <option <?php if ($roler) {print "selected";} ?> value="r">Read</option>
             <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
             <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
-          </select></br>
-          <input type="submit" id="btn-edit" name="btn-edit" value="bevestigen">
+          </select></br></td></tr><table>
+          <input type="submit" id="btnSave" name="btn-edit" class="notClickable" value="Save">
         </form>
+      </div>
 
 
 
 
 
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <script></script>
+        <script>
+        $(document).ready(function() {
+            $("input").on("change",function(){
+                changed();
+            });
+
+            function changed() {
+                //Every time this function is called add class clickable and remove notClickable to the save btn.
+                $("#btnSave").addClass("clickable");
+                $("#btnSave").removeClass("notClickable");
+
+                //Add an event listener to the save btn, but unbind it first so it is never called twice.
+                $("#btnSave").unbind("click");
+                $("#btnSave").on("click", function() {
+                    //When clicked, set its class to notClickable
+                    $("#btnSave").addClass("notClickable");
+                    $("#btnSave").removeClass("clickable");
+                });
+            }
+        });
+        </script>
 
     <?php include("../scripts/footer.php");
   }?>

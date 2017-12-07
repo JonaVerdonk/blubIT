@@ -8,7 +8,11 @@
     </head>
     <body>
 
-        <?php include($_SERVER['DOCUMENT_ROOT']."scripts/header.php"); ?>
+        <?php include($_SERVER['DOCUMENT_ROOT']."scripts/header.php");
+        if ($_SESSION['role'] !== 'x') {
+            header("Location: /php/redirect.php");
+        }
+        ?>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109575524-1"></script>
@@ -24,7 +28,7 @@
 
             <div class="btnBack">
                 <a href="CMS.php">Terug</a>
-            </div>
+            </div><br><br>
 
             <table id="navbarTable"></table>
             <br><br>

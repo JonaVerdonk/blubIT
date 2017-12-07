@@ -20,8 +20,16 @@ include_once("databaseConnection.php");
          <title></title>
      </head>
      <body>
-       <?php include("../scripts/header.php"); ?>
+       <?php include("../scripts/header.php");
+       if ($_SESSION['role'] !== 'x') {
+           header("Location: redirect.php");
+       }
+       ?>
        <div id="pageContent">
+
+         <div class="btnBack">
+             <a href="admin.php">Terug</a>
+         </div>
 
        <?php
         $users = executeSQL ("SELECT userId, userName, userEmail, role FROM User", 2);

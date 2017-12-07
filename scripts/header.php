@@ -26,7 +26,13 @@
 
     //Print the header tag with the header-img
     print('<header>');
-    print('<img id="headerImg" src="/images/headerlogo.PNG" alt="logo">');
+    print('<a href="/"><img id="headerImg" src="/images/headerlogo.PNG" alt="logo"></a>');
+    //Print username
+    print("<div id='navbarUsername'>");
+    if ($_SESSION["logged_in"] == 1) {
+        print($_SESSION["username"]);
+    }
+    print("</div>");
     //Print the navbar
     print('<div id="navbar">');
     print('<button id="navbarButton">&#9776;</button>');
