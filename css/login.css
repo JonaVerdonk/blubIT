@@ -1,7 +1,7 @@
 #notificationgood{
   background-color: lightgreen;
   width: 90%;
-  margin: 5%;
+  margin: 10px auto;
   border-radius: 10px;
   text-align: center;
   padding: 5px;
@@ -10,7 +10,7 @@
 #notificationerror{
   background-color: #d42222;
   width: 90%;
-  margin: 5%;
+  margin: 10px auto;
   border-radius: 10px;
   text-align: center;
   padding: 5px;

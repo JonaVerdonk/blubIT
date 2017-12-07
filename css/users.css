@@ -15,5 +15,10 @@
 }
 
 #table{
-  margin-left: 35%;
+  margin: 0 auto;
+  width: 70%;
+}
+
+#form{
+  display: none;
 }

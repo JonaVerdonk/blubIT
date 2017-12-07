@@ -20,6 +20,7 @@ include_once("../scripts/GlobalFunctions.php");
 
          <meta name="viewport" content="width=device-width" initial-scale="1.0">
          <link rel="stylesheet" type="text/css" href="../css/style.css">
+         <link rel="stylesheet" type="text/css" href="../css/edituser.css">
 
          <title></title>
      </head>
@@ -81,14 +82,29 @@ include_once("../scripts/GlobalFunctions.php");
        $edituser = executeSQL ("SELECT userId, userName, userEmail, role FROM User WHERE userId = $userid", 2);
 
        ?>
-
+       <div class="btnBack">
+           <a href="users.php">Terug</a>
+       </div>
+       <div id="both">
        <h1>Pas hier de gegevens van de gebruiker aan</h1>
        <form id="edituser" method="POST" action="">
-          Gebruikers ID: <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
-          Volledige naam: <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
-          Email adres: <input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
-          Wachtwoord (leeg laten om geen wijziging te maken): <input type="password" name="password" id="password"></br>
-          Wachtwoord bevestigen: <input type="password" name="confirmpassword" id="confirmpassword"></br>
+         <table>
+          <tr><td>
+              Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
+          </td></tr>
+          <tr><td>
+          Volledige naam: </td><td> <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
+          </td></tr>
+          <tr><td>
+          Email adres: </td><td><input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
+        </td></tr>
+        <tr><td>
+          Wachtwoord (leeg laten om geen wijziging te maken): </td><td><input type="password" name="password" id="password"></br>
+        </td></tr>
+        <tr><td>
+          Wachtwoord bevestigen: </td><td><input type="password" name="confirmpassword" id="confirmpassword"></br>
+        </td></tr>
+        <tr><td>
           Rechten:
           <?php
             if (($edituser[0][3]) == "x"){
@@ -99,13 +115,15 @@ include_once("../scripts/GlobalFunctions.php");
               $roler = true;
             }
           ?>
+        </td><td>
           <select name="role">
             <option <?php if ($roler) {print "selected";} ?> value="r">Read</option>
             <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
             <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
           </select></br>
           <input type="submit" id="btn-edit" name="btn-edit" value="bevestigen">
-        </form>
+        </form></td></tr><table>
+      </div>
 
 
 
