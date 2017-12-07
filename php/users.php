@@ -27,6 +27,10 @@ include_once("databaseConnection.php");
        ?>
        <div id="pageContent">
 
+         <div class="btnBack">
+             <a href="admin.php">Terug</a>
+         </div>
+
        <?php
         $users = executeSQL ("SELECT userId, userName, userEmail, role FROM User", 2);
         //print_r ($users);
