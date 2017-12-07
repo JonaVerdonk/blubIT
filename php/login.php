@@ -67,8 +67,8 @@ include("../scripts/registerScript.php");
               <input type="submit" name="btn-signup">
           </form>
                 <form method="POST" action="?" secret="6Led1zsUAAAAAJ-pZ1hIcAzudqKLOV-c5DkriEk9">
-                    <div class="g-recaptcha" data-sitekey="6Led1zsUAAAAABQyTyfLAAvxtJOYxp4rmGt2xn1j"></div>
-                    <input type="submit" value="Submit">
+<!--                <div class="g-recaptcha" data-sitekey="6Led1zsUAAAAABQyTyfLAAvxtJOYxp4rmGt2xn1j"></div>
+                    <input type="submit" value="Submit"> -->
                 </form>
             </div>
 
