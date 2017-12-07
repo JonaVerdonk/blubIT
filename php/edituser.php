@@ -126,7 +126,7 @@ include_once("../scripts/GlobalFunctions.php");
             <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
             <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
           </select></br></td></tr><table>
-          <input type="submit" id="btn-edit" name="btn-edit" value="bevestigen">
+          <input type="submit" id="btnSave" name="btn-edit" class="notClickable" value="Save">
         </form>
       </div>
 
@@ -135,8 +135,29 @@ include_once("../scripts/GlobalFunctions.php");
 
 
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <script></script>
+        <script>
+        $(document).ready(function() {
+            $("input").on("change",function(){
+                changed();
+            });
+
+            function changed() {
+                //Every time this function is called add class clickable and remove notClickable to the save btn.
+                $("#btnSave").addClass("clickable");
+                $("#btnSave").removeClass("notClickable");
+
+                //Add an event listener to the save btn, but unbind it first so it is never called twice.
+                $("#btnSave").unbind("click");
+                $("#btnSave").on("click", function() {
+                    //When clicked, set its class to notClickable
+                    $("#btnSave").addClass("notClickable");
+                    $("#btnSave").removeClass("clickable");
+                });
+            }
+        });
+        </script>
 
     <?php include("../scripts/footer.php");
   }?>

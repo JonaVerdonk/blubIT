@@ -16,3 +16,29 @@ input{
 #userid{
   background-color: lightgrey;
 }
+
+#btnSave {
+    margin-left: 50%;
+    width: 90px;
+    height: 40px;
+    border: none;
+    outline: 0;
+}
+
+.notClickable {
+    background-color: #aaa;
+    color: #666;
+    border-radius: 5px;
+    transition: background-color .2s, border-radius .2s;
+}
+.clickable {
+    background-color: #ccc;
+    color: black;
+    border-radius: 5px;
+    transition: background-color .1s, border-radius .2s;
+}
+.clickable:hover {
+    background-color: #afafaf;
+    border-radius: 10px;
+    transition: background-color .1s, border-radius .2s;
+}
