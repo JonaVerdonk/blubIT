@@ -64,7 +64,7 @@ include("../scripts/registerScript.php");
               Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Wachtwoord" maxlength="40"><br>
               <span class="text-danger"></span><br>
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
-                <div class="g-recaptcha" data-sitekey="6Led1zsUAAAAABQyTyfLAAvxtJOYxp4rmGt2xn1j"></div>
+                <div class="g-recaptcha" data-sitekey="6Led1zsUAAAAABQyTyfLAAvxtJOYxp4rmGt2xn1j"> <p>capcha</p> </div>
               <input type="submit" name="btn-signup">
           </form>
             </div>
