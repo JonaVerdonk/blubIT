@@ -7,7 +7,7 @@ include("../scripts/registerScript.php");
 <html>
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109575524-1"></script>
+        <script src="https://www.googletagmanager.com/gtag/js?id=UA-109575524-1" async defer></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -64,10 +64,14 @@ include("../scripts/registerScript.php");
               Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Wachtwoord" maxlength="40"><br>
               <span class="text-danger"></span><br>
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
-                <div class="g-recaptcha" data-sitekey="6Led1zsUAAAAABQyTyfLAAvxtJOYxp4rmGt2xn1j"> <p>capcha</p> </div>
               <input type="submit" name="btn-signup">
           </form>
+                <form method="POST" action="?" secret="6Led1zsUAAAAAJ-pZ1hIcAzudqKLOV-c5DkriEk9">
+                    <div class="g-recaptcha" data-sitekey="6Led1zsUAAAAABQyTyfLAAvxtJOYxp4rmGt2xn1j"></div>
+                    <input type="submit" value="Submit">
+                </form>
             </div>
+
           </div>
         </div>
 
