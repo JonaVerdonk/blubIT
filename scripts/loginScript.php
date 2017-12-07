@@ -47,6 +47,7 @@
               $_SESSION['user'] = $SQL[0]['userId'];
               $_SESSION['role'] = $SQL[0]['role'];
               $_SESSION['logged_in'] = 1;
+              $_SESSION['username'] = $SQL[0]['userName'];
               $login = ("Je bent succesvol ingelogd.");
 
             }else{
