@@ -1,19 +1,13 @@
 #content{
-  /* Grid*/
   display: grid;
   grid-template-columns: repeat(12,1fr);
   grid-gap :5px;
   grid-auto-rows: minmax(200px, auto);
-
-  /* Not under header */
   padding-top: 75px;
 }
 
 .content-body{
-  /* background and border */
   background: rgba(54, 123, 179, 0.3);
-
-  /* positioning */
   padding: 10px;
   position: relative;
 }
@@ -50,9 +44,11 @@
   margin: 0 auto;
   top: calc(50% - 75% / 2);
 
+
   /* Background and border */
   background: linear-gradient(45deg, #0ff5fe, #365051c6);
   border-radius: 3px;
+
 
 }
 
@@ -110,10 +106,12 @@
   box-sizing: border-box;
 
   /* Font */
-  font-size: 50px;
+  font-size: 45px;
   color: white;
   text-shadow: 0.5px 0.5px 1px black;
   text-align: center;
+  
+  font-family: 'Quicksand', sans-serif;
 }
 
 /* Bottom text */
@@ -264,9 +262,9 @@
   transition: background-color 1s;
 }
 
-/********************************************************/
+
 /* HOVER EVENTS */
-/*****************************************************/
+
 
 #cmsMoveTool-body-content-clickers-add-hoogte:hover,
 #cmsMoveTool-body-content-clickers-add-breedte:hover,
@@ -302,9 +300,8 @@
   transition: background-color 0.3s;
 }
 
-/*******************************
+
 /* CONFIRMATION */
-/*********************************/
 #cmsMoveTool-confirmation{
    /* Sizing */
   max-width: 400px;
@@ -315,9 +312,9 @@
   position: relative;
   margin: 0 auto;
   top: calc(50% - 75% / 2);
-
-  /* overflow */
+  
   overflow: hidden;
+
 
   /* Background and border */
   background: linear-gradient(45deg, #0ff5fe, #365051c6);
@@ -325,40 +322,27 @@
 }
 
 #cmsMoveTool-confirmation-header{
-  /* Sizing */
   height: 50px;
-
-  /* positioning */
-  box-sizing : border-box;
-
-  /* background and border */
   background-color: #585c5c85;
-  border-bottom: 3px solid #4b0ffe6e;
-
-  /* font and text */
-  color: white;
-  text-shadow: 0.5px 0.5px 1px black;
-  font-family: 'Quicksand', sans-serif;
   font-size: 50px;
   text-align: center;
   line-height: 47px;
+  border-bottom: 3px solid #4b0ffe6e;
+  box-sizing : border-box;
+  color: white;
+  text-shadow: 0.5px 0.5px 1px black;
+  font-family: 'Quicksand', sans-serif;
 }
-
 #cmsMoveTool-confirmation-changes{
-  /* Sizing */
   height: 250px;
 }
-
 
 #cmsMoveTool-confirmation-kolom,
 #cmsMoveTool-confirmation-rij,
 #cmsMoveTool-confirmation-breedte,
 #cmsMoveTool-confirmation-hoogte{
-  /* Sizing */
   width: 20%;
   height: 75%;
-
-  /* positioning */
   float: left;
   margin: 25px 2.5%;
 }
@@ -367,14 +351,13 @@
 #cmsMoveTool-confirmation-rij span,
 #cmsMoveTool-confirmation-breedte span,
 #cmsMoveTool-confirmation-hoogte span{
-  /* positioning */
+  color: #ffffff;
   position:absolute;
   transform:rotate(-40deg);
-  z-index: -1;
-
-  /* font and text */
-  color: #ffffff;
   line-height: 200px;
+
+
+  z-index: -1;
 }
 
 #cmsMoveTool-confirmation-kolom span{left: -75px;font-size: 70px;}
@@ -388,56 +371,40 @@
 #cmsMoveTool-confirmation-hoogte span{left: 241px; font-size: 50px;}
 
 .cmsMoveTool-confirmation-old\/new{
-  /* Sizing */
+  background-color: #242a2a57;
+  color: white;
   width: 90%;
   height: 33%;
-
-  /* positioning */
   margin: 0 auto;
-
-  /* background and border */
-  background-color: #242a2a57;
-  border: 3px double white;
-  border-radius: 20px;
-
-  /* font and text */
   font-size: 40px;
-  text-shadow: 0.5px 0.5px 1px black;
-  font-family: 'Quicksand', sans-serif;
   text-align: center;
   line-height: 63px;
-  color: white;
+  border: 3px double white;
+  border-radius: 20px;
+  font-family: 'Quicksand', sans-serif;
+  text-shadow: 0.5px 0.5px 1px black;
 }
-
 #cmsMoveTool-confirmation-kolom-pijl,
 #cmsMoveTool-confirmation-rij-pijl,
 #cmsMoveTool-confirmation-breedte-pijl,
 #cmsMoveTool-confirmation-hoogte-pijl{
-  /* Sizing */
   height: 40px;
-
-  /* positioning */
-  margin: 0 0 10px 0;
-
-  /* font and text */
   font-size: 40px;
   text-align: center;
+  margin: 0 0 10px 0;
   filter: invert(1);
+
 }
 
+
+
 #cmsMoveTool-confirmation-msg{
-  /* Sizing */
-  width: 75%;
-  height: 150px;
-
-  /* positioning */
-  margin: 0px auto;
-  /* overflow */
-  overflow-y: auto;
-
-  /* font and text */
   color: white;
   text-shadow: 0.5px 0.5px 1px black;
+  margin: 0px auto;
+  width: 75%;
+  height: 150px;
+  overflow-y: auto;
   text-align: justify;
   text-justify: inter-word;
   font-family: 'Quicksand', sans-serif;
@@ -445,6 +412,5 @@
 
 #cmsMoveTool-confirmation-cancel,
 #cmsMoveTool-confirmation-confirm{
-  /* positioning */
-  z-index: 100; /* else buttons not work */
+  z-index: 100;
 }
