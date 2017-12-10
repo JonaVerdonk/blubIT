@@ -3,15 +3,17 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #F2F2F2;
+
 }
 
 header {
     width: 100%;
-    background-color: #367bb3;
+    background-color: #11589ade;
     height: 75px;
     position: fixed;
     margin-bottom: 80px;
     z-index: 10;
+    font-family: 'Quicksand', sans-serif;
 }
 
 #headerImg {
@@ -25,7 +27,7 @@ header {
     position: fixed;
     right: 0;
     top: 0;
-    text-shadow: 1px 1px 1px black;
+    text-shadow: 0.5px 0.5px 1px black;
 }
 
 .navbarLink {
