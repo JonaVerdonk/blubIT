@@ -20,7 +20,7 @@
         <div id="pageContent">
             <div id="mainImg">
                 <img src="images/Slide Show/home01.png" alt="Image not found">
-                <div id="mainText">Hier komt tekst te staan met wat informatie over het bedrijf ofzo</div>
+                <div id="mainText">Welkom bij Meijers glasvezel techniek!</div>
             </div>
 
             <div id="container">
