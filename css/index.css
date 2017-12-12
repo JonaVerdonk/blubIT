@@ -1,0 +1,53 @@
+/*Override the main styling to from mainContent to make the image look better*/
+#pageContent {
+    padding-top: 75px;
+}
+
+#mainImg img {
+    width: 100%;
+    height: 500px;
+}
+
+#mainText {
+    width: 80%;
+    margin-left: 10%;
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 220px;
+    border-radius: 5px;
+    color: white;
+    font-size: 70px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+#container {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.infoItem {
+    width: 18%;
+    display: inline-block;
+    margin: 25px;
+    /*background-color: #c1c1c1;*/
+    background-color: #79aad8;
+    min-height: 500px;
+    margin-top: 0px;
+}
+
+.infoItem img {
+    width: 100%;
+    height: auto;
+}
+
+.infoItem h2 {
+
+}
+
+.infoItem p {
+    padding: 10px;
+}
