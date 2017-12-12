@@ -66,7 +66,9 @@ include("../scripts/registerScript.php");
               <span class="text-danger"></span><br>
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
               <input type="submit" name="btn-signup">
+            </div>
           </form>
+            <div>
                     <form method="POST" action="?" secret="6Led1zsUAAAAAJ-pZ1hIcAzudqKLOV-c5DkriEk9">
                     <div class="g-recaptcha" data-sitekey="6LeSEDwUAAAAAIo_9WJde77o8BReLbuLaap-tCLE"></div>
                     <input type="submit" value="Submit">
