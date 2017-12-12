@@ -4,7 +4,73 @@ include_once("/scripts/databaseConnection.php");
 include_once("../scripts/Saltypassword.php");
 include_once("../scripts/GlobalFunctions.php");
 
+
+//Wanneer de button deleteuser is ingedrukt wordt de SQL query uitgevoerd dat de user wordt verwijderd.
+if (isset($_POST['deleteuser'])){
+    print "quary";
+    $newuserid = $_POST['userid'];
+    print $newuserid;
+    executeSQL ("DELETE FROM User WHERE userId='$newuserid';");
+    header ('Location: users.php');
+    exit;
+}
+//Wanneer de button Save is ingedrukt wordt de SQL query uitgevoerd die de user update.
+
+if (isset($_POST['btn-edit'])){
+    print "edit tha quary";
+    $newusername = $_POST['userName'];
+    $newuseremail = $_POST['userEmail'];
+    $newuserid = $_POST['userid'];
+    $pass = $_POST['password'];
+    $confirmpassword = $_POST['confirmpassword'];
+    $role = $_POST['role'];
+
+    if ( !filter_var($newuseremail,FILTER_VALIDATE_EMAIL) ) {
+      $error = TRUE;
+      $errorMsg  = "Voer a.u.b. een geldig emailadres in. ";
+    }
+
+    // Check of het password leeg is.
+    if ( empty($pass) && !$error){
+      //Username, Email en role worden standaard geupdate.
+        executeSQL ("UPDATE User SET userName = '$newusername', userEmail = '$newuseremail', role = '$role' WHERE userId = $newuserid;");
+
+      //Wanneer de query is uitgevoerd ga je terug naar de user pagina.
+      header ('Location: users.php');
+      exit;
+
+      //Password wordt gechecked op verschillende eisen.
+    } else if(strlen($pass) < 6) {
+      $error = TRUE;
+      $errorMsg  = "Het wachtwoord moet uit minimaal 6 tekens bestaan.";
+    } else if($pass !== $confirmpassword){
+      $error = TRUE;
+      $errorMsg  = "De wachtwoorden komen niet overeen.";
+    }
+
+     // Password wordt nu geencrypt SHA256();
+    $password = hash('sha256', $pass);
+
+     //Het password wordt nu gesalt (cost 10).
+    $password = HashPass($password);
+
+    //Wanneer er geen foutmelding is wordt nu alles over de user geupdate, inclusief password.
+    if (!$error){
+    executeSQL ("UPDATE User SET userName = '$newusername', userEmail = '$newuseremail', userPass = '$password', role = '$role' WHERE userId = $newuserid;");
+
+    //Wanneer de query is uitgevoerd ga je terug naar de user pagina.
+    header ('Location: users.php?$edited=true');
+    exit;
+
+  }else{
+      //Houston, we've got a problem.
+      print ("ERROR: ");
+      print ($errorMsg);
+  }
+
+}
  ?>
+
 
  <html>
      <head>
@@ -29,72 +95,15 @@ include_once("../scripts/GlobalFunctions.php");
        if ($_SESSION['role'] !== 'x') {
            header("Location: redirect.php");
        }
+       include("../scripts/header.php");
+       $userid = $_POST["userid"];
        ?>
-       <?php
 
-        ?>
-       <?php include("../scripts/header.php"); ?>
        <div id="pageContent">
 
-       <?php
 
-       $userid = $_POST["userid"];
+    <?php
 
-
-       if (isset($_POST['deleteuser'])){
-           $newuserid = $_POST['userid'];
-           executeSQL ("DELETE FROM User WHERE userId='$newuserid';");
-           header ('Location: users.php');
-           exit;
-       }
-
-       if (isset($_POST['btn-edit'])){
-           $newusername = $_POST['userName'];
-           $newuseremail = $_POST['userEmail'];
-           $newuserid = $_POST['userid'];
-           $pass = $_POST['password'];
-           $confirmpassword = $_POST['confirmpassword'];
-           $role = $_POST['role'];
-
-           if ( !filter_var($newuseremail,FILTER_VALIDATE_EMAIL) ) {
-             $error = TRUE;
-             $errorMsg  = "Voer a.u.b. een geldig emailadres in. ";
-           }
-
-           // password validation
-           if ( empty($pass) && !$error){
-             //query uitvoeren zonder password update
-             print $pass;
-             print "hoi";
-             executeSQL ("UPDATE User SET userName = '$newusername', userEmail = '$newuseremail', role = '$role' WHERE userId = $newuserid;");
-             header ('Location: users.php');
-             exit;
-           } else if(strlen($pass) < 6) {
-             $error = TRUE;
-             $errorMsg  = "Het wachtwoord moet uit minimaal 6 tekens bestaan.";
-           } else if($pass !== $confirmpassword){
-             $error = TRUE;
-             $errorMsg  = "De wachtwoorden komen niet overeen.";
-           }
-
-            // password encrypt using SHA256();
-           $password = hash('sha256', $pass);
-
-            //Salt the password with cost of 15(Hardware difficulty) and PASSWORD_BCRYPT
-           $password = HashPass($password);
-
-           if (!$error){
-               print "de query wordt uitgevoerd";
-           executeSQL ("UPDATE User SET userName = '$newusername', userEmail = '$newuseremail', userPass = '$password', role = '$role' WHERE userId = $newuserid;");
-           header ('Location: users.php');
-           exit;
-         }else{
-           print ("in error");
-
-           print ($errorMsg);
-         }
-
-       }else{
        $edituser = executeSQL ("SELECT userId, userName, userEmail, role FROM User WHERE userId = $userid", 2);
 
        ?>
@@ -103,7 +112,7 @@ include_once("../scripts/GlobalFunctions.php");
        </div>
        <div id="both">
        <h1>Aanpassen gebruikersgegevens</h1>
-       <form id="edituser" method="POST" action="">
+       <form id="edituser" method="POST" action="" onsubmit="return confirm('You sure');">
          <table>
           <tr><td>
             Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
@@ -169,10 +178,11 @@ include_once("../scripts/GlobalFunctions.php");
                 });
             }
         });
+
         </script>
 
     <?php include("../scripts/footer.php");
-  }?>
+  ?>
 
     </body>
 </html>
