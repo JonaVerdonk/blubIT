@@ -29,8 +29,8 @@
         <div id="pageContent">
 
             <div id="loading" style="display:none;">
-                Loading Please Wait....
-                <img src="../images/ajax-loader.gif" alt="Loading" />
+                Loading Please Wait Untill Our Hamsters Run Fast Enough To Load Your Page....
+                <img src="../images/ajax-loader.gif" alt="loading" />
             </div>
 
             <div class="btnBack">
