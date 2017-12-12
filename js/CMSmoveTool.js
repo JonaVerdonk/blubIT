@@ -70,7 +70,7 @@ $(document).ready(function(){
   //
 
   $(document).on("dblclick", ".content-body", function() {
-    if($('#cmsMoveTool-background').length == 0){ //Does a modal(I cry everytime) already exist
+    if($('#cmsMoveTool-background').length == 0 && window.editObj == null){ //Does a modal(I cry everytime) already exist
       //It needs to create one
       window.callObj = this;
 

@@ -10,7 +10,7 @@ $query = "SELECT contentID, position FROM Content WHERE url = \"" . $url . "\"";
  // Execute Query
 $array = executeSQL($query, 1);//Get list of content in page
 
-echo "<link rel='stylesheet' type='text/css' href='css/content.css'> <div id='content'>"; //Adds the styling
+echo "<link rel='stylesheet' type='text/css' href='/css/content.css'> <div id='content'>"; //Adds the styling
   //Cycle through the array
 foreach($array as $indexMain => $Record){
     //Get Data inside the record
@@ -23,10 +23,10 @@ foreach($array as $indexMain => $Record){
   echo "<div class='content-body $ContentID' style='grid-area: " . $positionString . "'>";
   echo "<div style='display: none'></div>"; //Fixes some weird bug in firefox where white backgrounds appears
     //Get all the text fields in the contentBox
-  $textFields = executeSQL("SELECT content FROM Text WHERE contentID = $ContentID");
+  $textFields = executeSQL("SELECT content, id FROM Text WHERE contentID = $ContentID");
     //Cycles and prints all texts
   foreach ($textFields as $key => $value) {
-    echo "<p>" . $value[0] . "</p>";
+    echo "<p class = '$value[1]'>" . $value[0] . "</p>";
   }
     //Get all the images in the contentBox
   $ImageFields = executeSQL("SELECT width,height,alt,url FROM Image WHERE contentID = $ContentID");
