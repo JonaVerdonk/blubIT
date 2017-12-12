@@ -21,10 +21,16 @@
         <link rel="stylesheet" type="text/css" href="../css/log.css">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <title></title>
-    </head>    
+    </head>
     <body>
-        <?php include("../scripts/header.php"); ?>
+        <?php
+            include("../scripts/header.php");
 
+            if ($_SESSION['role'] !== 'x') {
+                header("Location: redirect.php");
+                exit;
+            }
+        ?>
         <div id="pageContent">
 
             <form action="" method="POST" id="logForm">

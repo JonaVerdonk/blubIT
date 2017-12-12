@@ -9,7 +9,8 @@
 
         <?php include($_SERVER['DOCUMENT_ROOT']."scripts/header.php");
         if ($_SESSION['role'] == 'r') {
-            header("Location: redirect.php");
+            header("Location: ../redirect.php");
+            exit;
         }
         ?>
 
