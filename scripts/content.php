@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet"> <!--Font-->
+
 <?php
 
 include("CMSContentTools.php");
