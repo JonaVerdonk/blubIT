@@ -3,21 +3,30 @@ session_start();
 include_once("/scripts/databaseConnection.php");
 include_once("../scripts/Saltypassword.php");
 include_once("../scripts/GlobalFunctions.php");
+$errorMsg = "";
 
-
-//Wanneer de button deleteuser is ingedrukt wordt de SQL query uitgevoerd dat de user wordt verwijderd.
-if (isset($_POST['deleteuser'])){
-    print "quary";
+function deleteuser(){
+    $error = FALSE;
     $newuserid = $_POST['userid'];
-    print $newuserid;
-    executeSQL ("DELETE FROM User WHERE userId='$newuserid';");
-    header ('Location: users.php');
-    exit;
-}
-//Wanneer de button Save is ingedrukt wordt de SQL query uitgevoerd die de user update.
+    $role = $_POST['role'];
 
-if (isset($_POST['btn-edit'])){
-    print "edit tha quary";
+    if ($role !== 'r'){
+        $error = TRUE;
+        $errorMsg = "De gebruiker kan alleen verwijderd worden wanneer deze read rechten heeft.";
+    }
+
+    if (!$error){
+        executeSQL ("DELETE FROM User WHERE userId=$newuserid;");
+        header ('Location: users.php');
+        exit;
+    }else {
+        return $errorMsg;
+    }
+}
+
+//Wanneer de button Save is ingedrukt wordt de SQL query uitgevoerd die de user update.
+function edituser(){
+    $error = FALSE;
     $newusername = $_POST['userName'];
     $newuseremail = $_POST['userEmail'];
     $newuserid = $_POST['userid'];
@@ -26,8 +35,8 @@ if (isset($_POST['btn-edit'])){
     $role = $_POST['role'];
 
     if ( !filter_var($newuseremail,FILTER_VALIDATE_EMAIL) ) {
-      $error = TRUE;
-      $errorMsg  = "Voer a.u.b. een geldig emailadres in. ";
+        $error = TRUE;
+        $errorMsg  = "Voer a.u.b. een geldig emailadres in. ";
     }
 
     // Check of het password leeg is.
@@ -59,13 +68,11 @@ if (isset($_POST['btn-edit'])){
     executeSQL ("UPDATE User SET userName = '$newusername', userEmail = '$newuseremail', userPass = '$password', role = '$role' WHERE userId = $newuserid;");
 
     //Wanneer de query is uitgevoerd ga je terug naar de user pagina.
-    header ('Location: users.php?$edited=true');
+    header ('Location: users.php');
     exit;
 
-  }else{
-      //Houston, we've got a problem.
-      print ("ERROR: ");
-      print ($errorMsg);
+  }else {
+      return $errorMsg;
   }
 
 }
@@ -92,27 +99,48 @@ if (isset($_POST['btn-edit'])){
      </head>
      <body>
        <?php include("../scripts/header.php");
+
+       //Wanneer de button deleteuser is ingedrukt wordt de SQL query uitgevoerd dat de user wordt verwijderd.
+       if (isset($_POST['deleteuser'])){
+           $errorMsg = "";
+           $errorMsg = deleteuser();
+       }
+
+       if (isset($_POST['btn-edit'])){
+           $errorMsg = "";
+           $errorMsg = edituser();
+       }
+
        if ($_SESSION['role'] !== 'x') {
            header("Location: redirect.php");
+           exit;
        }
        include("../scripts/header.php");
        $userid = $_POST["userid"];
        ?>
 
-       <div id="pageContent">
-
-
-    <?php
-
+        <?php
        $edituser = executeSQL ("SELECT userId, userName, userEmail, role FROM User WHERE userId = $userid", 2);
 
        ?>
+
+       <div id="pageContent">
+
        <div class="btnBack">
            <a href="users.php">Terug</a>
        </div>
+
+       <?php
+        if ($errorMsg !== ""){
+            print ("<div id='errormessage'>");
+            print ("ERROR: " . $errorMsg);
+            print ("</div>");
+        }
+        ?>
+
        <div id="both">
        <h1>Aanpassen gebruikersgegevens</h1>
-       <form id="edituser" method="POST" action="" onsubmit="return confirm('You sure');">
+       <form id="edituser" method="POST" action="" onsubmit="return confirm('Weet u zeker dat u deze actie wilt uitvoeren?');">
          <table>
           <tr><td>
             Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
@@ -146,7 +174,7 @@ if (isset($_POST['btn-edit'])){
             <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
             <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
           </select></br></td></tr><table>
-              <input type="submit" id="deleteuser" name="deleteuser" value="Gebruiker verwijderen">
+              <input type="submit" id="deleteuser" name="deleteuser" value="Delete">
           <input type="submit" id="btnSave" name="btn-edit" class="notClickable" value="Save">
         </form>
       </div>

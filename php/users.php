@@ -20,10 +20,13 @@ include_once("databaseConnection.php");
          <title></title>
      </head>
      <body>
-       <?php include("../scripts/header.php");
-       if ($_SESSION['role'] !== 'x') {
-           header("Location: redirect.php");
-       }
+       <?php
+           include("../scripts/header.php");
+
+           if ($_SESSION['role'] !== 'x') {
+               header("Location: redirect.php");
+               exit;
+           }
        ?>
        <div id="pageContent">
 
