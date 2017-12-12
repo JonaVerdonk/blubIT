@@ -3,43 +3,43 @@ $(document).ready(function(){
   ///JAVASCRIPT FUNCTIONS
   ////////////////////
   function replaceChar(string, loc, newChar){
-    // Split string into an array
+    // Splits the string into an array
     var str = string.split("");
 
-    // Replace char at index
+    // Replace characters in index
     str[loc] = newChar;
 
-    // Output new string
+    // Outputs the new string
     return str.join("");
   }
 
   function getChar(string, loc){
-    // Split string into an array
+    // Splits string into an array
     var str = string.split("");
 
-    // Replace char at index
+    // Replace characters in index
     return str[loc];
   }
 
   function getGridValues(GridArea){
-    //This function returns the 4 values no matter how long they area
+    //This function returns the 4 values no matter how long the area
     //Old system breaks downs if value is negative or bigger than 9 this should solve it
     //Sample gridArea: "1 / 1 / span 1 / span 6"
     //Sample gridArea: "76 / 1 / span 7 / span 12"
-    var numbermode = false; //if true last char was number
+    var numbermode = false; //if true last character a was number
     var numberindex = 0; //What number is currently being changed (Added)
-    var numbers = [0,0,0,0]; //array is filled else undefined
+    var numbers = [0,0,0,0]; //array is filled to prefent it from being undefined
 
     for(var i = 0; i < GridArea.length; i++){
       //Cycle through every character in string
-      var charValue = getChar(GridArea, i); //Get char
-      if(!isNaN(charValue)){ //Numeral or space
-        if(/\S/.test(charValue)){ //numeral
+      var charValue = getChar(GridArea, i); //Get characters
+      if(!isNaN(charValue)){ //Number or space
+        if(/\S/.test(charValue)){ //number
           numbermode = true; //Still part of number
-          numbers[numberindex] += charValue; //Add teh char
+          numbers[numberindex] += charValue; //Add the char
         }else if(numbermode){
           numbermode = false; //Space detected
-          numbers[numberindex] = parseInt(numbers[numberindex]); //Make it into a int
+          numbers[numberindex] = parseInt(numbers[numberindex]); //Make it into a INT
           numberindex++; //new number
 
         }
@@ -70,19 +70,19 @@ $(document).ready(function(){
   //
 
   $(document).on("dblclick", ".content-body", function() {
-    if($('#cmsMoveTool-background').length == 0){ //Does a modal already exist
+    if($('#cmsMoveTool-background').length == 0){ //Does a modal(I cry everytime) already exist
       //It needs to create one
       window.callObj = this;
 
-       //Create most of modal
-      $(this).append(string); //String too long needed php
-       //Add the cancel and confirm butttons
+       //Create most of the modal
+      $(this).append(string); //String to long needed php
+       //Adds the cancel and confirm butttons
       $("#cmsMoveTool-body").append("<div id='cmsMoveTool-body-buttons'><div id='cmsMoveTool-body-buttons-cancel'>Cancel</div><div id='cmsMoveTool-body-buttons-confirm'>Confirm changes</div></div>");
-       //Add grid info to the modal
-        //Get string
+       //Adds grid info to the modal
+        //Gets string
       window.gridArea = $(window.callObj).attr("style");
-       //Get relevant info
-      var gridvalues = getGridValues(window.gridArea); //Loc y, loc x, height, width
+       //Gets relevant info
+      var gridvalues = getGridValues(window.gridArea); //Loc y, Loc x, Height, Width
 
       window.OriginalGridArea = gridvalues[0] + " / " + gridvalues[1] + " / span " + gridvalues[2] +" / span " + gridvalues[3]; //Later used to see if changed and how much
         //Append info
@@ -96,8 +96,8 @@ $(document).ready(function(){
     $("#cmsMoveTool-background").remove();
   }).on("click", "#cmsMoveTool-confirmation-confirm", function(){
     var gridvalues = getGridValues(window.gridArea);
-    //Get relevant info
-   var gridvaluesoriginal = getGridValues(window.OriginalGridArea); //Loc y, loc x, height, width
+    //Gets relevant info
+   var gridvaluesoriginal = getGridValues(window.OriginalGridArea); //Loc y, Loc x, Height, Width
 
     var originalLocString = gridvaluesoriginal[1] + "," + gridvaluesoriginal[3] + "," + gridvaluesoriginal[0] + "," + gridvaluesoriginal[2];
     var locationString = gridvalues[1] + "," + gridvalues[3] + "," + gridvalues[0] + "," + gridvalues[2];//Use and format for database
@@ -114,10 +114,10 @@ $(document).ready(function(){
   }).on("click", "#cmsMoveTool-body-buttons-confirm", function(){
     $("#cmsMoveTool-body").hide();
 
-     //Get relevant info
-    var gridvaluesoriginal = getGridValues(window.OriginalGridArea); //Loc y, loc x, height, width
-     //Get relevant info
-    var gridvalues = getGridValues(window.gridArea); //Loc y, loc x, height, width
+     //Gets relevant info
+    var gridvaluesoriginal = getGridValues(window.OriginalGridArea); //Loc y, Loc x, Height, Width
+     //Gets relevant info
+    var gridvalues = getGridValues(window.gridArea); //Loc y, Loc x, Height, Width
     var confirmationMSG = "Er wordt een onherkeerbaar process uitgevoerd, wilt U bevestigen dat de aanpassing permanent zijn en onherkeerbaar.";
     //Take in 9 values: Message, old gridvalues(4x), new gridvalues(4x)
     $("#cmsMoveTool-background").append("<div id='cmsMoveTool-confirmation'><div id='cmsMoveTool-confirmation-header'>Confirmation</div><div id='cmsMoveTool-confirmation-changes'><div id='cmsMoveTool-confirmation-kolom'><span>KOLOM</span><div id='cmsMoveTool-confirmation-kolom-old' class='cmsMoveTool-confirmation-old/new'>" + gridvaluesoriginal[1] + "</div><div id='cmsMoveTool-confirmation-kolom-pijl'>&#8595;</div><div id='cmsMoveTool-confirmation-kolom-new' class='cmsMoveTool-confirmation-old/new'>" + gridvalues[1] + "</div></div><div id='cmsMoveTool-confirmation-rij'><span>RIJ</span><div id='cmsMoveTool-confirmation-rij-old' class='cmsMoveTool-confirmation-old/new'>" + gridvaluesoriginal[0] + "</div><div id='cmsMoveTool-confirmation-rij-pijl'>&#8595;</div><div id='cmsMoveTool-confirmation-rij-new' class='cmsMoveTool-confirmation-old/new'>" + gridvalues[0] + "</div></div><div id='cmsMoveTool-confirmation-breedte'><span>BREEDTE</span><div id='cmsMoveTool-confirmation-breedte-old' class='cmsMoveTool-confirmation-old/new'>" + gridvaluesoriginal[3] + "</div><div id='cmsMoveTool-confirmation-breedte-pijl'>&#8595;</div><div id='cmsMoveTool-confirmation-breedte-new' class='cmsMoveTool-confirmation-old/new'>" + gridvalues[3] +  "</div></div><div id='cmsMoveTool-confirmation-hoogte'><span>HOOGTE</span><div id='cmsMoveTool-confirmation-hoogte-old' class='cmsMoveTool-confirmation-old/new'>" + gridvaluesoriginal[2] + "</div><div id='cmsMoveTool-confirmation-hoogte-pijl'>&#8595;</div><div id='cmsMoveTool-confirmation-hoogte-new' class='cmsMoveTool-confirmation-old/new'>" + gridvalues[2] + "</div></div></div><div id='cmsMoveTool-confirmation-msg'>" + confirmationMSG + "</div><div id='cmsMoveTool-confirmation-buttons'><div id='cmsMoveTool-confirmation-cancel'>Cancel</div><div id='cmsMoveTool-confirmation-confirm'>Confirm changes</div></div></div>");
@@ -168,14 +168,14 @@ $(document).ready(function(){
       default: console.log("Error: invalid id (002)");                return;
     }
 
-    var gridvalues = getGridValues(window.gridArea); //Loc y, loc x, height, width
+    var gridvalues = getGridValues(window.gridArea); //Loc y, Loc x, Height, Width
     gridvalues[GridIndex] = gridvalues[GridIndex] + change;
 
     window.gridArea = gridvalues[0] + " / " + gridvalues[1] + " / span " + gridvalues[2] +" / span " + gridvalues[3];
-    //execute new area
+    //executes new area
     $(window.callObj).css("grid-area", window.gridArea);
 
-    //update values
+    //updates values
     $("#cmsMoveTool-body-content-kolom-value").html(gridvalues[1]);
     $("#cmsMoveTool-body-content-rij-value").html(gridvalues[0]);
     $("#cmsMoveTool-body-content-breedte-value").html(gridvalues[3]);
