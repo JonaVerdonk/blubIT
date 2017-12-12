@@ -30,22 +30,29 @@
             <div id="adminLinks">
                 <div class="adminItem">
                     <a href="analytics.php">
-                        <img src="../images/350x150.png">
+                        <img src="../images/adminStatistics.png">
                         <p>Analytics</p>
                     </a>
                 </div>
 
                 <div class="adminItem">
                     <a href="CMS/CMS.php">
-                        <img src="../images/350x150.png">
+                        <img src="../images/adminCMS.png">
                         <p>CMS</p>
                     </a>
                 </div>
 
                 <div class="adminItem">
                     <a href="users.php">
-                        <img src="../images/350x150.png">
+                        <img src="../images/adminUsers.png">
                         <p>Users</p>
+                    </a>
+                </div>
+
+                <div class="adminItem">
+                    <a href="log.php">
+                        <img src="../images/adminLog.png">
+                        <p>Logs</p>
                     </a>
                 </div>
             </div>

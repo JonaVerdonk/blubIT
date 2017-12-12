@@ -1,0 +1,36 @@
+#logs {
+    width: 80%;
+    margin-left: 10%;
+}
+#logs td {
+    padding: 10px;
+}
+
+#logs tr:nth-child(even) {
+    background-color: #ccc;
+}
+#logs tr:nth-child(odd) {
+    background-color: #eee;
+}
+#logs tr:hover {
+    background-color: #888;
+    color: white;
+}
+
+#logForm {
+    margin-left: 10%;
+}
+
+#logForm input[type="text"] {
+    padding: 12px 10px;
+    margin-left: 10%;
+    box-sizing: border-box;
+    border-radius: 6px;
+    outline: 0;
+}
+
+#logForm input[type="submit"] {
+    height: auto;
+    border-radius: 6px;
+    margin-left: 10%;
+}
