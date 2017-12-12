@@ -27,6 +27,11 @@
 
         <div id="pageContent">
 
+            <div id="loading" style="display:none;">
+                Loading Please Wait....
+                <img src="../images/ajax-loader.gif" alt="Loading" />
+            </div>
+
             <div class="btnBack">
                 <a href="admin.php">Terug</a>
             </div>
