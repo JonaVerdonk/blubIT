@@ -43,9 +43,11 @@
 
             } else {
                 $pdo->exec($sql);
+                return true; //Succsesfull
             }
         } catch(PDOException $e) {
             print("Query failed: " . $e->getMessage());
+            return false;//Somting wong
         }
 
         //Close connection

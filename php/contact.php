@@ -1,25 +1,29 @@
 <?php
+    session_start();
     if (isset($_POST["Verstuur"])) {
-        print("Uploading started");
         include_once("../scripts/databaseConnection.php");
-        print("File included");
 
-        $id = intval(executeSql("SELECT MAX(messageId) FROM Message"));
+        $prevId = executeSql("SELECT MAX(messageId) FROM Message");
+        $id = intval($prevId[0][0]);
         $id ++;
-        print($id);
 
-        if ($_SESSION["ingelogd"] == 1) {$userId = intval($_SESSION["userId"]);} else {$userId = "NULL";}
-        if (isset($_POST["bedrijfsnaam"])) {$company = $_POST["bedrijfsnaam"];} else {$company = "NULL";}
+        if ($_SESSION["logged_in"] == 1) {$userId = $_SESSION["user"];} else {$userId = "NULL";}
+        if (isset($_POST["bedrijfsnaam"])) {$company = $_POST["bedrijfsnaam"];} else {$company = NULL;}
         $fName = $_POST["firstname"];
         $lName = $_POST["lastname"];
         $email = $_POST["email"];
         $subject = $_POST["subject"];
         $message = $_POST["commentaar"];
-        print("Set all variables");
 
-        executeSql("INSERT INTO Message(messageId, userId, company, fName, lName, email, subject, message)
-                    VALUES($id, $userId, '$company', '$fName', '$lName', '$email', '$subject', '$message');");
-        print("Inserted");
+        if ($company == NULL) {
+            executeSql("INSERT INTO Message(messageId, userId, fName, lName, email, subject, message)
+                        VALUES($id, $userId, '$fName', '$lName', '$email', '$subject', '$message');");
+            $message = "Bericht verzonden!";
+        } else {
+            executeSql("INSERT INTO Message(messageId, userId, company, fName, lName, email, subject, message)
+                        VALUES($id, $userId, '$company', '$fName', '$lName', '$email', '$subject', '$message');");
+            $message = "Bericht verzonden!";
+        }
     }
 ?>
 
@@ -45,6 +49,9 @@
         <?php include("../scripts/header.php"); ?>
 
         <div id="content">
+
+            <div><?php if (isset($message)){print($message);}?><br>
+
             <div id="form">
                 <form action="" method="post">
                     <h1>Contactformulier</h1>
@@ -53,7 +60,7 @@
                     <input class="text" type="text" name="lastname" placeholder="*Achternaam" required><br>
                     <input class="text" type="email" name="email" placeholder="*Email" required><br>
                     <input class="text" type="text" name="subject" placeholder="*Onderwerp" required><br>
-                    <?php include("../scripts/Save.php"); ?>
+                    <?php include_once("../scripts/Save.php"); ?>
                     <textarea id="comment" name="commentaar" type="text" placeholder="Typ hier je bericht"></textarea><br>
                     <input id="submit" type="submit" name="Verstuur" value="Verstuur">
                 </form>

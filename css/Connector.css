@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+}
+/* Center website */
+.main {
+    max-width: 20%;
+    margin: auto;
+}
+.test{
+    padding: 20px;
+}
+h1 {
+    font-size: 50px;
+    word-break: break-all;
+}
+
+h2{
+    text-transform:capitalize;
+    font-family:initial;
+    color: #1c1c1c;
+    font-weight:500;
+    font-variant: small-caps;
+}
+
+.row {
+    margin: 8px -16px;
+}
+
+/* Add padding BETWEEN each column (if you want) */
+.row,
+.row > .column {
+    padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 100%;
+    display: none;
+}
+
+/* Clear floats after rows */ 
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Content */
+.content {
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    border: 1.1px ridge;
+    border-radius: 3px;
+    border-color: gray;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+    display: block;
+}
+
+input.boxer[type='checkbox'] {
+    -webkit-appearance:none;
+    width:30px;
+    height:30px;
+    background:white;
+    border-radius:3px;
+    border-color: #fff;
+    border-left:2.5px inset;
+    border-top: 2.5px inset;
+    border-bottom: 1.1px ridge;
+    border-right: 1.1px ridge;
+    border-bottom-color: gray;
+    border-right-color: gray;
+    position: static;
+    float: right;
+    transform: scale(0.8);
+    margin-top: -16.4px;
+    margin-right: -13.9px;
+}
+.boxer[type='checkbox']:checked {
+    background-color: #0000004f;
+}
+
+#imgklein{
+    height: 200px;
+    width: 20%;
+}
+
+.save-button{
+    position: static;
+    float: right;
+    width: 60px;
+    height: 40px;
+    border: 1px other;
+    background-color: white;
+    border-color: #cccccc;
+    font-size: 12px;
+    border-radius: 20px;
+    font-family: arial;
+}
+
+header{
+    z-index: 1000;
+}
+
+#imgbig{
+    width: 100%;
+    height: 300px;
+    margin-top: 52px;
+    margin-bottom: -180px;
+    border-radius: 0px;
+    border: 0px ridge;
+    
+}
+
+#radio-color{
+    color: #2d3032;
+    text-transform:capitalize;
+    font-family:initial;
+    display: inline;
+}
+
+p{
+    height: 210px;
+    overflow-y: auto;
+}
+
+.square{
+    display: table;
+    padding: 8px;
+    height: auto;
+    width: 20%;
+    float: left;
+}

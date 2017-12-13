@@ -22,11 +22,7 @@
     </head>
     <body>
 
-        <?php include("../../scripts/header.php");
-        if ($_SESSION['role'] == 'x') {
-            header("Location: redirect.php");
-        }
-        ?>
+        <?php include("../../scripts/header.php"); ?>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109575524-1"></script>
