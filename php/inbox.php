@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/analytics.css">
+    <link rel="stylesheet" type="text/css" href="../css/inbox.css">
 </head>
 <body>
 
@@ -28,7 +28,27 @@ if ($_SESSION['role'] == 'r') {
 
 <div id="pageContent">
     <div id="inbox">
-        
+        <div id="headInbox">
+            <H1 id="title"> Contact Inbox </H1>
+        </div>
+        <div id="bodyInbox">
+            <div id="formList">
+                <p> forms </p>
+                <?php
+                    include_once ("../scripts/databaseConnection.php");
+                    $msg = executeSql("SELECT * FROM Message" , 2);
+                    for ($i = 0; $i < count($msg); $i ++) {
+                        print  "<div class='form'>";
+                        print  "<p>" . $msg[$i][7] . "</p>";
+                        print  "<p>" . $msg[$i][4] . " " . $msg[$i][5] . "</p>";
+                        print  "</div>";
+                    }
+                ?>
+            </div>
+            <div id="formReader">
+                <p> placeholder </p>
+            </div>
+        </div>
     </div>
 </div>
 

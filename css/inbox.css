@@ -1,0 +1,60 @@
+p {
+    margin: 0px;
+    padding; 0px;
+}
+
+H1 {
+    margin: 0px;
+    padding; 0px;
+}
+
+#pageContent {
+    padding-top: 100px;
+    margin-bottom: 100px;
+}
+
+#title {
+    border-bottom: 3px double black;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+
+#formList {
+    margin-top: 0px;
+    width: 20%;
+    border-right: 3px double black;
+    height: 100%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.form {
+    border-top: 1px solid black;
+}
+
+.form p {
+    padding: 5px;
+}
+
+#headInbox {
+
+}
+
+#bodyInbox {
+
+    overflow: auto;
+}
+
+#formReader {
+    width: 75%;
+    float: left;
+}
+
+#inbox {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: lightgray;
+}
