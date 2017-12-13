@@ -2,13 +2,13 @@ html, body {
     font-family: arial;
     margin: 0;
     padding: 0;
-    background-color: #F2F2F2;
+    background-color: #E0E0E0;
 
 }
 
 header {
     width: 100%;
-    background-color: #11589ade;
+    background-color: #11589a;
     height: 75px;
     position: fixed;
     margin-bottom: 80px;

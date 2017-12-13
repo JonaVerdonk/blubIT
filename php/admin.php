@@ -55,6 +55,13 @@
                         <p>Logs</p>
                     </a>
                 </div>
+
+                <div class="adminItem">
+                    <a href="inbox.php">
+                        <img src="../images/adminEmail.png">
+                        <p>Inbox</p>
+                    </a>
+                </div>
             </div>
 
         </div>
