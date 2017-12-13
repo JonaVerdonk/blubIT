@@ -65,7 +65,7 @@
 
                 <div class="adminItem">
                     <a href="ImageUpload.php">
-                        <img src="../images/adminEmail.png">
+                        <img src="../images/adminImage.png">
                         <p>Image upload</p>
                     </a>
                 </div>
