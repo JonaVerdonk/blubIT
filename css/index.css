@@ -1,53 +1,119 @@
 /*Override the main styling to from mainContent to make the image look better*/
-#pageContent {
+#content {
     padding-top: 75px;
 }
 
-#mainImg img {
-    width: 100%;
-    height: 500px;
+#content-header{
+    height: 100vh;
+    position: relative;
 }
-
-#mainText {
-    width: 80%;
-    margin-left: 10%;
-    background-color: rgba(0, 0, 0, 0.85);
+#Content-header-img {
+    width: 100%;
+    height: 100%;
+    background: url("/images/Je ziet ons overal/Vliegveld RTD.JPG") no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 90vh;
     position: absolute;
-    top: 220px;
-    border-radius: 5px;
-    color: white;
-    font-size: 70px;
-    padding: 20px;
-    text-align: center;
+    border-bottom: 3px double rgb(38, 72, 123);
 }
 
-
-
-#container {
+#Content-header-text {
     width: 100%;
+    height: auto;
+    text-shadow: 1.5px 1.5px 1px #1b5a82;
+    top: 15%;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 70px;
     text-align: center;
-    margin-top: 50px;
+    user-select: none;
+    font-family: 'Quicksand', sans-serif;
+    position: absolute;
 }
 
-.infoItem {
-    width: 18%;
+
+
+#content-body {
+    width: 100%;
+    text-align: cent er;
+    margin-top: 50px;
+    position: relative;
+}
+
+.content-body-item {
     display: inline-block;
-    margin: 25px;
+    box-sizing: border-box;
+    margin: 10px;
     /*background-color: #c1c1c1;*/
     background-color: #79aad8;
     min-height: 500px;
-    margin-top: 0px;
+    margin-top: 10px;
 }
 
-.infoItem img {
+.content-body-item img {
     width: 100%;
     height: auto;
 }
 
-.infoItem h2 {
+.content-body-item h2 {
 
 }
 
-.infoItem p {
+.content-body-item p {
     padding: 10px;
+}
+
+#content-header-icon{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    font-size: 50px;
+    text-align: center;
+    line-height: 55px;
+    filter: invert(1);
+}
+
+#content-header-icon-anchor{
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    color: black;
+    text-decoration: none;
+
+    border: 3px solid white;
+    border-radius: 50%;
+    top: 60%;
+    left: calc(50% - 32px);
+
+    text-shadow: 0.5px 0.5px 1px white;
+    box-shadow: 0.5px 0.5px 1px black;
+
+    overflow: hidden;
+}
+@media (max-width: 680px) {
+    #content {
+        padding-top: 46px;
+    }
+    .content-body-item{
+        width: auto;
+    }
+}
+
+@media (min-width: 680px) and (max-width: 900px){
+    .content-body-item{
+        width: calc(100% / 2 - 30px);
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1200px){
+    .content-body-item{
+        width: calc(100% / 3 - 30px);
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1920px){
+    .content-body-item{
+        width: calc(100% / 4 - 30px);
+    }
 }

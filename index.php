@@ -15,35 +15,36 @@
         </script>
     </head>
     <body>
+
         <?php include("scripts/header.php"); ?>
-
-        <div id="pageContent">
-            <div id="mainImg">
-                <img src="images/Slide Show/home01.png" alt="Image not found">
-                <div id="mainText">Welkom bij Meijers glasvezel techniek!</div>
+        <div id="content">
+            <div id="content-header">
+                <div id="Content-header-img"></div>
+                <div id="Content-header-text">Welkom bij Meijer glasvezel techniek!</div>
+                <a href="#content-body" id="content-header-icon-anchor">
+                <div id="content-header-icon">&#x2193;</div>
+                </a>
             </div>
 
-            <div id="container">
-                <div class="infoItem">
+            <div id="content-body">
+                <div class="content-body-item">
                     <img src="images/350x150.png" alt="">
                     <h2>Item</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
 
-                <div class="infoItem">
+                <div class="content-body-item">
                     <img src="images/350x150.png" alt="">
                     <h2>Item</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
 
-                <div class="infoItem">
+                <div class="content-body-item">
                     <img src="images/350x150.png" alt="">
                     <h2>Item</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
             </div>
-
-
         <?php include("scripts/footer.php"); ?>
     </body>
 </html>
