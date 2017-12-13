@@ -21,6 +21,7 @@
 
 #bodyInbox {
     overflow: auto;
+    max-height: 70%;
 }
 
 #formList {
@@ -48,11 +49,4 @@
 p {
     margin: 0px;
     padding; 0px;
-}
-#inbox {
-    margin-left: 5%;
-    margin-right: 5%;
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 20px;
 }

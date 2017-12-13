@@ -69,7 +69,6 @@
                                 msg = $(this).attr("id");
                                 $("#subject").html(data[msg][7]);
                                 $("#message").html(data[msg][8]);
-                                alert("AAAAAAH");
                             });
 
                         }
