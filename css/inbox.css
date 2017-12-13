@@ -1,22 +1,26 @@
-p {
-    margin: 0px;
-    padding; 0px;
-}
-
-H1 {
-    margin: 0px;
-    padding; 0px;
-}
-
 #pageContent {
     padding-top: 100px;
     margin-bottom: 100px;
+}
+
+#inbox {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 20px;
 }
 
 #title {
     border-bottom: 3px double black;
     margin-bottom: 0px;
     padding-bottom: 10px;
+    margin: 0px;
+    padding; 0;
+}
+
+#bodyInbox {
+    overflow: auto;
 }
 
 #formList {
@@ -28,6 +32,11 @@ H1 {
     float: left;
 }
 
+#formReader {
+    width: 75%;
+    float: left;
+}
+
 .form {
     border-top: 1px solid black;
 }
@@ -36,25 +45,7 @@ H1 {
     padding: 5px;
 }
 
-#headInbox {
-
-}
-
-#bodyInbox {
-
-    overflow: auto;
-}
-
-#formReader {
-    width: 75%;
-    float: left;
-}
-
-#inbox {
-    margin-left: 5%;
-    margin-right: 5%;
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 20px;
-    background-color: lightgray;
+p {
+    margin: 0px;
+    padding; 0px;
 }
