@@ -4,50 +4,105 @@
 }
 
 #inbox {
+    width: 90%;
     margin-left: 5%;
-    margin-right: 5%;
-    text-align: center;
     border: 1px solid black;
-    border-radius: 20px;
-}
-
-#title {
-    border-bottom: 3px double black;
-    margin-bottom: 0px;
-    padding-bottom: 10px;
-    margin: 0px;
-    padding; 0;
-}
-
-#bodyInbox {
-    overflow: auto;
-    max-height: 70%;
-}
-
-#formList {
-    margin-top: 0px;
-    width: 20%;
-    border-right: 3px double black;
-    height: 100%;
-    box-sizing: border-box;
-    float: left;
-}
-
-#formReader {
-    width: 75%;
-    float: left;
-}
-
-.form {
-    border-top: 1px solid black;
+    border-radius: 15px;
+    height: 400px;
+    /*text-align: center;*/
     overflow: hidden;
 }
 
-.form p {
-    padding: 5px;
+#headInbox {
+    height: 50px;
+    border-bottom: 3px double black;
+}
+#title {
+    margin: 0;
+    padding: 10px;
 }
 
-p {
-    margin: 0px;
-    padding; 0px;
+#bodyInbox {
+    height: 350px;
+}
+
+#formList {
+    height: 347px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-right: 1px solid black;
+    width: 25%;
+    float: left;
+    background-color: #eee;
+}
+
+#formReader {
+    width: 73%;
+    float: left;
+}
+
+<<<<<<< HEAD
+.form {
+    border-top: 1px solid black;
+    overflow: hidden;
+=======
+#subject {
+    margin: 0;
+    padding: 8px;
+>>>>>>> fd05608e0936a61d1e336c69e2baa28d3bdfc582
+}
+
+#message {
+    margin: 0;
+    padding: 5px;
+    padding-left: 8px;
+}
+
+#sendInfo {
+    margin-left: 8px;
+    margin-bottom: 8px;
+}
+
+#subjectPreview, #name, #email, #timestamp {
+    font-weight: bold;
+}
+
+#actions {
+    margin-left: 8px;
+}
+
+#delete {
+    color: red;
+    font-size: 25px;
+}
+#setUnread {
+    font-size: 25px;
+}
+#delete:hover, #setUnread:hover {
+    cursor: pointer;
+}
+
+.form {
+    font-size: 15px;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: background-color .08s, color .08s;
+    cursor: default;
+    background-color: #eee;
+}
+.notRead {
+    background-color: #ccc;
+}
+.form:hover {
+    background-color: #999;
+    color: white;
+    transition: background-color .08s, color .08s;
+}
+
+.selected {
+    background-color: #ddd;
 }

@@ -32,20 +32,11 @@
                     <H1 id="title"> Contact Inbox </H1>
                 </div>
                 <div id="bodyInbox">
-                    <div id="formList">
-                        <p> forms </p>
-                        <?php
-                            include_once ("../scripts/databaseConnection.php");
-                            $msg = executeSql("SELECT * FROM Message ORDER BY timestamp DESC;" , 2);
-                            for ($i = 0; $i < count($msg); $i ++) {
-                                print  "<div class='form' id='".$i."'>";
-                                print  "<p>" . $msg[$i][7] . "</p>";
-                                print  "<p>" . $msg[$i][4] . " " . $msg[$i][5] . "</p>";
-                                print  "</div>";
-                            }
-                        ?>
-                    </div>
+                    <div id="formList"></div>
+
                     <div id="formReader">
+                        <p id="sendInfo">Verzonden door <span id="name"></span> via <span id="email"></span> op <span id="timestamp"></span></p>
+                        <div id="actions"><span id="delete">&#10008;</span><span id="setUnread">&#9993;</span></div>
                         <h2 id="subject"></h2>
                         <p id="message"></p>
                     </div>
@@ -55,6 +46,10 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
+                    print();
+                });
+
+                function print() {
                     $.ajax({
                         url: "../scripts/executeQuery.php",
                         type: "POST",
@@ -63,17 +58,73 @@
                             //When the ajax query is succesfull, save the databse data as an array in 'data'.
                             data = $.parseJSON(json);
 
-                            messages = $(".form");
+                            //Print all messages on the left side
+                            $("#formList").empty();
+                            for (var i = 0; i < data.length; ++ i) {
+                                var name = data[i][4]+" "+data[i][5];
+                                if (data[i][9] == "0") {var readClass = "notRead'";} else {var readClass = "";}
+                                $("#formList").append("<div class='form "+readClass+"' id='"+i+"' "+readClass+"><span id='subjectPreview'>"+data[i][7]+"</span><br><span id='namePreview'>"+name+"</span></div>");
+                            }
 
+                            messages = $(".form");
+                            messages.unbind("click");
                             messages.on("click", function() {
                                 msg = $(this).attr("id");
-                                $("#subject").html(data[msg][7]);
-                                $("#message").html(data[msg][8]);
+                                $("#name").     html(data[msg][4] + " " + data[msg][5]);
+                                $("#email").    html(data[msg][6]);
+                                $("#timestamp").html(data[msg][2]);
+                                $("#subject").  html(data[msg][7]);
+                                $("#message").  html(data[msg][8]);
+                                messages.removeClass("selected");
+                                $(this).addClass("selected");
+                                if (data[msg][9] == "0") {
+                                    setRead(data[msg][0], true);
+                                }
+                            });
+                            messages[0].click();
+
+                            $("#delete").unbind("click");
+                            $("#delete").on("click", function() {
+                                if (confirm("Weet je zeker dat je dit bericht wil verwijderen?")) {
+                                    deleteMsg(data[msg][0]);
+                                }
                             });
 
+                            $("#setUnread").unbind("click");
+                            $("#setUnread").on("click", function() {
+                                setRead(data[msg][0], false);
+                            });
                         }
                     });
-                });
+                }
+
+                function deleteMsg(id) {
+                    $.ajax({
+                        url: "../scripts/executeQuery.php",
+                        type: "POST",
+                        data: {"sql": "DELETE FROM Message WHERE messageId="+id+";"},
+                        success: function(json, status) {
+                            print();
+                        }
+                    });
+                }
+
+                function setRead(id, read) {
+                    if (read) {
+                        var sql = "UPDATE Message SET msgRead = 1 WHERE messageId="+id+";"
+                    } else {
+                        var sql = "UPDATE Message SET msgRead = 0 WHERE messageId="+id+";"
+                    }
+
+                    $.ajax({
+                        url: "../scripts/executeQuery.php",
+                        type: "POST",
+                        data: {"sql": sql},
+                        success: function(json, status) {
+                            print();
+                        }
+                    });
+                }
             </script>
         </div>
 
