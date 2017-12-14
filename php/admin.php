@@ -78,7 +78,7 @@
                 <div class="adminItem">
                     <a href="trex.php">
                         <img src="../images/adminTrex.png">
-                        <p>Stess relief</p>
+                        <p>Stress relief</p>
                     </a>
                 </div>
             </div>

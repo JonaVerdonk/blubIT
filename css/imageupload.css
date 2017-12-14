@@ -1,0 +1,68 @@
+.ImageUpload{
+    position: absolute;
+    background: linear-gradient(45deg, #0ff5fe, #36505170);
+    background-color: #0ff5fe82;
+    
+    width: 75%;
+    height: 50%;
+
+    left: 12.5%;
+    top: 15%;
+
+    font-family: 'Quicksand', sans-serif;
+
+    border-radius : 10px;
+    overflow:hidden;
+}
+
+.ImageUpload p{
+    color: white;
+    text-shadow: 0.5px 0.5px 1px black;
+    font-size: 30px;
+    text-align: center;
+    line-height: 70px;
+
+    margin: 0;
+    height: 10vh;
+
+    border-bottom: 3px double white;
+    background-color: #485a5ca1;
+    overflow: hidden;
+}
+
+.ImageUpload input{
+    width: 80%;
+    padding: 20px 0;
+    background: #00000000;
+
+    border: 2px double black;
+    border-radius: 10px;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    font-size: 20px;
+    text-shadow: 0.5px 0.5px 1px black;
+
+
+}
+.ImageUpload [type="file"]{
+        position:absolute;
+    top: 70px;
+    left: 10%;
+
+    padding: 20px 0;
+
+}
+.ImageUpload [type="submit"]{
+    background-color: #13f798;
+    font-size: 40px;
+    padding: 20px 0;
+    z-index: 1;
+    position:absolute;
+    bottom: 10px;
+    left: 10%;
+}
+
+.ImageUpload [type="submit"]:hover{
+    background-color: #00fd07;
+    transition: background-color 0.5s;
+}
