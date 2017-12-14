@@ -7,13 +7,13 @@
         $id = intval($prevId[0][0]);
         $id ++;
 
-        if ($_SESSION["logged_in"] == 1) {$userId = $_SESSION["user"];} else {$userId = "NULL";}
-        if (isset($_POST["bedrijfsnaam"])) {$company = $_POST["bedrijfsnaam"];} else {$company = NULL;}
-        $fName = $_POST["firstname"];
-        $lName = $_POST["lastname"];
-        $email = $_POST["email"];
-        $subject = $_POST["subject"];
-        $message = $_POST["commentaar"];
+        if ($_SESSION["logged_in"] == 1) {$userId = strip_tags($_SESSION["user"]);} else {$userId = "NULL";}
+        if (isset($_POST["bedrijfsnaam"])) {$company = strip_tags($_POST["bedrijfsnaam"]);} else {$company = NULL;}
+        $fName = strip_tags($_POST["firstname"]);
+        $lName = strip_tags($_POST["lastname"]);
+        $email = strip_tags($_POST["email"]);
+        $subject = strip_tags($_POST["subject"]);
+        $message = strip_tags($_POST["commentaar"]);
 
         if ($company == NULL) {
             executeSql("INSERT INTO Message(messageId, userId, fName, lName, email, subject, message)
