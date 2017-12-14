@@ -41,9 +41,15 @@
     float: left;
 }
 
+<<<<<<< HEAD
+.form {
+    border-top: 1px solid black;
+    overflow: hidden;
+=======
 #subject {
     margin: 0;
     padding: 8px;
+>>>>>>> fd05608e0936a61d1e336c69e2baa28d3bdfc582
 }
 
 #message {

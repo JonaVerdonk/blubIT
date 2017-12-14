@@ -69,6 +69,18 @@
                         <p>Image upload</p>
                     </a>
                 </div>
+                <div class="adminItem">
+                    <a href="https://www.google.com/teapot">
+                        <img src="../images/teaAdmin.png">
+                        <p>jolly cup of tea</p>
+                    </a>
+                </div>
+                <div class="adminItem">
+                    <a href="trex.php">
+                        <img src="../images/adminTrex.png">
+                        <p>Stress relief</p>
+                    </a>
+                </div>
             </div>
 
         </div>
