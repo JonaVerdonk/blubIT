@@ -69,7 +69,10 @@
     color: red;
     font-size: 25px;
 }
-#delete:hover {
+#setUnread {
+    font-size: 25px;
+}
+#delete:hover, #setUnread:hover {
     cursor: pointer;
 }
 
@@ -83,12 +86,17 @@
     padding-bottom: 20px;
     transition: background-color .08s, color .08s;
     cursor: default;
+    background-color: #eee;
 }
-.read {
+.notRead {
     background-color: #ccc;
 }
 .form:hover {
     background-color: #999;
     color: white;
     transition: background-color .08s, color .08s;
+}
+
+.selected {
+    background-color: #ddd;
 }
