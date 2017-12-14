@@ -50,7 +50,10 @@
 
         <div id="content">
 
-            <div><?php if (isset($message)){print($message);}?><br>
+             <?php if (isset($message)){
+                 print ("<div id='verzonden'>");
+                 print($message);
+                print ("</div>");}?><br>
 
             <div id="form">
                 <form action="" method="post">
