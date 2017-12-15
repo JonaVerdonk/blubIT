@@ -7,7 +7,7 @@
     width: 90%;
     margin-left: 5%;
     border: 1px solid black;
-    border-radius: 15px;
+    border-radius: 0px;
     height: 400px;
     /*text-align: center;*/
     overflow: hidden;
@@ -41,17 +41,6 @@
     float: left;
 }
 
-<<<<<<< HEAD
-.form {
-    border-top: 1px solid black;
-    overflow: hidden;
-=======
-#subject {
-    margin: 0;
-    padding: 8px;
->>>>>>> fd05608e0936a61d1e336c69e2baa28d3bdfc582
-}
-
 #message {
     margin: 0;
     padding: 5px;
@@ -63,6 +52,10 @@
     margin-bottom: 8px;
 }
 
+#subject {
+    margin-left: 8px;
+}
+
 #subjectPreview, #name, #email, #timestamp {
     font-weight: bold;
 }
@@ -70,39 +63,78 @@
 #actions {
     margin-left: 8px;
 }
-
+#actions span {
+    font-size: 30px;
+    margin-left: 8px;
+}
+#actions span:hover {
+    cursor: pointer;
+}
 #delete {
     color: red;
-    font-size: 25px;
 }
-#setUnread {
-    font-size: 25px;
+#reply {
+    color: blue;
+    padding-left: 4px;
 }
-#delete:hover, #setUnread:hover {
-    cursor: pointer;
+
+#replybox textarea {
+    margin-left: 8px;
+    margin-top: 15px;
+    width: 620px;
+    height: 175px;
+    resize: none;
+    font-family: arial;
+    font-size: 15px;
 }
 
 .form {
     font-size: 15px;
     border-bottom: 1px solid black;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 0px;
     padding: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
-    transition: background-color .08s, color .08s;
+    border-left: 0px solid black;
+    transition: border-left .1s, border-left-color .1s;
     cursor: default;
     background-color: #eee;
 }
+
 .notRead {
-    background-color: #ccc;
-}
-.form:hover {
-    background-color: #999;
-    color: white;
-    transition: background-color .08s, color .08s;
+    border-left: 4px solid red;
+    transition: border-left .1s, border-left-color .1s;
 }
 
-.selected {
-    background-color: #ddd;
+.form:hover {
+    border-left: 4px solid #2E6CA5;
+    transition: border-left .1s, border-left-color .1s;
+}
+
+.notRead.form:hover {
+    border-left-color: #2E6CA5;
+    transition: border-left .1s, border-left-color .1s;
+}
+
+.notRead.selected, .notRead.selected.form:hover, .selected.form:hover, .selected {
+    border-left: 8px solid #2E6CA5;
+    transition: border-left .1s, border-left-color .1s;
+}
+
+#btnSend {
+    background-color: #ccc;
+    color: black;
+    padding: 13px;
+    box-shadow: none;
+    margin-left: 8px;
+    margin-top: 5px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    border-left: 0px solid #2E6CA5;
+    transition: border-left .1s;
+}
+#btnSend:hover {
+    border-left: 6px solid #2E6CA5;
+    transition: border-left .1s;
 }
