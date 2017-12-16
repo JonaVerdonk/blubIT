@@ -24,6 +24,8 @@
 
 #bodyInbox {
     height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #formList {

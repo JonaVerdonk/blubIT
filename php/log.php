@@ -39,16 +39,16 @@
             </form><br><br>
 
             <table id="logs">
-                <tr><th>ID</th><th>User ID</th><th>Data/time</th><th>Change</th></tr>
+                <tr><th>ID</th><th>User ID</th><th>Name</th><th>Data/time</th><th>Change</th></tr>
 
                 <?php
                     if (isset($rows)) {
-                        $logs = executeSql("SELECT * FROM Log ORDER BY logID DESC LIMIT $rows", 0);
+                        $logs = executeSql("SELECT logId, user, timestamp, message, userName FROM Log JOIN User ON user = userId ORDER BY logID DESC LIMIT $rows", 0);
                     } else {
-                        $logs = executeSql("SELECT * FROM Log ORDER BY logID DESC LIMIT 25", 0);
+                        $logs = executeSql("SELECT logId, user, timestamp, message, userName FROM Log JOIN User ON user = userId ORDER BY logID DESC LIMIT 25", 0);
                     }
                     for ($i = 0; $i < count($logs); ++ $i) {
-                        print("<tr><td>".$logs[$i][0]."</td><td>".$logs[$i][1]."</td><td>".$logs[$i][2]."</td><td>".$logs[$i][3]."</td></tr>");
+                        print("<tr><td>".$logs[$i][0]."</td><td>".$logs[$i][1]."</td><td>".$logs[$i][4]."</td><td>".$logs[$i][2]."</td><td>".$logs[$i][3]."</td></tr>");
                     }
                 ?>
 
