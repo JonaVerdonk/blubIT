@@ -148,11 +148,10 @@ navbar/img is changed.
     padding-top: 160px;
 }
 
-.btnBack {
+/* .btnBack {
     margin-left: 10%;
     padding: 20px;
 }
-
 .btnBack a {
     background-color: #3322FF;
     color: white;
@@ -165,6 +164,45 @@ navbar/img is changed.
     background-color: #1c07ff;
     border-radius: 10px;
     transition: background-color .2s, border-radius .2s;
+} */
+
+.btnBack a {
+    background-color: #ccc;
+    color: black;
+    padding: 13px;
+    box-shadow: none;
+    margin-left: 10%;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    border-left: 0px solid #2E6CA5;
+    transition: border-left .1s;
+}
+.btnBack a {
+    text-decoration: none;
+    color: black;
+}
+.btnBack a:hover {
+    border-left: 6px solid #2E6CA5;
+    transition: border-left .1s;
+    cursor: default;
+}
+
+.btnStandard {
+    background-color: #ccc;
+    color: black;
+    padding: 13px;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    border-left: 0px solid #2E6CA5;
+    transition: border-left .1s;
+}
+.btnStandard:hover {
+    border-left: 6px solid #2E6CA5;
+    transition: border-left .1s;
+    cursor: default;
 }
 
 

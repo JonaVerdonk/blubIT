@@ -25,12 +25,14 @@
     padding: 12px 10px;
     margin-left: 10%;
     box-sizing: border-box;
-    border-radius: 6px;
     outline: 0;
 }
 
 #logForm input[type="submit"] {
-    height: auto;
-    border-radius: 6px;
+    padding: 10px;
+    font-size: 17px;
     margin-left: 10%;
+}
+#logForm input[type="submit"]:hover {
+    border-left-width: 4px;
 }

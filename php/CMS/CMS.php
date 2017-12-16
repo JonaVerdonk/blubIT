@@ -31,7 +31,7 @@
             </div>
 
             <a href="cmsNavbar.php">Navbar</a><br>
-            <a href="cmsNavbar.php">Homepage</a><br>
+            <a href="cmsHomepage.php">Homepage</a><br>
             <a href="dbConnection.php">Database connection</a>
 
         </div>

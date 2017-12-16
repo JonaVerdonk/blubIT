@@ -124,19 +124,6 @@
 }
 
 #btnSend {
-    background-color: #ccc;
-    color: black;
-    padding: 13px;
-    box-shadow: none;
     margin-left: 8px;
     margin-top: 5px;
-    outline: none;
-    border: none;
-    font-size: 20px;
-    border-left: 0px solid #2E6CA5;
-    transition: border-left .1s;
-}
-#btnSend:hover {
-    border-left: 6px solid #2E6CA5;
-    transition: border-left .1s;
 }

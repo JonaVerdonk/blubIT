@@ -19,8 +19,26 @@
         <?php include("scripts/header.php"); ?>
         <div id="content">
             <div id="content-header">
+                <?php
+                    include_once("scripts/databaseConnection.php");
+
+                    $data = executeSql("SELECT * FROM Homepage");
+                    //Printing the entire styling was the only way to get this to style corectly.
+                    //Leaving all styling but the bg url in the stylesheet applies only some(none?) of the styling
+                    print("<style>#Content-header-img {
+                        width: 100%;
+                        height: 100%;
+                        background: url('".$data[0][0]."') no-repeat;
+                        background-attachment: fixed;
+                        background-size: cover;
+                        height: 90vh;
+                        position: absolute;
+                        border-bottom: 3px double rgb(38, 72, 123);
+                    }</style>")
+                ?>
+
                 <div id="Content-header-img"></div>
-                <div id="Content-header-text">Welkom bij Meijer glasvezel techniek!</div>
+                <div id="Content-header-text"><?php print($data[0][1]); ?></div>
                 <a href="#content-body" id="content-header-icon-anchor">
                 <div id="content-header-icon">&#x2193;</div>
                 </a>

@@ -58,7 +58,7 @@ function print(selectedMsg = 0, selectSelected = true) {
                 $("#subject").toggle();
                 $("#message").toggle();
                 if ($("#replybox").html() == "") {
-                    $("#replybox").html("<textarea>&#10;&#10;&#10;&#10;_______________&#10;"+$("#subject").html()+"&#10;&#10;"+$("#message").html()+"</textarea><br><button id='btnSend'>Verzenden</button>");
+                    $("#replybox").html("<textarea>&#10;&#10;&#10;&#10;_______________&#10;"+$("#subject").html()+"&#10;&#10;"+$("#message").html()+"</textarea><br><button id='btnSend' class='btnStandard'>Verzenden</button>");
                 } else {
                     $("#replybox").empty();
                 }

@@ -35,7 +35,7 @@
 
             <form action="" method="POST" id="logForm">
                 <input type="text" placeholder="Rows" name="rows"><br><br>
-                <input type="submit" name="submit">
+                <input type="submit" class="btnStandard" name="submit">
             </form><br><br>
 
             <table id="logs">

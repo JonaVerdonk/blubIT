@@ -1,0 +1,40 @@
+#headerContent {
+    margin-left: 10%;
+    width: 60%;
+}
+
+#image {
+    padding-bottom: 25px;
+}
+
+#image img {
+    height: 200px;
+    width: auto;
+}
+
+#text {
+    padding-top: 25px;
+    border-top: 1px solid black;
+}
+
+#showText {
+    font-size: 20px;
+    padding: 15px;
+    padding-bottom: 0;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 4px;
+    font-size: 17px;
+    width: 450px;
+    outline: none;
+}
+
+.btnEdit {
+    padding: 10px;
+    font-size: 17px;
+}
+.btnEdit:hover {
+    border-left-width: 4px;
+}

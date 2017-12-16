@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>CMS</title>
         <link rel="stylesheet" type="text/css" href="../../css/style.css">
-        <link rel="stylesheet" type="text/css" href="../../css/cmsNavbar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/cmsHomepage.css">
     </head>
     <body>
 
@@ -30,9 +30,21 @@
                 <a href="CMS.php">Terug</a>
             </div><br><br>
 
-            <table id="navbarTable"></table>
-            <br><br>
-            <button id="btnSave" class="notClickable">Save</button>
+            <div id="headerContent">
+                <div id="image">
+                    Afbeelding op de homepagina:<br><br>
+                    <img src="" alt="Homepage image"><br><br>
+                    URL: <a href="" id="url"></a><br><br>
+                    <button class="btnStandard btnEdit" id="editImg">Edit</button>
+                </div>
+
+                <div id="text">
+                    Text over de afbeelding op de homepagina:<br>
+                    <div id="showText"></div><br>
+                    <button class="btnStandard btnEdit" id="editText">Edit</button>
+                </div>
+            </div>
+
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
@@ -43,15 +55,74 @@
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
                         type: "POST",
-                        data: {"sql": "SELECT * FROM Navbar ORDER BY position;"},
+                        data: {"sql": "SELECT * FROM Homepage;"},
                         success: function(json, status) {
                             //When the ajax query is succesfull, save the databse data as an array in 'data'.
                             data = $.parseJSON(json);
 
-                            
+                            $("#image img").attr("src", "../../"+data[0][0]);
+                            $("#url").attr("href", "../../"+data[0][0]);
+                            $("#url").html(data[0][0]);
 
+                            setEditImg();
+
+                            $("#showText").html(data[0][1]);
+
+                            setEditText();
                         }
                     });
+                });
+
+                function setEditImg() {
+                    $("#editImg").on("click", function() {
+                        if ($(this).html() == "Edit") {
+                            $(this).html("Save");
+                            var val = $("#url").html();
+                            $("#url").html("<input type='text' value='"+val+"'>");
+                        } else {
+                            $(this).html("Edit");
+                            var val = $("#url input").val();
+                            $("#url").html(val);
+
+                            if (val !== data[0][0]) {
+                                updateDB("UPDATE Homepage SET bgImage='"+val+"';");
+                            }
+                        }
+                    });
+                }
+
+                function setEditText() {
+                    $("#editText").on("click", function() {
+                        if ($(this).html() == "Edit") {
+                            $(this).html("Save");
+                            var val = $("#showText").html();
+                            $("#showText").html("<input type='text' value='"+val+"'>");
+                        } else {
+                            $(this).html("Edit");
+                            var val = $("#showText input").val();
+                            $("#showText").html(val);
+
+                            if (val !== data[0][1]) {
+                                updateDB("UPDATE Homepage SET maintext='"+val+"';");
+                            }
+                        }
+                    });
+                }
+
+                function updateDB(sql) {
+                    $.ajax({
+                        url: "../../scripts/executeQuery.php",
+                        type: "POST",
+                        data: {"sql": sql},
+                        success: function(json, status) {
+                            alert("Saved!");
+                        }
+                    });
+                }
+
+                function log(str) {
+                    console.log(str);
+                }
 
 
             </script>
