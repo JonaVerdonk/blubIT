@@ -14,7 +14,9 @@
 
 #text {
     padding-top: 25px;
+    padding-bottom: 25px;
     border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 #showText {
@@ -24,7 +26,32 @@
     font-weight: bold;
 }
 
-input[type="text"] {
+#items {
+    padding-top: 25px;
+    margin-left: 10%;
+}
+
+.content-body-item h2 input {
+    padding: 4px;
+    font-size: 20px;
+    width: 90%;
+    outline: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.content-body-item p textarea {
+    padding: 7px;
+    font-size: 15px;
+    width: 94%;
+    height: 15em;
+    resize: none;
+    font-family: arial;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.inpTextBig {
     padding: 4px;
     font-size: 17px;
     width: 450px;
@@ -37,4 +64,32 @@ input[type="text"] {
 }
 .btnEdit:hover {
     border-left-width: 4px;
+}
+
+/*Styling for individual items, copied from index.css*/
+.content-body-item {
+    display: inline-block;
+    box-sizing: border-box;
+    margin-right: 10px;
+    margin-left: 20px;
+    /*background-color: #c1c1c1;*/
+    background-color: #79aad8;
+    min-height: 500px;
+    margin-top: 10px;
+    width: 25%;
+    text-align: center;
+}
+
+.content-body-item img {
+    width: 100%;
+    height: auto;
+}
+
+.content-body-item p {
+    padding: 10px;
+}
+
+.content-body-item button {
+    width: 100%;
+    text-align: left;
 }

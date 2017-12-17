@@ -34,7 +34,7 @@
                 <div id="image">
                     Afbeelding op de homepagina:<br><br>
                     <img src="" alt="Homepage image"><br><br>
-                    URL: <a href="" id="url"></a><br><br>
+                    URL: <span id="url"></span><br><br>
                     <button class="btnStandard btnEdit" id="editImg">Edit</button>
                 </div>
 
@@ -45,67 +45,65 @@
                 </div>
             </div>
 
+            <div id="items">
+
+            </div>
+
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
-                    var data;
-
-                    //Ajax request to get the data from the database.
-                    //The executeQuery.php returns a JSON string
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
                         type: "POST",
-                        data: {"sql": "SELECT * FROM Homepage;"},
+                        data: {"sql": "SELECT * FROM HomepageItem ORDER BY 'order';"},
                         success: function(json, status) {
                             //When the ajax query is succesfull, save the databse data as an array in 'data'.
-                            data = $.parseJSON(json);
+                            var data = $.parseJSON(json);
 
-                            $("#image img").attr("src", "../../"+data[0][0]);
-                            $("#url").attr("href", "../../"+data[0][0]);
-                            $("#url").html(data[0][0]);
+                            for (i = 0; i < data.length; ++ i) {
+                                var html = "";
+                                html += "<div class='content-body-item' id='"+i+"'>";
+                                html += "<img id='"+i+"' src='../../"+data[i][1]+"' alt='itemImg'>";
+                                html += "<h2>"+data[i][2]+"</h2>";
+                                html += "<p>"+data[i][3]+"</p>";
+                                html += "<span><button class='btnStandard editItem' value='"+i+"'>Edit</button></span>";
+                                html += "</div>";
+                                $("#items").append(html);
+                            }
 
-                            setEditImg();
-
-                            $("#showText").html(data[0][1]);
-
-                            setEditText();
+                            setEditItem(data);
                         }
                     });
                 });
 
-                function setEditImg() {
-                    $("#editImg").on("click", function() {
-                        if ($(this).html() == "Edit") {
-                            $(this).html("Save");
-                            var val = $("#url").html();
-                            $("#url").html("<input type='text' value='"+val+"'>");
-                        } else {
-                            $(this).html("Edit");
-                            var val = $("#url input").val();
-                            $("#url").html(val);
+                function setEditItem(data) {
+                    var btnEditItem = $(".editItem");
 
-                            if (val !== data[0][0]) {
-                                updateDB("UPDATE Homepage SET bgImage='"+val+"';");
-                            }
+                    btnEditItem.on("click", function() {
+                        var item = $(this).val();
+                        var num = item;
+                        item = "#"+item;
+                        var btn = $(item+" span button");
+
+                        if (btn.html() == "Edit") {
+                            btn.html("Save");
+                            $(item + " h2").html("<input type='text' value='"+$(item+" h2").html()+"'>");
+                            $(item + " p").html("<textarea>"+$(item+" p").html()+"</textarea>");
+                        } else {
+                            btn.html("Edit");
+                            data[num][2] = $(item + " h2 input").val();
+                            data[num][3] = $(item + " p textarea").html();
+
+                            $(item + " h2").html(data[num][2]);
+                            $(item + " p").html(data[num][3]);
+                            log("update starting");
+                            updateDB("UPDATE HomepageItem SET title='"+data[num][2]+"', text='"+data[num][3]+";");
+                            log("Update done");
                         }
                     });
-                }
 
-                function setEditText() {
-                    $("#editText").on("click", function() {
-                        if ($(this).html() == "Edit") {
-                            $(this).html("Save");
-                            var val = $("#showText").html();
-                            $("#showText").html("<input type='text' value='"+val+"'>");
-                        } else {
-                            $(this).html("Edit");
-                            var val = $("#showText input").val();
-                            $("#showText").html(val);
-
-                            if (val !== data[0][1]) {
-                                updateDB("UPDATE Homepage SET maintext='"+val+"';");
-                            }
-                        }
+                    $(".content-body-item img").on("dblclick", function() {
+                        alert("Change image for item "+$(this).attr("id"));
                     });
                 }
 
@@ -123,9 +121,8 @@
                 function log(str) {
                     console.log(str);
                 }
-
-
             </script>
+            <script src="../../js/cmsHomepageHeader"></script>
 
         </div>
 
