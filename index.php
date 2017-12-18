@@ -22,7 +22,7 @@
                 <?php
                     include_once("scripts/databaseConnection.php");
 
-                    $data = executeSql("SELECT * FROM Homepage");
+                    $data = executeSQL("SELECT * FROM Homepage");
                     //Printing the entire styling was the only way to get this to style corectly.
                     //Leaving all styling but the bg url in the stylesheet applies only some(none?) of the styling
                     print("<style>#Content-header-img {
@@ -34,7 +34,7 @@
                         height: 90vh;
                         position: absolute;
                         border-bottom: 3px double rgb(38, 72, 123);
-                    }</style>")
+                    }</style>");
                 ?>
 
                 <div id="Content-header-img"></div>
@@ -47,7 +47,7 @@
             <div id="content-body">
                 <div id="content-body-item-container">
                     <?php
-                        $data = executeSql("SELECT * FROM HomepageItem");
+                        $data = executeSQL("SELECT * FROM HomepageItem ORDER BY 'order';");
 
                         for ($i = 0; $i < count($data); ++ $i) {
                             print("<div class='content-body-item'>");
