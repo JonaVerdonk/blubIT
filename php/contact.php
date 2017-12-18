@@ -65,7 +65,7 @@
                     <input class="text" type="text" name="subject" placeholder="*Onderwerp" required><br>
                     <?php include_once("../scripts/Save.php"); ?>
                     <textarea id="comment" name="commentaar" type="text" placeholder="Typ hier je bericht"></textarea><br>
-                    <br>Captcha:<div class="g-recaptcha" data-sitekey="6LeSEDwUAAAAAIo_9WJde77o8BReLbuLaap-tCLE"></div>
+                    <br>Captcha:<div class="g-recaptcha text" data-sitekey="6LeSEDwUAAAAAIo_9WJde77o8BReLbuLaap-tCLE"></div>
                     <input id="submit" type="submit" name="Verstuur" value="Verstuur">
                 </form>
 
