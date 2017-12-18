@@ -45,13 +45,18 @@
                 </div>
             </div>
 
-            <div id="items">
-
+            <div id="itemsWrapper">
+                <div id='items'></div>
+                <div id='btnNew'><button class='btnStandard'>New item</button></div>
             </div>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
+                    printItems();
+                });
+
+                function printItems() {
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
                         type: "POST",
@@ -66,19 +71,23 @@
                                 html += "<img id='"+i+"' src='../../"+data[i][1]+"' alt='itemImg'>";
                                 html += "<h2>"+data[i][2]+"</h2>";
                                 html += "<p>"+data[i][3]+"</p>";
-                                html += "<span><button class='btnStandard editItem' value='"+i+"'>Edit</button></span>";
+                                html += "<span><button class='btnStandard editItem' value='"+i+"' id='"+data[i][0]+"'>Edit</button></span>";
+                                html += "<span><button class='btnStandard deleteItem' value='"+i+"' id='"+data[i][0]+"'>Delete</button></span>";
                                 html += "</div>";
                                 $("#items").append(html);
                             }
 
                             setEditItem(data);
+                            setDeleteItem(data);
+                            setNewItem(data);
                         }
                     });
-                });
+                }
 
                 function setEditItem(data) {
                     var btnEditItem = $(".editItem");
 
+                    btnEditItem.unbind("click");
                     btnEditItem.on("click", function() {
                         var item = $(this).val();
                         var num = item;
@@ -92,28 +101,80 @@
                         } else {
                             btn.html("Edit");
                             data[num][2] = $(item + " h2 input").val();
-                            data[num][3] = $(item + " p textarea").html();
+                            data[num][3] = $(item + " p textarea").val();
 
                             $(item + " h2").html(data[num][2]);
                             $(item + " p").html(data[num][3]);
-                            log("update starting");
-                            updateDB("UPDATE HomepageItem SET title='"+data[num][2]+"', text='"+data[num][3]+";");
-                            log("Update done");
+
+                            var id = $(this).attr("id");
+
+                            var sql = "UPDATE HomepageItem SET title='"+data[num][2]+"', text='"+data[num][3]+"' WHERE HomepageItem.order="+id+";";
+
+                            escapeHtml(sql);
+
+                            updateDB(sql);
                         }
                     });
 
+                    $(".content-body-item img").unbind("dbclick");
                     $(".content-body-item img").on("dblclick", function() {
                         alert("Change image for item "+$(this).attr("id"));
                     });
                 }
 
-                function updateDB(sql) {
+                function setNewItem(data) {
+                    $("#btnNew button").unbind("click");
+                    $("#btnNew button").on("click", function() {
+                        $("#items").empty();
+                        var newOrder = parseInt(data[data.length-1][0]) + 1;
+                        var sql = "INSERT INTO HomepageItem VALUES("+newOrder+", 'Image', 'New item', 'New text');";
+                        updateDB(sql, true);
+                    });
+                }
+
+                function setDeleteItem(data) {
+                    var btnDeleteItem = $(".deleteItem");
+
+                    btnDeleteItem.unbind("click");
+                    btnDeleteItem.on("click", function() {
+                        var item = $(this).val();
+                        var id = $(this).attr("id");
+
+                        if (confirm("Weet je zeker dat je dit item wil verwijderen?")) {
+                            var sql = "DELETE FROM HomepageItem WHERE HomepageItem.order="+id+";";
+                            updateDB(sql, true);
+                        }
+                    });
+                }
+
+                var entityMap = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;',
+                    '/': '&#x2F;',
+                    '`': '&#x60;',
+                    '=': '&#x3D;'
+                };
+
+                function escapeHtml (string) {
+                    return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+                        return entityMap[s];
+                    });
+                }
+
+                function updateDB(sql, print=false) {
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
                         type: "POST",
                         data: {"sql": sql},
                         success: function(json, status) {
-                            alert("Saved!");
+                            alert("Succes");
+                            if (print) {
+                                printItems();
+                                alert("Items printed");
+                            }
                         }
                     });
                 }

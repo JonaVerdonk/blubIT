@@ -26,9 +26,15 @@
     font-weight: bold;
 }
 
-#items {
+#itemsWrapper {
     padding-top: 25px;
     margin-left: 10%;
+}
+
+#btnNew {
+    width: 25%;
+    margin: 0;
+    float: right;
 }
 
 .content-body-item h2 input {
