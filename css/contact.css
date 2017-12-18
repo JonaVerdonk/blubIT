@@ -35,18 +35,6 @@
     outline: 0;
 }
 
-#submit {
-    min-width: 23%;
-    max-width: 23%;
-    /*height: 25px;*/
-    height: auto;
-    float: left;
-    margin: 20px 22%;
-    border-radius: 6px;
-
-    /*border: none;*/
-}
-
 /*input[type="submit"] {
     margin-left: 15%
 }*/

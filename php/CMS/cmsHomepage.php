@@ -52,6 +52,20 @@
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
+            function updateDB(sql, print=false) {
+                $.ajax({
+                    url: "../../scripts/executeQuery.php",
+                    type: "POST",
+                    data: {"sql": sql},
+                    success: function(json, status) {
+                        if (print) {
+                            printItems();
+                        }
+                    }
+                });
+            }
+            </script>
+            <script>
                 $(document).ready(function() {
                     printItems();
                 });
@@ -60,10 +74,12 @@
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
                         type: "POST",
-                        data: {"sql": "SELECT * FROM HomepageItem ORDER BY 'order';"},
+                        data: {"sql": "SELECT * FROM HomepageItem ORDER BY HomepageItem.order;"},
                         success: function(json, status) {
                             //When the ajax query is succesfull, save the databse data as an array in 'data'.
                             var data = $.parseJSON(json);
+
+                            $("#items").empty();
 
                             for (i = 0; i < data.length; ++ i) {
                                 var html = "";
@@ -92,7 +108,7 @@
                         var item = $(this).val();
                         var num = item;
                         item = "#"+item;
-                        var btn = $(item+" span button");
+                        var btn = $(item+" span .editItem");
 
                         if (btn.html() == "Edit") {
                             btn.html("Save");
@@ -125,7 +141,6 @@
                 function setNewItem(data) {
                     $("#btnNew button").unbind("click");
                     $("#btnNew button").on("click", function() {
-                        $("#items").empty();
                         var newOrder = parseInt(data[data.length-1][0]) + 1;
                         var sql = "INSERT INTO HomepageItem VALUES("+newOrder+", 'Image', 'New item', 'New text');";
                         updateDB(sql, true);
@@ -161,21 +176,6 @@
                 function escapeHtml (string) {
                     return String(string).replace(/[&<>"'`=\/]/g, function (s) {
                         return entityMap[s];
-                    });
-                }
-
-                function updateDB(sql, print=false) {
-                    $.ajax({
-                        url: "../../scripts/executeQuery.php",
-                        type: "POST",
-                        data: {"sql": sql},
-                        success: function(json, status) {
-                            alert("Succes");
-                            if (print) {
-                                printItems();
-                                alert("Items printed");
-                            }
-                        }
                     });
                 }
 
