@@ -39,7 +39,7 @@
 
   gtag('config', 'UA-109575524-1');
 </script>
-
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <meta name="viewport" content="width=device-width", initial-scale="1.0">
         <link rel="stylesheet" type="text/css" href="../css/contact.css">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -48,7 +48,7 @@
     <body>
         <?php include("../scripts/header.php"); ?>
 
-        <div id="content">
+        <div id="pageContent">
 
              <?php if (isset($message)){
                  print ("<div id='verzonden'>");
@@ -56,7 +56,7 @@
                 print ("</div>");}?><br>
 
             <div id="form">
-                <form action="" method="post">
+                <form action="" method="post" secret="6Led1zsUAAAAAJ-pZ1hIcAzudqKLOV-c5DkriEk9">
                     <h1>Contactformulier</h1>
                     <input class="text" type="text" name="bedrijfsnaam" placeholder="Bedrijfsnaam"><br>
                     <input class="text" type="text" name="firstname" placeholder="*Voornaam" required><br>
@@ -65,7 +65,10 @@
                     <input class="text" type="text" name="subject" placeholder="*Onderwerp" required><br>
                     <?php include_once("../scripts/Save.php"); ?>
                     <textarea id="comment" name="commentaar" type="text" placeholder="Typ hier je bericht"></textarea><br>
-                    <input id="submit" type="submit" name="Verstuur" value="Verstuur">
+                    <span>
+                        <div class="g-recaptcha text" data-sitekey="6LeSEDwUAAAAAIo_9WJde77o8BReLbuLaap-tCLE"></div>
+                        <input id="submit" type="submit" name="Verstuur" value="Verstuur" class="btnStandard">
+                    </span>
                 </form>
 
 

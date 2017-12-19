@@ -64,26 +64,23 @@
     outline: none;
 }
 
-.btnEdit {
-    padding: 10px;
-    font-size: 17px;
-}
-.btnEdit:hover {
-    border-left-width: 4px;
+.editItem, .deleteItem {
+    height: auto;
+    width: auto;
 }
 
 /*Styling for individual items, copied from index.css*/
 .content-body-item {
     display: inline-block;
     box-sizing: border-box;
-    margin-right: 10px;
-    margin-left: 20px;
+    margin: 10px;
     /*background-color: #c1c1c1;*/
     background-color: #79aad8;
-    min-height: 500px;
+    min-height: 700px;
+    overflow: hidden;
     margin-top: 10px;
     width: 25%;
-    text-align: center;
+    min-width: 360px;
 }
 
 .content-body-item img {

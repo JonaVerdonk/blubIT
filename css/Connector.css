@@ -16,7 +16,7 @@ h1 {
 
 h2{
     text-transform:capitalize;
-    font-family:initial;
+    font-family:arial;
     color: #1c1c1c;
     font-weight:500;
     font-variant: small-caps;
@@ -39,7 +39,7 @@ h2{
     display: none;
 }
 
-/* Clear floats after rows */ 
+/* Clear floats after rows */
 .row:after {
     content: "";
     display: table;
@@ -114,7 +114,7 @@ header{
     margin-bottom: -180px;
     border-radius: 0px;
     border: 0px ridge;
-    
+
 }
 
 #radio-color{

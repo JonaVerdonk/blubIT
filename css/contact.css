@@ -7,6 +7,9 @@
     padding-right: 10%;
     height: auto;
 }
+#form form {
+    text-align: left;
+}
 
 #verzonden{
     background-color: lightgreen;
@@ -15,6 +18,10 @@
     border-radius: 10px;
     text-align: center;
     padding: 5px;
+}
+
+#submit {
+    margin-left: 15%;
 }
 
 #content {
