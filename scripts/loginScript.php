@@ -42,7 +42,7 @@
             $Realpass = $SQL[0]["userPass"]; //Queryresult[rownumber]["collumnname"]
              //Validate the password
             $ValidPass = password_verify($password, $Realpass);
-
+            print ("blocked: " . $SQL[0]["blocked"] . " einde blocked");
             if($ValidPass && count($SQL) && $SQL[0]["blocked"] == 0){
               executeSQL("UPDATE User SET lastLogin=NOW() WHERE userEmail='$email'");
               $_SESSION['user'] = $SQL[0]['userId'];
@@ -52,31 +52,39 @@
               $login = ("Je bent succesvol ingelogd.");
 
             }else{
-                $SQL = executeSQL("SELECT attempts,blocked FROM User WHERE userEmail='$email'");
-                if($SQL[0]["attempts"] == 3){
-                    executeSQL("UPDATE User SET attempts= 0, blocked= 1, lastLogin=NOW() WHERE userEmail='$email'"); 
+                $attempts = executeSQL("SELECT attempts,blocked FROM User WHERE userEmail='$email'", 1);
+                if($attempts[0]["attempts"] == 3){
+                    executeSQL("UPDATE User SET attempts= 0, blocked= 1, lastLogin=NOW() WHERE userEmail='$email'", 1);
                     $errorLogin = true;
                     $errorLoginMsg = "U heeft 3 keer uw inloggegevens incorrect ingevuld uw account is tijdelijk geblokkeerd probeert u het a.u.b. over 15 minuten opnieuw";
-                }elseif($SQL[0]['blocked'] == 1){
-                    $now = date("His");
-                    $lastLoginAttempt = executSQL("SELECT lastLogin FROM User WHERE userEmail='$email'");
+                }elseif($attempts[0]['blocked'] == 1){
+                    print "voortime ";
+                    $now = date("Y-m-d H:i:s");
+                    print "na variabele now ";
+                    $lastLoginAttempt = executeSQL("SELECT lastLogin FROM User WHERE userEmail='$email'", 1);
+                    print "na query ";
                     $time_difference = strtotime($now) - strtotime($lastLoginAttempt);
+                    print ("na timediffference " . $time_difference);
                     if($time_difference >= 900){
-                        executeSQL("UPDATE User SET blocked = 0, lastLogin=NOW() WHERE userEmail='$email'");
+                        print "in if voor sql ";
+                        executeSQL("UPDATE User SET blocked = 0, lastLogin=NOW() WHERE userEmail='$email'", 1);
+                        print "na SQL in if ";
                     }else{
+                        print "in else voor errormessages ";
                         $errorLogin = true;
                         $errorLoginMsg = "Uw account is tijdelijk geblokkeerd probeer het straks opnieuw";
+                        print "en erna. Blieb . Ik ben de robot.";
                     }
                 }else {
-                    $oldAttempts = executeSQL("SELECT attempts FROM User WHERE userEmail='$email'");
-                    $newAttempts = $oldAttempts + 1;
-                    executeSQL("UPDATE User SET attempts='$newAttempts', lastLogin=NOW() WHERE userEmail='$email'");
+                    $oldAttempts = executeSQL("SELECT attempts FROM User WHERE userEmail='$email'", 1);
+                    $newAttempts = ($oldAttempts[0]['attempts'] + 1);
+                    executeSQL("UPDATE User SET attempts='$newAttempts', lastLogin=NOW() WHERE userEmail='$email'", 1);
                     $errorLogin = true;
                     $errorLoginMsg = "Inloggegevens zijn incorrect. Probeert u het a.u.b. opnieuw. Indien u uw email en/of wachtwoord bent vergeten, kunt u via het contactformulier uw gegevens opvragen. ";
-                    
+
                 }
-                
-              
+
+
            }
         }
 
