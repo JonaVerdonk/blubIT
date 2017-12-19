@@ -7,6 +7,9 @@
     padding-right: 10%;
     height: auto;
 }
+#form form {
+    text-align: left;
+}
 
 #verzonden{
     background-color: lightgreen;
@@ -15,6 +18,10 @@
     border-radius: 10px;
     text-align: center;
     padding: 5px;
+}
+
+#submit {
+    margin-left: 15%;
 }
 
 #content {
@@ -33,18 +40,6 @@
     border-radius: 6px;
     /*border: none;*/
     outline: 0;
-}
-
-#submit {
-    min-width: 23%;
-    max-width: 23%;
-    /*height: 25px;*/
-    height: auto;
-    float: left;
-    margin: 20px 22%;
-    border-radius: 6px;
-
-    /*border: none;*/
 }
 
 /*input[type="submit"] {

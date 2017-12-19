@@ -59,13 +59,28 @@ function print(selectedMsg = 0, selectSelected = true) {
                 $("#message").toggle();
                 if ($("#replybox").html() == "") {
                     $("#replybox").html("<textarea>&#10;&#10;&#10;&#10;_______________&#10;"+$("#subject").html()+"&#10;&#10;"+$("#message").html()+"</textarea><br><button id='btnSend' class='btnStandard'>Verzenden</button>");
+
+                    $("#btnSend").unbind("click");
+                    $("#btnSend").on("click", function() {
+                        $.ajax({
+                            url: "../scripts/mail.php",
+                            type: "POST",
+                            data: {"to": data[msg][6], "subject": $("#subject").html(), "msg": $("#message").html()},
+                            success: function(json, status) {
+                                if (json) {
+                                    alert("Message sent");
+                                } else {
+                                    alert("Something went wrong");
+                                }
+                            }
+                        });
+                    });
                 } else {
                     $("#replybox").empty();
                 }
             });
         }
     });
-
 
 }
 
