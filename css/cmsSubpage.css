@@ -1,5 +1,5 @@
 select{
-    position: absolute;
+    position: relative;
     top: 75px;
     width: 100%;
     height: 100px;
@@ -8,15 +8,133 @@ select{
     color:white;
     text-shadow: 0.5px 0.5px 0.8px black;
     font-size: 30px;
-    background: linear-gradient(45deg, #0ff5fe, #36505170);
+    background:  #3a6ba58f;
     border: none;
+    margin-bottom: 75px;
 }
+
+option{
+    color:black;
+    text-align: center;
+}
+
 #Message{
-    background: blue;
-    width: 75%;
-    height: 50%;
-    position: fixed;
+    background: radial-gradient(#3a6ba5e0 20%,#3a6ba5);
+    height: 35%;
+    width: 50%;
+    position:absolute;
+    
+    top: 25%;
+    left: 25%;
+
+    font-family: 'Quicksand';
+    color: white;
+    text-shadow: 0.5px 0.5px 1px black;
+    border-radius: 10px;
+}
+
+#Message-header{
+    font-size: 50px;
+    text-align: center;
+    border-bottom: 1px solid white;
+    background-color: #7a92af;
+}
+
+#Message-body{
+    text-align: center;
+    margin: 50px 20px;
+    font-size: 25px;
+}
+
+#Message-buttons{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 75px;
     z-index: 10;
-    left: 12.5%;
-    top: 40%;
+    border-top: 1px solid white;
+}
+
+#Message-buttons-bevestig{
+    position:absolute;
+    right: 0;
+    width: 50%;
+    background-color: #13f798;
+    height: 100%;
+
+    z-index: 11;
+    
+}
+
+#Message-buttons-cancel{
+  position:absolute;
+    left: 0;
+    width: 50%;
+    background-color: #FF6854;
+    height: 100%;
+    
+    z-index: 11;
+}
+
+#Message-buttons-bevestig:hover{
+  background-color: #00fd07;
+   transition: background-color 0.3s;
+}
+#Message-buttons-cancel:hover{
+  background-color: #ff2d12;
+   transition: background-color 0.3s;
+}
+
+.PageContentList div{
+  border-bottom: 5px solid black;
+  font-family: 'Quicksand';
+  position: relative;
+  height: 270px;
+  overflow: hidden;
+}
+
+.PageContentList div h2{
+  margin: 0;
+  padding: 20px 20px 20px 0;
+  width: 280px;
+  text-align: right;
+
+  background: linear-gradient(90deg,#45b6ff,#3a6ba5);
+  color: white;
+  text-shadow: 0.5px 0.5px 1px black;
+}
+
+.PageContentList div img{
+  width: 300px;
+  height: 200px;
+}
+
+.PageContentList div p{
+  width: 260px;
+  height: 160px;
+  overflow: hidden;
+  padding: 20px;
+  z-index: 10;
+  text-align: justify;
+  margin: 0;
+
+  background-color: #80808082;
+
+  transition: width 0.3s;
+  text-shadow: 0.3px 0.3px 1px white;
+}
+
+.PageContentList div p:hover{
+  width: calc(100% - 40px);
+  transition: width 1s;
+}
+
+.PageContentList-img-url{
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  left: 330px;
 }
