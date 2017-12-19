@@ -1,0 +1,80 @@
+#connectors {
+    width: 100%;
+}
+
+.itemContainer {
+    width: 17%;
+    margin: 10px;
+    background-color: white;
+    float: left;
+    border-radius: 3px;
+    border: 1.1px ridge;
+    overflow: hidden;
+}
+
+.connector {
+    padding: 10px;
+    height: 500px;
+    text-align: center;
+}
+
+.connector img {
+    width: 100%;
+    height: 200px;
+}
+
+.connector div p {
+    width: 100%;
+    height: 225px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.conText, .conTitle {
+    text-align: left;
+}
+
+.conTitle input {
+    padding: 4px;
+    font-size: 20px;
+    width: 95%;
+    outline: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.conText textarea {
+    resize: none;
+    height: 225px;
+    width: 95%;
+    margin-top: 10px;
+    font-family: arial;
+}
+
+.edit, .delete, .selectType {
+    width: 100%;
+    text-align: left;
+}
+
+.img {
+    position: relative;
+}
+
+.editImg {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#btnNew {
+    position: absolute;
+    bottom: 120px;
+    left: 10px;
+}
+#btnNew button {
+    font-size: 25px;
+    padding: 15px;
+}
+#btnNew button:hover {
+    border-left-width: 8px;
+}

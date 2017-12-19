@@ -6,9 +6,10 @@
     max-width: 20%;
     margin: auto;
 }
-.test{
+#pageContent {
     padding: 20px;
 }
+
 h1 {
     font-size: 50px;
     word-break: break-all;
@@ -80,6 +81,7 @@ input.boxer[type='checkbox'] {
     transform: scale(0.8);
     margin-top: -16.4px;
     margin-right: -13.9px;
+    outline: 0;
 }
 .boxer[type='checkbox']:checked {
     background-color: #0000004f;
@@ -101,6 +103,12 @@ input.boxer[type='checkbox'] {
     font-size: 12px;
     border-radius: 20px;
     font-family: arial;
+    outline: 0;
+}
+
+.btnStandard {
+    float: right;
+    margin-right: 10px;
 }
 
 header{
@@ -120,7 +128,7 @@ header{
 #radio-color{
     color: #2d3032;
     text-transform:capitalize;
-    font-family:initial;
+    font-family:arial;
     display: inline;
 }
 
