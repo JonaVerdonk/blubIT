@@ -32,7 +32,9 @@ class ImgSelection {
                 //data[0] = info;
                 //data[1] = folders
                 //data[2] = imgs
-console.log(data);
+
+                console.log(data);
+
                 for (i = 2; i < data[2].length; ++ i) {
                     var html = "";
                     html = "<div class='imgListItem'>";
@@ -47,7 +49,13 @@ console.log(data);
                 });
 
                 imgs.on("dblclick", function() {
-                    $(data[0][1]).attr("src", $(this).html());
+                    var url = $(this).html();
+                    var id = $(data[0][1]).parent().parent().parent().attr("id");
+
+                    $(data[0][1]).attr("src", url);
+
+                    $("#imgChanged #url").html(url);
+                    $("#imgChanged #id").html(id);
                     $("#imgChanged").click();
                 });
             }

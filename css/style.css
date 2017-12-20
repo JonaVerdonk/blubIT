@@ -289,3 +289,7 @@ navbar/img is changed.
     height: auto;
     overflow: hidden;
 }
+
+.hidden {
+    display: none;
+}

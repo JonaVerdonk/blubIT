@@ -26,7 +26,7 @@
         </script>
 
         <div id="pageContent">
-            <div id='imgChanged' class='hidden'></div>
+            <div id='imgChanged' class='hidden'><div id='url'></div><div id='id'></div></div>
 
             <div id="connectors"></div>
             <div id="btnNew"><button class="btnStandard">New</button></div>
@@ -94,7 +94,10 @@
                     });
 
                     $("#imgChanged").on("click", function() {
-                        alert("Changed");
+                        var url = $(this).find("#url").html();
+                        var id = $(this).find("#id").html();
+                        var sql = "UPDATE Connector SET connector_image='.."+url+"' WHERE connector_ID="+id+";";
+                        updateDB(sql);
                     });
                 }
 
