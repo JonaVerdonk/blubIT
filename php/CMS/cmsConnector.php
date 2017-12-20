@@ -96,6 +96,7 @@
                     $("#imgChanged").on("click", function() {
                         var url = $(this).find("#url").html();
                         var id = $(this).find("#id").html();
+                        
                         var sql = "UPDATE Connector SET connector_image='.."+url+"' WHERE connector_ID="+id+";";
                         updateDB(sql);
                     });
