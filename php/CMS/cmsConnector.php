@@ -26,11 +26,13 @@
         </script>
 
         <div id="pageContent">
+            <div id='imgChanged' class='hidden'></div>
 
             <div id="connectors"></div>
             <div id="btnNew"><button class="btnStandard">New</button></div>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="/js/ImgSelection.js"></script>
             <script>
                 $(document).ready(function() {
                     printConnectors();
@@ -51,7 +53,7 @@
                                 var html = "";
                                 html += "<div class='itemContainer' id='"+data[i][0]+"'>";
                                 html += "<div class='connector'>";
-                                html += "<div class='img'><button class='editImg'>Edit</button><img src='/"+data[i][1]+"' alt='Connector img'></div>";
+                                html += "<div class='img'><button class='editImg'>Edit</button><img class='conImg' src='/"+data[i][1]+"' alt='Connector img'></div>";
                                 html += "<div class='conTitle'><h2>"+data[i][2]+"</h2></div>";
                                 html += "<div class='conText'><p>"+data[i][3]+"</p></div>";
                                 html += "</div>";
@@ -71,11 +73,28 @@
                                 $("#connectors").append(html);
                             }
 
+                            setEditImg();
                             setSelectType();
                             setBtnEdit();
                             setBtnDelete();
                             setBtnNew(data);
                         }
+                    });
+                }
+
+                function setEditImg() {
+                    var editImg = $(".editImg");
+
+                    editImg.unbind("click");
+                    editImg.on("click", function() {
+                        var id = $(this).parent().parent().parent().attr("id");
+                        imgEl = "#"+id+" .img img";
+                        var imgSelection = new ImgSelection("/images", imgEl);
+                        imgSelection.drawModal();
+                    });
+
+                    $("#imgChanged").on("click", function() {
+                        alert("Changed");
                     });
                 }
 
