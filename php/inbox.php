@@ -27,6 +27,11 @@
         </script>
 
         <div id="pageContent">
+
+            <div class="btnBack">
+                <a href="admin.php">Terug</a>
+            </div><br>
+
             <div id="inbox">
                 <div id="headInbox">
                     <H1 id="title"> Contact Inbox </H1>

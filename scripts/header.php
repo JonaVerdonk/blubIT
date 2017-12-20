@@ -31,6 +31,7 @@
     //Print username
     print("<div id='navbarUsername'>");
     if ($_SESSION["logged_in"] == 1) {
+        print("<img src='/images/icon_person.png'>&nbsp;&nbsp;");
         print($_SESSION["username"]);
     }
     print("</div>");

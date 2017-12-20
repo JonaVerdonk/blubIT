@@ -76,6 +76,10 @@ header {
     color: #F2F2F2;
     text-shadow: 1px 1px 1px black;
 }
+#navbarUsername img {
+    height: 18px;
+    width: auto;
+}
 
 /*
 Less than 858 is when the navbar

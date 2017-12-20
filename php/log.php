@@ -33,6 +33,10 @@
         ?>
         <div id="pageContent">
 
+            <div class="btnBack">
+                <a href="admin.php">Terug</a>
+            </div><br><br>
+
             <form action="" method="POST" id="logForm">
                 <input type="text" placeholder="Rows" name="rows"><br><br>
                 <input type="submit" class="btnStandard" name="submit">
