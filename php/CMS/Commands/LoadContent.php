@@ -1,6 +1,6 @@
 <?php
 //When called echo an array of items //Text and images//
-include_once("../../scripts/databaseConnection.php");
+include_once("../../../scripts/databaseConnection.php");
 
 //Clean the POST
 $SelectedUrl = filter_input(INPUT_POST, "url", FILTER_SANITIZE_SPECIAL_CHARS);
