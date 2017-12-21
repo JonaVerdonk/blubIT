@@ -65,7 +65,7 @@ class ImgSelection {
 
                 imgs.on("dblclick", function() {
                     var url = data[0][0]+"/"+$(this).html();
-                    var id = $(data[0][1]).parent().parent().parent().attr("id");
+                    var id = $(data[0][1]).attr("id");
 
                     $(data[0][1]).attr("src", url);
 
