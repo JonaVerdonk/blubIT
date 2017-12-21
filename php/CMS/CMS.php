@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>CMS</title>
         <link rel="stylesheet" type="text/css" href="../../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../../css/CMS.css">
     </head>
     <body>
 
@@ -30,11 +31,13 @@
                 <a href="../admin.php">Terug</a>
             </div>
 
-            <a href="cmsNavbar.php">Navbar</a><br>
-            <a href="cmsHomepage.php">Homepage</a><br>
-            <a href="cmsSubpage.php">Subpage system</a><br>
-            <a href="dbConnection.php">Database connection</a><br>
-            <a href="cmsConnector.php">Connectors</a>
+            <div id="container">
+                <div class="btnStandard"><a href="cmsNavbar.php">Navbar</a></div><br>
+                <div class="btnStandard"><a href="cmsHomepage.php">Homepage</a></div><br>
+                <div class="btnStandard"><a href="cmsSubpage.php">Subpage system</a></div><br>
+                <div class="btnStandard"><a href="dbConnection.php">Database connection</a></div><br>
+                <div class="btnStandard"><a href="cmsConnector.php">Connectors</a></div>
+            </div>
 
         </div>
 

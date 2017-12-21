@@ -57,7 +57,7 @@ include("../scripts/registerScript.php");
 
             <div id="register">
               <h1>Registreren</h1>
-            <form method="POST" action="" secret="6Led1zsUAAAAAJ-pZ1hIcAzudqKLOV-c5DkriEk9">
+            <form method="POST" action="" secret="6Led1zsUAAAAAJpZ1hIcAzudqKLOVc5DkriEk9">
               Volledige naam: <input type="text" name="name" placeholder="Naam" maxlength="45"><br>
               <span class="text-danger"></span><br>
               E-mailadres: <input type="email" name="email" placeholder="E-mailadres" value="" maxlength="40"><br>
@@ -65,7 +65,7 @@ include("../scripts/registerScript.php");
               Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Wachtwoord" maxlength="40"><br>
               <span class="text-danger"></span><br>
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
-              <br><div class="g-recaptcha" data-sitekey="6LeSEDwUAAAAAIo_9WJde77o8BReLbuLaap-tCLE"></div>
+              <br><div class="g-recaptcha" data-sitekey="6LeSEDwUAAAAAIo9WJde77o8BReLbuLaaptCLE"></div>
               <br><input type="submit" name="btn-signup" class="btnStandard">
             </form>
             </div>

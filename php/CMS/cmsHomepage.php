@@ -26,6 +26,8 @@
 
         <div id="pageContent">
 
+            <div id='imgChanged' class='hidden'><div id='url'></div><div id='id'></div></div>
+
             <div class="btnBack">
                 <a href="CMS.php">Terug</a>
             </div><br><br>
@@ -65,6 +67,7 @@
                 });
             }
             </script>
+            <script src="/js/ImgSelection"></script>
             <script>
                 $(document).ready(function() {
                     printItems();
@@ -96,6 +99,16 @@
                             setEditItem(data);
                             setDeleteItem(data);
                             setNewItem(data);
+
+                            //Set image updating
+                            $("#imgChanged").on("click", function() {
+                                var url = $(this).find("#url").html();
+                                var id = $(this).find("#id").html();
+
+                                var sql = "UPDATE HomepageItem SET img='"+url+"' WHERE order="+id+";";
+                                //updateDB(sql);
+                                alert(sql);
+                            });
                         }
                     });
                 }
@@ -132,9 +145,12 @@
                         }
                     });
 
-                    $(".content-body-item img").unbind("dbclick");
-                    $(".content-body-item img").on("dblclick", function() {
+                    $(".content-body-item img").unbind("click");
+                    $(".content-body-item img").on("click", function() {
                         alert("Change image for item "+$(this).attr("id"));
+                        var imgId = "#"+$(this).attr("id");
+                        var imgSelection = new ImgSelection("/images", imgId);
+                        imgSelection.drawModal();
                     });
                 }
 

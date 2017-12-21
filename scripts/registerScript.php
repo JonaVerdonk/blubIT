@@ -43,9 +43,18 @@ if (isset($_POST['btn-signup']) ) {
   if (empty($pass)){
     $error = TRUE;
     $errorMsg  = "Vul een wachtwoord in.";
-  } else if(strlen($pass) < 6) {
+  } else if(strlen($pass) < 8) {
     $error = TRUE;
-    $errorMsg  = "Het wachtwoord moet uit minimaal 6 tekens bestaan.";
+    $errorMsg  = "Het wachtwoord moet uit minimaal 8 tekens bestaan.";
+  } else if(!preg_match('/[0-9]/', $pass)){
+    $error = TRUE;
+    $erroMsg = "Het wachtwoord moet mininmaal 1 cijfer bevatten";
+  } else if(!preg_match('/[a-z]/', $pass)){
+    $error = TRUE;
+    $errorMsg = "Het wachtwoord moet minimaal 1 kleine letter bevatten";
+  } else if(!preg_match('/[A-Z]/', $pass)){
+    $error = TRUE;
+    $errorMsg = "Het wachtwoord moet minimaal 1 hoofdletter bevatten";
   } else if($pass !== $confirmpass){
     $error = TRUE;
     $errorMsg  = "De wachtwoorden komen niet overeen.";
@@ -63,7 +72,7 @@ if (isset($_POST['btn-signup']) ) {
 
   // if there's no error, continue to signup
   if( !$error ) {
-    executeSQL ("INSERT INTO User(userName,userEmail,userPass, role) VALUES('$name','$email','$password', 'r')");
+    executeSQL ("INSERT INTO User(userName,userEmail,userPass, role, attempts) VALUES('$name','$email','$password', 'r', '0')");
     $registered = ("Je bent succesvol geregistreerd. Log nu in om je account te gebruiken");
   }
 }
