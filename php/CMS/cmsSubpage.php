@@ -34,6 +34,7 @@
               success: function(json, status){
                 data = $.parseJSON(json);
                 window.Images = data;
+                console.log(data);
                 //folder== array
                 //Add stats of ajax call
                 var requestTime = new Date().getTime() - startTime; //Get new time and take begintime.
@@ -44,6 +45,7 @@
           function LoadFile(){
             //Get list of all editable items on the page
             //Input url => all editable items
+
             //Current logic
             //Send url to database, match every conent box that correspons with that url, This is gained by getting it from content
             //every content box
@@ -109,16 +111,7 @@
             });
           }).on("click",".PageContentList-button-browse", function(){
             //draw the modal
-            // String of all images window.Images
-            var ImagesIndex = Object.keys(window.Images);
 
-            for(value in window.Images){
-              console.log(window.Images[value]);
-            }
-            console.log(Images);
-            //for(var i = 0; len = window.Images.length; i < len; i++){
-            //  console.log(window.Images.keys(myArray).length);
-          //  }
             //
           });
 
