@@ -3,12 +3,12 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #F2F2F2;
-
+    height: 100%;
 }
 
 header {
     width: 100%;
-    background-color: #11589ade;
+    background-color: #2E6CA5;
     height: 75px;
     position: fixed;
     margin-bottom: 80px;
@@ -75,6 +75,10 @@ header {
     font-size: 18px;
     color: #F2F2F2;
     text-shadow: 1px 1px 1px black;
+}
+#navbarUsername img {
+    height: 18px;
+    width: auto;
 }
 
 /*
@@ -220,4 +224,102 @@ navbar/img is changed.
 }
 #redirect h2 a {
     color: black;
+}
+
+
+/*Image selection modal styling*/
+#modal {
+    position: fixed;
+    width: 84%;
+    left: 8%;
+    height: 70%;
+    top: 75px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#btnCloseModal {
+    font-size: 25px;
+    color: red;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: none;
+    border: none;
+    outline: 0;
+}
+#btnCloseModal:hover {
+    cursor: pointer;
+}
+
+#imgList {
+    width: 45%;
+    left: 5%;
+    top: 40px;
+    position: absolute;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#imgListDir {
+    font-size: 20px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    color: white;
+}
+
+#imgListFolders {
+    margin-left: 20px;
+    margin-top: 40px;
+}
+#imgListFolders:hover {
+    cursor: default;
+}
+
+#imgListImgs {
+    margin-left: 20px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.imgListItem, .imgListFolder {
+    color: white;
+    padding: 7px;
+    font-size: 16px;
+}
+.imgListItem:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: default;
+}
+
+
+
+#imgPreviewContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+#imgListContainer {
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 400px;
+}
+
+#imgPreview {
+    width: 40%;
+    right: 5%;
+    top: 75px;
+    position: absolute;
+    overflow: hidden;
+}
+#imgPreview img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
 }

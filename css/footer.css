@@ -23,8 +23,8 @@ footer{
   width: 100%;
   bottom: 0px;
   height: 40px;
-  background: linear-gradient(45deg, #11589ade, #62a5e37d);
-  background-color: #11589a6b;
+  background: linear-gradient(45deg, #2E6CA5, #62a5e3);
+  background-color: #2E6CA5;
 }
 
 .show, #footer-bottom:hover {
@@ -91,11 +91,11 @@ footer{
   height: 100%;
   float: left;
   margin: 0px 10px;
-  border: solid #11589a6b;
+  border: solid #2E6CA5;
   border-width: 3px 3px 0px 3px;
   border-radius: 10px 10px 0px 0px;
   box-sizing: border-box;
-  background: #11589a6b;
+  background: #2E6CA5;
 
 }
 
