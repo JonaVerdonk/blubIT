@@ -32,7 +32,7 @@ include_once("databaseConnection.php");
 
          <div class="btnBack">
              <a href="admin.php">Terug</a>
-         </div>
+         </div><br><br>
 
        <?php
         $users = executeSQL ("SELECT userId, userName, userEmail, role FROM User", 2);

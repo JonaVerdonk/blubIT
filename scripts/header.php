@@ -31,6 +31,7 @@
     //Print username
     print("<div id='navbarUsername'>");
     if ($_SESSION["logged_in"] == 1) {
+        print("<img src='/images/icon_person.png'>&nbsp;&nbsp;");
         print($_SESSION["username"]);
     }
     print("</div>");
@@ -51,13 +52,17 @@
             $id = "";
         }
 
-        //If the name of the link contains the word admin, check if
+        //If the name of the link contains the word admin or CMS, check if
         //it should be shown to the user (check if the user is an admin
         //Use strpos !== false because it returns either false or an int, not true or false
-        if (strpos($name, "Admin") !== false) {
+        if (strpos($name, "Admin") !== false || strpos($name, "admin") !== false) {
             //Check if user is logged in as admin
             //If so, print the link containing admin
             if ($_SESSION["role"] == "x") {
+                print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
+            }
+        } else if (strpos($name, "CMS") !== false || strpos($name, "cms") !== false) {
+            if ($_SESSION["role"] !== "r") {
                 print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
             }
         } else if (strpos($name, "log in") !== false || strpos($name, "Log in") !== false || strpos($name, "Login") !== false) {

@@ -28,9 +28,10 @@
 
         <div id="pageContent">
 
+            <br>
             <div class="btnBack">
                 <a href="admin.php">Terug</a>
-            </div>
+            </div><br><br><br>
 
             <div id="graphs">
                 <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQquF6rNht_LO1J2Bu3OPy4x8ddgNpl_fksyXws6PRj_BOxndkR8yYOVGPyETjw-WYRkyv-QHE2A2qF/pubchart?oid=1758210873&amp;format=interactive"></iframe>

@@ -35,21 +35,36 @@ class ImgSelection {
 
                 console.log(data);
 
-                for (i = 2; i < data[2].length; ++ i) {
-                    var html = "";
-                    html = "<div class='imgListItem'>";
-                    html += data[0][0]+"/"+data[2][i];
+                var html = "<div id='imgListDir'>"+data[0][0]+"</div>";
+                app(html);
+
+                //Print all folders
+                html = "<div id='imgListFolders'>";
+                for (i = 0; i < data[1].length; ++ i) {
+                    html += "<div class='imgListFolder'>";
+                    html += "/"+data[1][i];
                     html += "</div>";
-                    $("#imgListContainer").append(html);
                 }
+                html += "</div>";
+                app(html);
+
+                //Print all images
+                html = "<div id='imgListImgs'>";
+                for (i = 0; i < data[2].length; ++ i) {
+                    html += "<div class='imgListItem'>";
+                    html += data[2][i];
+                    html += "</div>";
+                }
+                html += "</div>";
+                app(html);
 
                 var imgs = $(".imgListItem");
                 imgs.hover(function() {
-                    $("#imgPreview img").attr("src", $(this).html());
+                    $("#imgPreview img").attr("src", data[0][0]+"/"+$(this).html());
                 });
 
                 imgs.on("dblclick", function() {
-                    var url = $(this).html();
+                    var url = data[0][0]+"/"+$(this).html();
                     var id = $(data[0][1]).parent().parent().parent().attr("id");
 
                     $(data[0][1]).attr("src", url);
@@ -58,6 +73,10 @@ class ImgSelection {
                     $("#imgChanged #id").html(id);
                     $("#imgChanged").click();
                 });
+
+                function app(html) {
+                    $("#imgListContainer").append(html);
+                }
             }
         });
     }

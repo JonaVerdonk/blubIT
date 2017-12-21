@@ -76,6 +76,10 @@ header {
     color: #F2F2F2;
     text-shadow: 1px 1px 1px black;
 }
+#navbarUsername img {
+    height: 18px;
+    width: auto;
+}
 
 /*
 Less than 858 is when the navbar
@@ -245,25 +249,51 @@ navbar/img is changed.
 #btnCloseModal:hover {
     cursor: pointer;
 }
+
 #imgList {
     width: 45%;
     left: 5%;
     top: 40px;
     position: absolute;
     overflow: hidden;
-}
-.imgListItem {
-    width: 100%;
-    padding: 20px;
-    border-bottom: 1px solid black;
-    font-size: 16px;
     background-color: rgba(0, 0, 0, 0.7);
+}
+
+#imgListDir {
+    font-size: 20px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
     color: white;
+}
+
+#imgListFolders {
+    margin-left: 20px;
+    margin-top: 40px;
+}
+#imgListFolders:hover {
+    cursor: default;
+}
+
+#imgListImgs {
+    margin-left: 20px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.imgListItem, .imgListFolder {
+    color: white;
+    padding: 7px;
+    font-size: 16px;
 }
 .imgListItem:hover {
     background-color: rgba(0, 0, 0, 0.9);
     cursor: default;
 }
+
+
 
 #imgPreviewContainer {
     position: relative;
