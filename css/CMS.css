@@ -1,0 +1,13 @@
+#container {
+    padding: 40px;
+    padding-left: 10%;
+}
+
+#container div {
+    width: 200px;
+}
+
+#container div a {
+    text-decoration: none;
+    color: black;
+}

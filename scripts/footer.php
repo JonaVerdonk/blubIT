@@ -12,11 +12,11 @@ require("GlobalFunctions.php");
 ////////////////////////////////////////////////////
 echo"
 <div class='clear'></div>
-<footer>
-<div id='footer-reference'>";
-  printRefferences();
-echo "</div>
-  <div id='footer-bottom'>
+<footer>";
+// echo "<div id='footer-reference'>";
+//   printRefferences();
+// echo "</div>";
+  echo "<div id='footer-bottom'>
     <div id='footer-icon'>
       <div class='footer-icon-container'>
         <span>&#9749;</span>

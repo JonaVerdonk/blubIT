@@ -25,10 +25,25 @@
             gtag('config', 'UA-109575524-1');
         </script>
         <script>
+          $(document).ready(function(){
+            var startTime = new Date().getTime(); //Track time, it is used for calculating ajax delay
+            //get full list of all images
+            $.ajax({
+              url: "Commands/getImages.php",
+              type: "POST",
+              success: function(json, status){
+                data = $.parseJSON(json);
+                window.Images = data;
+                //folder== array
+                //Add stats of ajax call
+                var requestTime = new Date().getTime() - startTime; //Get new time and take begintime.
+                $("body").append("<p> The ajax request for images delay: " + requestTime + "ms</p>");
+              }
+            });
+          });
           function LoadFile(){
             //Get list of all editable items on the page
             //Input url => all editable items
-
             //Current logic
             //Send url to database, match every conent box that correspons with that url, This is gained by getting it from content
             //every content box
@@ -45,8 +60,69 @@
             var firstOption = $(".File option").first().val();
             $(".File").val(firstOption);
             $("#Message").remove();
+          }).on("click",".PageContentList-edit",function(){
+            var images = $(this).siblings("img");
+            if(images.length != 0){
+                //Image type
+
+              //add buttons
+              $(this).after("<div class='PageContentList-button'><div class='PageContentList-button-browse'>Browse</div><div class='PageContentList-button-discard'>Discard changes</div><div class='PageContentList-button-save'>Save changes</div></div>");
+
+            }else{
+              //Text type
+
+              //add buttons
+              $(this).after("<div class='PageContentList-button' id='PageContentList-button-top'><div class='PageContentList-button-discard' id='PageContentList-button-discard-top'>Discard changes</div><div class='PageContentList-button-save' id='PageContentList-button-save-top'>Save changes</div></div>");
+              //Change the p to a textarea
+              $(this).siblings(".PageContentList-text").replaceWith($("<textarea class='PageContentList-text'>" + $(this).siblings(".PageContentList-text").html() + '</textarea>'));
+            }
+            $(this).remove();
+          }).on("click","#PageContentList-button-discard-top", function(){
+            console.log($(this).parents("[id^=PageContentList-]"));
+            $(this).parents("[id^=PageContentList-]").children(".PageContentList-text").replaceWith($("<p class='PageContentList-text'>" + $(this).parents("[id^=PageContentList-]").children(".PageContentList-text").html() + '</p>'));
+
+            //Edit image/text
+            $(this).parents("[id^=PageContentList-]").append("<div class='PageContentList-edit'>Edit</div>");
+
+            //elliminate the target
+            $(this).parent().remove();
+          }).on("click", "#PageContentList-button-save-top, .PageContentList-button-save", function(){
+            console.log("button has been pressed");
+            //Gather info and send to server
+            var newString = $(this).parent("[id^=PageContentList-]").parent("[id^=PageContentList-]").children(".PageContentList-text").val();
+
+            var ContentID = $(this).parent("[id^=PageContentList-]").parent("[id^=PageContentList-]").attr("id").split("-")[1];
+            if($(this).attr("id") == "PageContentList-button-save-top"){
+              var Type = "text";
+            }else{
+              var Type = "img";
+            }
+
+            $.ajax({
+              url: "Commands/UpdateContent.php",
+              type: "POST",
+              data: {"newString": newString, "ContentID": ContentID, "type": Type},
+              success: function(json, status){
+                data = $.parseJSON(json);
+                console.log(data);
+              }
+            });
+          }).on("click",".PageContentList-button-browse", function(){
+            //draw the modal
+            // String of all images window.Images
+            var ImagesIndex = Object.keys(window.Images);
+
+            for(value in window.Images){
+              console.log(window.Images[value]);
+            }
+            console.log(Images);
+            //for(var i = 0; len = window.Images.length; i < len; i++){
+            //  console.log(window.Images.keys(myArray).length);
+          //  }
+            //
           });
 
+          //Loading and creation
           function newSubPage(){
             if($("#Message").length == 0){
               $("body").append("<div id='Message'><div id='Message-header'>Subpage creatie</div><div id='Message-body'>Er zal een subpage worden gemaakt, hierbij is bevestiging nodig</div><div id='Message-buttons'><div id='Message-buttons-bevestig'>Bevestig</div><div id='Message-buttons-cancel'>cancel</div></div></div>");
@@ -57,7 +133,7 @@
             var startTime = new Date().getTime(); //Track time, it is used for calculating ajax delay
 
             $.ajax({
-              url: "/php/CMS/LoadContent.php",
+              url: "Commands/LoadContent.php",
               type: "POST",
               data: {"url":selected},
               success: function(json, status){
@@ -79,8 +155,11 @@
                     $("#PageContentList-" + data[i][2]).append("<img src='" + data[i][0] + "'>");
                     $("#PageContentList-" + data[i][2]).append("<p class='PageContentList-img-url'>" + data[i][0] + "</p>");
                   }else{
-                    $("#PageContentList-" + data[i][2]).append("<p>" + data[i][0] + "</p>");
+                    $("#PageContentList-" + data[i][2]).append("<p class='PageContentList-text'>" + data[i][0] + "</p>");
                   }
+
+                  //Edit image/text
+                  $("#PageContentList-" + data[i][2]).append("<div class='PageContentList-edit'>Edit</div>");
 
                   //close contentbox
                   $(".PageContentList").append("</div>");

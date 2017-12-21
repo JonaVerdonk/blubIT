@@ -48,12 +48,13 @@
                             var data = $.parseJSON(json);
 
                             $("#connectors").empty();
+                            console.log(data);
 
                             for (i = 0; i < data.length; ++ i) {
                                 var html = "";
-                                html += "<div class='itemContainer' id='"+data[i][0]+"'>";
+                                html += "<div class='itemContainer'>";
                                 html += "<div class='connector'>";
-                                html += "<div class='img'><button class='editImg'>Edit</button><img class='conImg' src='/"+data[i][1]+"' alt='Connector img'></div>";
+                                html += "<div class='img'><button class='editImg'>Edit</button><img class='conImg' id='"+data[i][0]+"' src='/"+data[i][1]+"' alt='Connector img'></div>";
                                 html += "<div class='conTitle'><h2>"+data[i][2]+"</h2></div>";
                                 html += "<div class='conText'><p>"+data[i][3]+"</p></div>";
                                 html += "</div>";
@@ -87,8 +88,8 @@
 
                     editImg.unbind("click");
                     editImg.on("click", function() {
-                        var id = $(this).parent().parent().parent().attr("id");
-                        imgEl = "#"+id+" .img img";
+                        var id = $(this).parent().find("img").attr("id");
+                        imgEl = "#"+id;
                         var imgSelection = new ImgSelection("/images", imgEl);
                         imgSelection.drawModal();
                     });
@@ -96,8 +97,9 @@
                     $("#imgChanged").on("click", function() {
                         var url = $(this).find("#url").html();
                         var id = $(this).find("#id").html();
-                        
+                        alert(id);
                         var sql = "UPDATE Connector SET connector_image='.."+url+"' WHERE connector_ID="+id+";";
+
                         updateDB(sql);
                     });
                 }
@@ -122,7 +124,7 @@
                     btnEdit.unbind("click");
                     btnEdit.on("click", function() {
                         var item = $(this).parent().parent();
-                        var num = item.attr("id");
+                        var num = item.find(".img").find("img").attr("id");
 
                         if ($(this).html() == "Edit") {
                             $(this).html("Save");
@@ -137,7 +139,9 @@
                             item.find(".conTitle").html("<h2>"+title+"</h2>");
                             item.find(".conText").html("<p>"+text+"</p>");
 
-                            updateDB("UPDATE Connector SET connector_name='"+title+"', connector_text='"+text+"' WHERE connector_ID="+num+";");
+                            var sql = "UPDATE Connector SET connector_name='"+title+"', connector_text='"+text+"' WHERE connector_ID="+num+";";
+                            
+                            updateDB(sql);
                         }
                     });
                 }

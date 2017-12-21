@@ -112,12 +112,12 @@
     }
 
     #submit {
-        max-width: 23%;
+        /*max-width: 23%;*/
         /*height: 25px;*/
-        height: auto;
+        /*height: auto;
         float: left;
         margin: 20px 22%;
-        border-radius: 6px;
+        border-radius: 6px;*/
 
         /*border: none;*/
     }
@@ -192,13 +192,13 @@
     }
 
     #submit {
-        min-width: 23%;
-        max-width: 23%;
+        /*min-width: 23%;
+        max-width: 23%;*/
         /*height: 25px;*/
-        height: auto;
+        /*height: auto;
         float: left;
         margin: 20px 22%;
-        border-radius: 6px;
+        border-radius: 6px;*/
 
         /*border: none;*/
     }
