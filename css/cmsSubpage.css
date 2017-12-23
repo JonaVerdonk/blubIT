@@ -5,10 +5,8 @@ select{
     height: 100px;
     text-align: center;
     font-family: 'Quicksand';
-    color:white;
-    text-shadow: 0.5px 0.5px 0.8px black;
     font-size: 30px;
-    background:  #3a6ba58f;
+    background:  #f7f7f78f;
     border: none;
     margin-bottom: 75px;
 }
@@ -88,7 +86,7 @@ option{
    transition: background-color 0.3s;
 }
 
-.PageContentList div{
+.PageContentList > div{
   border-bottom: 5px solid black;
   font-family: 'Quicksand';
   position: relative;
@@ -96,24 +94,24 @@ option{
   overflow: hidden;
 }
 
-.PageContentList div h2{
+.PageContentList > div > h2{
   margin: 0;
   padding: 20px 20px 20px 0;
   width: 280px;
   text-align: right;
 
-  background: linear-gradient(90deg,#45b6ff,#3a6ba5);
+  background: #2e6ca5;
   color: white;
   text-shadow: 0.5px 0.5px 1px black;
 }
 
-.PageContentList div img{
+.PageContentList > div > img{
   width: 300px;
   height: 200px;
 }
 
-.PageContentList div p{
-  width: 260px;
+.PageContentList-text{
+  width: 260px; 
   height: 160px;
   overflow: hidden;
   padding: 20px;
@@ -121,14 +119,18 @@ option{
   text-align: justify;
   margin: 0;
 
-  background-color: #80808082;
+  background-color: #b8b8b8;
 
   transition: width 0.3s;
   text-shadow: 0.3px 0.3px 1px white;
+
+  position: relative;
+  z-index: 11;
 }
 
-.PageContentList div p:hover{
-  width: calc(100% - 40px);
+.PageContentList-text:hover,
+textarea{
+  width: calc(100% - 40px) !important; 
   transition: width 1s;
 }
 
@@ -136,5 +138,93 @@ option{
   font-size: 20px;
   position: absolute;
   top: 0;
-  left: 330px;
+  left: 300px;
+  padding: 22.5px 0px 22.5px 20px;
+  width: calc(100% - 320px);
+  margin: 0;
+  resize: none;
+  height: 24px;
+  
+}
+
+.PageContentList-edit{
+  background-color: #2e6ca5;
+  width: calc(100% - 400px);
+  height: 140px;
+  position: absolute;
+  left: 350px;
+  top: 90px;
+  z-index: 100;
+  border-radius: 3px;
+  color: white;
+  font-size: 100px;
+  text-align: center;
+  text-shadow: 0.5px 0.5px 1px black;
+  box-shadow: 3px 3px 0.5px #9db3cc;
+  z-index: 10;
+}
+
+.PageContentList-edit:hover{
+  background-color: #b8b8b8;
+  transition: background-color 0.3s;
+}
+
+.PageContentList-button{
+  width: calc(100% - 400px);
+  height: 60%;
+  position: absolute;
+  top: 90px;
+  left: 350px;
+  font-size: 37px;
+  line-height: 63px;
+  color: white;
+  text-shadow: 0.5px 0.5px 1px black;
+  text-align: center;
+}
+
+.PageContentList-button-save{
+  width: 50%;
+  height: 65px;
+  background-color: green;
+  position: absolute;
+  top: 97px;
+  right: 0px;
+}
+
+.PageContentList-button-discard{
+  width: 50%;
+  height: 65px;
+  background-color: red;
+  position: absolute;
+  top: 97px;
+  left: 0px;
+}
+
+.PageContentList-button-browse{
+  width: 100%;
+  height: 60%;
+  background-color: orange;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  line-height: 93px;
+}
+
+/* text content */
+#PageContentList-button-top{
+  width: calc(100% - 300px);
+  top: 0;
+  left: 300px;
+}
+
+#PageContentList-button-save-top{
+  top: 0px;
+  right: 0px;
+  height:100%;
+}
+
+#PageContentList-button-discard-top{
+  top: 0px;
+  left: 0px;
+  height:100%;
 }
