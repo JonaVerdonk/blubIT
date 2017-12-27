@@ -14,21 +14,10 @@ echo"
 <div class='clear'></div>
 <footer>
 <div id='footer-reference'>";
-  printRefferences();
+  //printRefferences();
 echo "</div>
   <div id='footer-bottom'>
-    <div id='footer-icon'>
-      <div class='footer-icon-container'>
-        <span>&#9749;</span>
-      </div>
-    <div class='footer-icon-container'>
-      <span>&#x2709</span>
 
-    </div>
-    <div class='footer-icon-container'>
-      <span>&#x2706</span>
-    </div>
-  </div>
   <div id='footer-contact'>";
 
     //Get Bedrijfnaam, telnummer,
@@ -39,4 +28,16 @@ echo "</div>
   </div>
 </footer>
 ";
+// <div id='footer-icon'>
+//   <div class='footer-icon-container'>
+//     <span>&#9749;</span>
+//   </div>
+// <div class='footer-icon-container'>
+//   <span>&#x2709</span>
+//
+// </div>
+// <div class='footer-icon-container'>
+//   <span>&#x2706</span>
+// </div>
+// </div>
 ?>

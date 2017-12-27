@@ -9,8 +9,8 @@
     <body>
 
         <?php include($_SERVER['DOCUMENT_ROOT']."scripts/header.php");
-        if ($_SESSION['role'] !== 'x') {
-            header("Location: /php/redirect.php");
+        if ($_SESSION['role'] == 'r') {
+            header("Location: redirect.php");
         }
         ?>
 
