@@ -33,7 +33,7 @@ class CMSMenu {
     ";
   }
   public function linkCSS(){
-    echo"<link rel='stylesheet' href='../css/CMSToolbar.css'>";
+    echo"<link rel='stylesheet' href='../../css/CMSToolbar.css'>";
   }
   public function printJquary(){
     echo "<script type='text/javascript'>var url = '\"" . $_SERVER['PHP_SELF'] . "\"';var userID = '" . $_SESSION['user'] . "';</script>";

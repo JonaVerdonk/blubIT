@@ -10,7 +10,7 @@
 
         <?php include($_SERVER['DOCUMENT_ROOT']."scripts/header.php");
         include_once("/scripts/databaseConnection.php");
-        if ($_SESSION['role'] !== 'x') {
+        if ($_SESSION['role'] == 'r') {
             header("Location: /php/redirect.php");
         }
         ?>
@@ -34,7 +34,6 @@
               success: function(json, status){
                 data = $.parseJSON(json);
                 window.Images = data;
-                console.log(data);
                 //folder== array
                 //Add stats of ajax call
                 var requestTime = new Date().getTime() - startTime; //Get new time and take begintime.
@@ -45,7 +44,6 @@
           function LoadFile(){
             //Get list of all editable items on the page
             //Input url => all editable items
-
             //Current logic
             //Send url to database, match every conent box that correspons with that url, This is gained by getting it from content
             //every content box
@@ -111,15 +109,40 @@
             });
           }).on("click",".PageContentList-button-browse", function(){
             //draw the modal
+            // String of all images window.Images
+            var ImagesIndex = Object.keys(window.Images);
 
+            for(value in window.Images){
+              if(Array.isArray(window.Images[value])){
+                console.log(value);
+              }else{
+                console.log(window.Images[value]);
+              }
+            }
+            console.log(Images);
+            //for(var i = 0; len = window.Images.length; i < len; i++){
+            //  console.log(window.Images.keys(myArray).length);
+          //  }
             //
           });
 
           //Loading and creation
           function newSubPage(){
             if($("#Message").length == 0){
-              $("body").append("<div id='Message'><div id='Message-header'>Subpage creatie</div><div id='Message-body'>Er zal een subpage worden gemaakt, hierbij is bevestiging nodig</div><div id='Message-buttons'><div id='Message-buttons-bevestig'>Bevestig</div><div id='Message-buttons-cancel'>cancel</div></div></div>");
+              $("body").append("<div id='Message'><div id='Message-header'>Subpage creatie</div><div id='Message-body'>Er zal een subpage worden gemaakt, hierbij is bevestiging nodig</div><div id='Message-buttons'><div id='Message-buttons-bevestig' onclick='CreateNewSubPage()'>Bevestig</div><div id='Message-buttons-cancel'>cancel</div></div></div>");
             }
+          }
+
+          function CreateNewSubPage(){
+            $.ajax({
+              url: "Commands/createSub.php",
+              type: "POST",
+              success: function(json, status){
+                data = $.parseJSON(json);
+                console.log(data);
+                console.log("request recieved");
+              }
+            });
           }
 
           function LoadContent(selected){
@@ -158,6 +181,9 @@
                   $(".PageContentList").append("</div>");
                 }
 
+                //create button to add contents
+                $(".PageContentList").append("<div id='PageContentList-newContent'>Create new contentbox</div>");
+
                 //Add stats of ajax call
                 var requestTime = new Date().getTime() - startTime; //Get new time and take begintime.
                 $(".PageContentList").append("<p> The ajax request delay: " + requestTime + "ms</p>");
@@ -167,6 +193,7 @@
         </script>
 
         <select class="File" name="" onchange="LoadFile()">
+        <option value="" disabled selected>Select the subpage</option>
         <!-- Make dropdown -->
         <?php
         //Get all known subpages

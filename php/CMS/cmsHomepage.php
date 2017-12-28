@@ -87,9 +87,10 @@
                             for (i = 0; i < data.length; ++ i) {
                                 var html = "";
                                 html += "<div class='content-body-item' id='"+i+"'>";
-                                html += "<img id='"+i+"' src='../../"+data[i][1]+"' alt='itemImg'>";
-                                html += "<h2>"+data[i][2]+"</h2>";
-                                html += "<p>"+data[i][3]+"</p>";
+                                html += "<img id='" + i + "' src='../../"+data[i][1]+"' alt='itemImg'>";
+                                html += "<h2>"+data[i][2] + "</h2>";
+                                html += "<p>"+data[i][3] + "</p>";
+                                html += "<div>" + (data[i][4] == null? "Geen lees meer pagina":data[i][4]) + "</div>";
                                 html += "<span><button class='btnStandard editItem' value='"+i+"' id='"+data[i][0]+"'>Edit</button></span>";
                                 html += "<span><button class='btnStandard deleteItem' value='"+i+"' id='"+data[i][0]+"'>Delete</button></span>";
                                 html += "</div>";
@@ -127,21 +128,42 @@
                             btn.html("Save");
                             $(item + " h2").html("<input type='text' value='"+$(item+" h2").html()+"'>");
                             $(item + " p").html("<textarea>"+$(item+" p").html()+"</textarea>");
+
+                            //start of suppage printing
+                            //Get currrent subpage
+                            var Csubpage = $(this).parents(".content-body-item").children("div").html();
+                            var html = "";
+                            html += "<select>";
+                            html += "<option" + (Csubpage == "Geen lees meer pagina"? " selected":"") + ">Geen lees meer pagina</option>";
+
+                            //All subpages
+                            var subpages = <?php echo json_encode(array_diff(scandir("../subpages"),array(".",".."))); ?>;
+                            for (var f = 2; f < Object.keys(subpages).length + 2; f++) {
+                              html += "<option" + (Csubpage == subpages[f]? " selected":"") + ">" + subpages[f] + "</option>";
+                            }
+                            html += "</select>";
+                            $(this).parents(".content-body-item").children("p").after(html);
+                            //End of subpage printing
                         } else {
                             btn.html("Edit");
                             data[num][2] = $(item + " h2 input").val();
                             data[num][3] = $(item + " p textarea").val();
+                            data[num][4] = $(item + " select").val();
 
+                            log(data[num][4]);
                             $(item + " h2").html(data[num][2]);
                             $(item + " p").html(data[num][3]);
+                            $(item + " div").html(data[num][4]);
 
                             var id = $(this).attr("id");
 
-                            var sql = "UPDATE HomepageItem SET title='"+data[num][2]+"', text='"+data[num][3]+"' WHERE HomepageItem.order="+id+";";
-
+                            var sql = "UPDATE HomepageItem SET title='"+data[num][2]+"', text='"+data[num][3]+"', subpage='" + data[num][4] + "' WHERE HomepageItem.order="+id+";";
+                            log(sql);
                             escapeHtml(sql);
-
                             updateDB(sql);
+
+                            //Remove subpages select
+                            $(this).parents(".content-body-item").children("select").remove();
                         }
                     });
 
