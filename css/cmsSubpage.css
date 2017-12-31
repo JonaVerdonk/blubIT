@@ -1,3 +1,7 @@
+body{
+  overflow: hidden;
+}
+
 select{
     position: relative;
     top: 75px;
@@ -21,7 +25,7 @@ option{
     height: 35%;
     width: 50%;
     position:absolute;
-    
+
     top: 25%;
     left: 25%;
 
@@ -64,7 +68,7 @@ option{
     height: 100%;
 
     z-index: 11;
-    
+
 }
 
 #Message-buttons-cancel{
@@ -73,7 +77,7 @@ option{
     width: 50%;
     background-color: #FF6854;
     height: 100%;
-    
+
     z-index: 11;
 }
 
@@ -87,144 +91,130 @@ option{
 }
 
 .PageContentList > div{
-  border-bottom: 5px solid black;
   font-family: 'Quicksand';
   position: relative;
-  height: 270px;
-  overflow: hidden;
 }
 
-.PageContentList > div > h2{
-  margin: 0;
-  padding: 20px 20px 20px 0;
-  width: 280px;
-  text-align: right;
-
-  background: #2e6ca5;
-  color: white;
-  text-shadow: 0.5px 0.5px 1px black;
+/* Buttons */
+#File-buttons,
+#File-buttons-Lower{
+  width: 560px;
+  margin: 30px auto;
+  height: auto;
 }
 
-.PageContentList > div > img{
-  width: 300px;
-  height: 200px;
-}
-
-.PageContentList-text{
-  width: 260px; 
-  height: 160px;
-  overflow: hidden;
-  padding: 20px;
-  z-index: 10;
-  text-align: justify;
-  margin: 0;
-
-  background-color: #b8b8b8;
-
-  transition: width 0.3s;
-  text-shadow: 0.3px 0.3px 1px white;
-
-  position: relative;
-  z-index: 11;
-}
-
-.PageContentList-text:hover,
-textarea{
-  width: calc(100% - 40px) !important; 
-  transition: width 1s;
-}
-
-.PageContentList-img-url{
-  font-size: 20px;
-  position: absolute;
-  top: 0;
-  left: 300px;
-  padding: 22.5px 0px 22.5px 20px;
-  width: calc(100% - 320px);
-  margin: 0;
-  resize: none;
-  height: 24px;
-  
-}
-
-.PageContentList-edit{
-  background-color: #2e6ca5;
-  width: calc(100% - 400px);
-  height: 140px;
-  position: absolute;
-  left: 350px;
-  top: 90px;
-  z-index: 100;
-  border-radius: 3px;
-  color: white;
-  font-size: 100px;
-  text-align: center;
-  text-shadow: 0.5px 0.5px 1px black;
-  box-shadow: 3px 3px 0.5px #9db3cc;
-  z-index: 10;
-}
-
-.PageContentList-edit:hover{
-  background-color: #b8b8b8;
-  transition: background-color 0.3s;
-}
-
-.PageContentList-button{
-  width: calc(100% - 400px);
-  height: 60%;
-  position: absolute;
-  top: 90px;
-  left: 350px;
-  font-size: 37px;
-  line-height: 63px;
-  color: white;
-  text-shadow: 0.5px 0.5px 1px black;
-  text-align: center;
-}
-
-.PageContentList-button-save{
-  width: 50%;
-  height: 65px;
-  background-color: green;
-  position: absolute;
-  top: 97px;
-  right: 0px;
-}
-
-.PageContentList-button-discard{
-  width: 50%;
-  height: 65px;
-  background-color: red;
-  position: absolute;
-  top: 97px;
-  left: 0px;
-}
-
-.PageContentList-button-browse{
+#File-buttons > div{
   width: 100%;
-  height: 60%;
-  background-color: orange;
+  height: 100px;
+  margin: 20px 0;
+  padding: 0;
+  position: relative;
+  border: 0.5px solid black;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #2f6ba5;
+}
+
+#File-buttons > div > div:first-child{
+  width: 145px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
   position: absolute;
-  top: 0px;
-  left: 0px;
-  line-height: 93px;
+  color: white;
+  text-shadow: 0.5px 0.5px 1px black;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: right;
 }
-
-/* text content */
-#PageContentList-button-top{
-  width: calc(100% - 300px);
-  top: 0;
-  left: 300px;
-}
-
-#PageContentList-button-save-top{
-  top: 0px;
+#File-buttons > div > div:last-child{
+  width: 70px;
+  margin: 0;
+  padding: 0;
+  height: 99%;
+  position: absolute;
   right: 0px;
-  height:100%;
+  line-height: 85px;
+  color: #306aa5;
+  text-shadow: 0.5px 0.5px 1px white;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  background-color: #c7c7c7;
+
 }
 
-#PageContentList-button-discard-top{
-  top: 0px;
-  left: 0px;
-  height:100%;
+#File-buttons > div > input{
+  width: calc(100% - 195px);
+  margin: 0;
+  padding: 0 20px;
+  position: absolute;
+  border: none;
+  right: 0;
+  height: 99%;
+  font-size: 30px;
+  font-family: 'Quicksand';
 }
+#File-buttons-docnamin{
+    width: calc(100% - 255px) !important;
+    padding: 0 20px !important;
+    padding-right: 80px !important;
+  }
+
+#File-buttons-Save,
+#File-buttons-Discard{
+  width: calc(50% - 50px);
+  height: 100%;
+  padding: 25px;
+  float: right;
+  text-align: center;
+  color: white;
+  text-shadow: 0.5px 0.5px 0.5px black;
+  font-size: 29px;
+  z-index: 10;
+
+}
+#File-buttons-Save{background-color: #13f798;}
+#File-buttons-Discard{background-color: #FF6854;}
+
+#File-buttons-Save:hover{background-color: #00fd07;transition: background 0.3s;}
+#File-buttons-Discard:hover{background-color: #ff2d12;transition: background 0.3s;}
+
+@media (max-width: 580px) {
+  #File-buttons{
+    width: 100%;
+  }
+  #File-buttons > div{
+    height: 80px;
+    border-radius: 0;
+    font-size: 30px;
+
+
+  }
+  #File-buttons > div > input{
+    width: calc(100% - 175px);
+    padding: 0 10px;
+    font-size: 20px;
+  }
+
+  #File-buttons-docnamin{
+    width: calc(100% - 225px) !important;
+    padding: 0 20px !important;
+    padding-right: 50px !important;
+  }
+  #File-buttons > div > div:last-child{
+    font-size: 20px;
+    width: 40px;
+  }
+
+  #File-buttons-Save,
+  #File-buttons-Discard{
+    width: 100vw;
+    float: none;
+    margin: 0;
+    padding: 30px 0;
+    margin-bottom: 10px;
+  }
+}
+
