@@ -45,7 +45,7 @@
                 <div class="adminItem">
                     <a href="users.php">
                         <img src="../images/adminUsers.png">
-                        <p>Users</p>
+                        <p>Gebruikers</p>
                     </a>
                 </div>
 
@@ -63,12 +63,12 @@
                     </a>
                 </div>
 
-                <div class="adminItem">
+                <!-- <div class="adminItem">
                     <a href="ImageUpload.php">
                         <img src="../images/adminImage.png">
-                        <p>Image upload</p>
+                        <p>Afbeeldingen uploaden</p>
                     </a>
-                </div>
+                </div> -->
                 <div class="adminItem">
                     <a href="https://www.google.com/teapot">
                         <img src="../images/teaAdmin.png">

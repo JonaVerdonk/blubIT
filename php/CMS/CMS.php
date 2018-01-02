@@ -32,11 +32,11 @@
             </div>
 
             <div id="container">
-                <div class="btnStandard"><a href="cmsNavbar.php">Navbar</a></div><br>
-                <div class="btnStandard"><a href="cmsHomepage.php">Homepage</a></div><br>
-                <div class="btnStandard"><a href="cmsSubpage.php">Subpage system</a></div><br>
-                <div class="btnStandard"><a href="dbConnection.php">Database connection</a></div><br>
-                <div class="btnStandard"><a href="cmsConnector.php">Connectors</a></div>
+                <div class="btnStandard"><a href="cmsNavbar.php">Navigatiebalk</a></div><br>
+                <div class="btnStandard"><a href="cmsHomepage.php">Homepagina</a></div><br>
+                <div class="btnStandard"><a href="cmsSubpage.php">Subpagina's</a></div><br>
+                <!--<div class="btnStandard"><a href="dbConnection.php">Database connection</a></div><br>-->
+                <div class="btnStandard"><a href="cmsConnector.php">Connectoren</a></div>
             </div>
 
         </div>
