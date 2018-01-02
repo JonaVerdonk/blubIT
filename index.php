@@ -54,6 +54,9 @@
                             print("<img src='".$data[$i][1]."' alt='itemImg'>");
                             print("<h2>".$data[$i][2]."</h2>");
                             print("<p>".$data[$i][3]."</p>");
+                            if($data[$i][4] != "Geen lees meer pagina"){
+                              print("<div><a href='php/subpages/" . $data[$i][4] . "'>Lees meer</a></div>");
+                            }
                             print("</div>");
                         }
                     ?>

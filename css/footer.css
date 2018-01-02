@@ -1,7 +1,7 @@
 body{
   position: relative;
   margin: 0px;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 200px);
   padding-bottom: 200px;
 }
 
@@ -23,7 +23,6 @@ footer{
   width: 100%;
   bottom: 0px;
   height: 40px;
-  background: linear-gradient(45deg, #2E6CA5, #62a5e3);
   background-color: #2E6CA5;
 }
 

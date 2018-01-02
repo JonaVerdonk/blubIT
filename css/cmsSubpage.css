@@ -1,3 +1,7 @@
+body{
+  overflow: hidden;
+}
+
 select{
     position: relative;
     top: 75px;
@@ -5,10 +9,8 @@ select{
     height: 100px;
     text-align: center;
     font-family: 'Quicksand';
-    color:white;
-    text-shadow: 0.5px 0.5px 0.8px black;
     font-size: 30px;
-    background:  #3a6ba58f;
+    background:  #f7f7f78f;
     border: none;
     margin-bottom: 75px;
 }
@@ -23,7 +25,7 @@ option{
     height: 35%;
     width: 50%;
     position:absolute;
-    
+
     top: 25%;
     left: 25%;
 
@@ -66,7 +68,7 @@ option{
     height: 100%;
 
     z-index: 11;
-    
+
 }
 
 #Message-buttons-cancel{
@@ -75,7 +77,7 @@ option{
     width: 50%;
     background-color: #FF6854;
     height: 100%;
-    
+
     z-index: 11;
 }
 
@@ -88,53 +90,131 @@ option{
    transition: background-color 0.3s;
 }
 
-.PageContentList div{
-  border-bottom: 5px solid black;
+.PageContentList > div{
   font-family: 'Quicksand';
   position: relative;
-  height: 270px;
-  overflow: hidden;
 }
 
-.PageContentList div h2{
-  margin: 0;
-  padding: 20px 20px 20px 0;
-  width: 280px;
-  text-align: right;
+/* Buttons */
+#File-buttons,
+#File-buttons-Lower{
+  width: 560px;
+  margin: 30px auto;
+  height: auto;
+}
 
-  background: linear-gradient(90deg,#45b6ff,#3a6ba5);
+#File-buttons > div{
+  width: 100%;
+  height: 100px;
+  margin: 20px 0;
+  padding: 0;
+  position: relative;
+  border: 0.5px solid black;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #2f6ba5;
+}
+
+#File-buttons > div > div:first-child{
+  width: 145px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position: absolute;
   color: white;
   text-shadow: 0.5px 0.5px 1px black;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: right;
 }
-
-.PageContentList div img{
-  width: 300px;
-  height: 200px;
-}
-
-.PageContentList div p{
-  width: 260px;
-  height: 160px;
-  overflow: hidden;
-  padding: 20px;
-  z-index: 10;
-  text-align: justify;
+#File-buttons > div > div:last-child{
+  width: 70px;
   margin: 0;
-
-  background-color: #80808082;
-
-  transition: width 0.3s;
-  text-shadow: 0.3px 0.3px 1px white;
-}
-
-.PageContentList div p:hover{
-  width: calc(100% - 40px);
-  transition: width 1s;
-}
-
-.PageContentList-img-url{
-  font-size: 20px;
+  padding: 0;
+  height: 99%;
   position: absolute;
-  top: 0;
-  left: 330px;
+  right: 0px;
+  line-height: 85px;
+  color: #306aa5;
+  text-shadow: 0.5px 0.5px 1px white;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  background-color: #c7c7c7;
+
 }
+
+#File-buttons > div > input{
+  width: calc(100% - 195px);
+  margin: 0;
+  padding: 0 20px;
+  position: absolute;
+  border: none;
+  right: 0;
+  height: 99%;
+  font-size: 30px;
+  font-family: 'Quicksand';
+}
+#File-buttons-docnamin{
+    width: calc(100% - 255px) !important;
+    padding: 0 20px !important;
+    padding-right: 80px !important;
+  }
+
+#File-buttons-Save,
+#File-buttons-Discard{
+  width: calc(50% - 50px);
+  height: 100%;
+  padding: 25px;
+  float: right;
+  text-align: center;
+  color: white;
+  text-shadow: 0.5px 0.5px 0.5px black;
+  font-size: 29px;
+  z-index: 10;
+
+}
+#File-buttons-Save{background-color: #13f798;}
+#File-buttons-Discard{background-color: #FF6854;}
+
+#File-buttons-Save:hover{background-color: #00fd07;transition: background 0.3s;}
+#File-buttons-Discard:hover{background-color: #ff2d12;transition: background 0.3s;}
+
+@media (max-width: 580px) {
+  #File-buttons{
+    width: 100%;
+  }
+  #File-buttons > div{
+    height: 80px;
+    border-radius: 0;
+    font-size: 30px;
+
+
+  }
+  #File-buttons > div > input{
+    width: calc(100% - 175px);
+    padding: 0 10px;
+    font-size: 20px;
+  }
+
+  #File-buttons-docnamin{
+    width: calc(100% - 225px) !important;
+    padding: 0 20px !important;
+    padding-right: 50px !important;
+  }
+  #File-buttons > div > div:last-child{
+    font-size: 20px;
+    width: 40px;
+  }
+
+  #File-buttons-Save,
+  #File-buttons-Discard{
+    width: 100vw;
+    float: none;
+    margin: 0;
+    padding: 30px 0;
+    margin-bottom: 10px;
+  }
+}
+

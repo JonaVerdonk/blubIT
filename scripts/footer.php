@@ -12,23 +12,12 @@ require("GlobalFunctions.php");
 ////////////////////////////////////////////////////
 echo"
 <div class='clear'></div>
-<footer>";
-// echo "<div id='footer-reference'>";
-//   printRefferences();
-// echo "</div>";
-  echo "<div id='footer-bottom'>
-    <div id='footer-icon'>
-      <div class='footer-icon-container'>
-        <span>&#9749;</span>
-      </div>
-    <div class='footer-icon-container'>
-      <span>&#x2709</span>
+<footer>
+<div id='footer-reference'>";
+  //printRefferences();
+echo "</div>
+  <div id='footer-bottom'>
 
-    </div>
-    <div class='footer-icon-container'>
-      <span>&#x2706</span>
-    </div>
-  </div>
   <div id='footer-contact'>";
 
     //Get Bedrijfnaam, telnummer,
@@ -39,4 +28,16 @@ echo"
   </div>
 </footer>
 ";
+// <div id='footer-icon'>
+//   <div class='footer-icon-container'>
+//     <span>&#9749;</span>
+//   </div>
+// <div class='footer-icon-container'>
+//   <span>&#x2709</span>
+//
+// </div>
+// <div class='footer-icon-container'>
+//   <span>&#x2706</span>
+// </div>
+// </div>
 ?>

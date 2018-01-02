@@ -73,11 +73,12 @@ function print(selectedMsg = 0, selectSelected = true) {
                             type: "POST",
                             data: {"to": data[msg][6], "subject": $("#subject").html(), "msg": $("#message").html()},
                             success: function(json, status) {
-                                if (json) {
-                                    alert("Message sent");
-                                } else {
-                                    alert("Something went wrong");
-                                }
+                                alert(json + " " + status);
+                                // if (json) {
+                                //     alert("Message sent");
+                                // } else {
+                                //     alert("Something went wrong");
+                                // }
                             }
                         });
                     });
