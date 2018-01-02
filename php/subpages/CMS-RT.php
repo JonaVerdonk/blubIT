@@ -6,7 +6,7 @@
       <?php
       include_once("../../scripts/databaseConnection.php");
       $filename = basename(__FILE__, '.php');
-      $Result = executeSQL("SELECT title FROM Subpages WHERE url = '$filename.php'",2);
+      $Result = executeSQL("SELECT title FROM Subpages WHERE url = $filename.php",2);
       echo $Result[0][0];
       ?>
     </title>

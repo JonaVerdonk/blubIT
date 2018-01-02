@@ -62,7 +62,6 @@ $(document).ready(function(){
 
       //Now editing
       $(this).css("background-color","#ff2d12B2");
-      $("#CMSToolbar-Body-button-add, #CMSToolbar-Body-button-remove, #CMSToolbar-Body-button-move").slideDown();
       $("#CMSToolbar-Body-button-addcont, #CMSToolbar-Body-button-remcont").slideUp();
       $("#CMSToolbar").append("<div id='CMSToolbar-Message'><div id='CMSToolbar-Message-header'>ATTENTIE</div><div id='CMSToolbar-Message-body'>selecteer de element die aangepast moet worden.</div></div>");
     }else{
@@ -114,21 +113,21 @@ $(document).ready(function(){
       location.reload();
     }else if(window.MSGtype == 3){
       var NewText = stripHTML($("textarea").val());
-      var contentid = $("textarea").attr('class');
+      var contentid = $("textarea").attr('class').split(" ")[1];
+      var fullClass = $("textarea").attr('class');
 
-      $("textarea").replaceWith("<textarea class='" + contentid + "' style='width: 100%;'>" + NewText + "</textarea>");
-      $("textarea").replaceWith("<p class = '"+ contentid +"'>" + $("textarea").val() + "</p>");
+      $("textarea").replaceWith("<p class = '"+ fullClass +"'>" + $("textarea").val() + "</p>");
 
-
-      SQL_Ajax("UPDATE Text SET content = '" + NewText + "' WHERE id = " + contentid + "");
-
+      SQL_Ajax("UPDATE Text SET content = '" + NewText + "' WHERE contentID = " + contentid + "");
 
       $("#CMSToolbar-Message-buttons").remove();
       window.MSGtype = null;
     }
   }).on("click", "#CMSToolbar-Message-buttons-cancel", function(){
     if(window.MSGtype == 3){
+      console.log(window.Text + $("textarea").val());
       $("textarea").val(window.Text);
+      console.log(window.Text + $("textarea").val());
       $("textarea").replaceWith("<p>" + $("textarea").val() + "</p>");
       $("#CMSToolbar-Message-buttons").remove();
       window.MSGtype = null;
@@ -137,31 +136,38 @@ $(document).ready(function(){
       $("#CMSToolbar-Message").remove();
     }
   }).on("click",".content-body",function(){
+    //Select The box
     if(window.editObj == null && window.editmode){
-      //Get id of contentnox
+       //Get id of contentnox
       window.editObj = this;
-      //remove message
+       //remove message
       $("#CMSToolbar-Message").remove();
-      //Add styling to show it is selected
+       //Add styling to show it is selected
       $(this).css({"border":"2px solid white", "background":"linear-gradient(45deg,white,lightgray"});
+
+       //Add edittools to menu
+      $("#CMSToolbar-Body-button-add, #CMSToolbar-Body-button-remove, #CMSToolbar-Body-button-move").slideDown();
+
+
+       //Edit text
+      var parentID = $(this).prop('className').split(" ")[1];
+      var editobjID = $(window.editObj).prop('className').split(" ")[1];
+
+      if(parentID == editobjID){
+      $(this).children("p").after("<div id='CMSToolbar-Message-buttons' style='color: white;text-shadow: 0.5px 1px #7622ffb8;text-align: center;font-size: 20px;font-family: 'Quicksand', sans-serif;line-height: 40px;'><div id='CMSToolbar-Message-buttons-confirm'>Confirm</div><div id='CMSToolbar-Message-buttons-cancel'>Cancel</div></div>");
+
+      $(this).children("p").replaceWith("<textarea class='" + this.className + "' style='width: 100%;'>" + $(this).children("p").text() + "</textarea>");
+
+      window.MSGtype = 3;
+      window.Text = $(this).text();
+      window.Text = window.Text.replace('ConfirmCancel', '');
+      }
     }
+
+    //create msg
     if(window.MSGtype == 2 && window.editObj == null){
       window.editObj = this;
       $("#CMSToolbar-Message-body").after("<div id='CMSToolbar-Message-buttons'><div id='CMSToolbar-Message-buttons-confirm'>Confirm</div><div id='CMSToolbar-Message-buttons-cancel'>Cancel</div></div>");
     }
-  }).on("click", "p", function(){
-
-
-    if(window.editmode){
-      var parentID = $(this).parent().prop('className').split(" ")[1];
-      var editobjID = $(window.editObj).prop('className').split(" ")[1];
-      if(parentID == editobjID){
-      $(this).after("<div id='CMSToolbar-Message-buttons' style='color: white;text-shadow: 0.5px 1px #7622ffb8;text-align: center;font-size: 20px;font-family: 'Quicksand', sans-serif;line-height: 40px;'><div id='CMSToolbar-Message-buttons-confirm'>Confirm</div><div id='CMSToolbar-Message-buttons-cancel'>Cancel</div></div>");
-
-      $(this).replaceWith("<textarea class='" + this.className + "' style='width: 100%;'>" + $(this).text() + "</textarea>");
-
-      window.MSGtype = 3;
-      window.Text = $(this).text();
-    }}
   });
 });

@@ -1,5 +1,7 @@
 body{
-  overflow: hidden;
+  overflow-x: hidden;
+  width: 100vw;
+  height: auto;
 }
 
 select{
@@ -182,6 +184,10 @@ option{
 #File-buttons-Discard:hover{background-color: #ff2d12;transition: background 0.3s;}
 
 @media (max-width: 580px) {
+  .PageContentList{
+    width: 100vw;
+    overflow-x: hidden;
+  }
   #File-buttons{
     width: 100%;
   }
@@ -189,8 +195,7 @@ option{
     height: 80px;
     border-radius: 0;
     font-size: 30px;
-
-
+    
   }
   #File-buttons > div > input{
     width: calc(100% - 175px);

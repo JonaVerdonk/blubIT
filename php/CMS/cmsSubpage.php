@@ -46,9 +46,9 @@
                   //Change options text
                   var oldText = $(".File option:selected").text();
                   if(oldText.indexOf("[nieuw]") !== -1){
-                    $(".File option:selected").text("[nieuw] " . inputField[1] . ".php");
+                    $(".File option:selected").text("[nieuw] " + inputField[1] + ".php");
                   }else{
-                    $(".File option:selected").text(inputField[1] . ".php");
+                    $(".File option:selected").text(inputField[1] + ".php");
                   }
                }
             });

@@ -5,6 +5,7 @@ include_once("../scripts/Saltypassword.php");
 include_once("../scripts/GlobalFunctions.php");
 $errorMsg = "";
 
+// Aanmaken functie deleteuser. Wanneer er geen error is en de user die verwijderd wordt r rechten heeft wordt deze verwijderd.
 function deleteuser(){
     $error = FALSE;
     $newuserid = $_POST['userid'];
@@ -24,7 +25,9 @@ function deleteuser(){
     }
 }
 
-//Wanneer de button Save is ingedrukt wordt de SQL query uitgevoerd die de user update.
+//Functie edituser aanmaken. Alle gegevens van de user worden altijd geüpdate, behalve het wachtwoord.
+//Deze wordt alleen geüpdate wanneer er een wachtwoord is ingevoerd
+//via POST worden alle gegevens opgehaald die in het formulier staan.
 function edituser(){
     $error = FALSE;
     $newusername = $_POST['userName'];
@@ -106,6 +109,7 @@ function edituser(){
            $errorMsg = deleteuser();
        }
 
+       //Wanneer de button edituser is ingedrukt wordt de functie edituser uitgevoerd.
        if (isset($_POST['btn-edit'])){
            $errorMsg = "";
            $errorMsg = edituser();
@@ -116,10 +120,10 @@ function edituser(){
            exit;
        }
        include("../scripts/header.php");
+       //het juiste userid wordt opgehaald.
        $userid = $_POST["userid"];
-       ?>
 
-        <?php
+        //De gegevens over de geselecteerde user worden opgehaald uit de database.
        $edituser = executeSQL ("SELECT userId, userName, userEmail, role FROM User WHERE userId = $userid", 2);
 
        ?>
@@ -131,6 +135,7 @@ function edituser(){
        </div>
 
        <?php
+       //Wanneer er een error is wordt deze laten zien.
         if ($errorMsg !== ""){
             print ("<div id='errormessage'>");
             print ("ERROR: " . $errorMsg);
@@ -141,6 +146,9 @@ function edituser(){
        <div id="both">
        <h1>Aanpassen gebruikersgegevens</h1>
        <form id="edituser" method="POST" action="" onsubmit="return confirm('Weet u zeker dat u deze actie wilt uitvoeren?');">
+
+
+         <!-- De tabel wordt aangemaakt waarin alle gebruikersgegevens worden laten zien.  -->
          <table>
           <tr><td>
             Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
@@ -158,6 +166,8 @@ function edituser(){
             Wachtwoord bevestigen: </td><td><input type="password" name="confirmpassword" id="confirmpassword"></br>
         </td></tr>
         <tr><td>
+
+            <!-- De rechten worden d.m.v. een dropdown menu gekozen.  -->
             Rechten:
           <?php
             if (($edituser[0][3]) == "x"){
@@ -169,6 +179,8 @@ function edituser(){
             }
           ?>
         </td><td>
+
+            <!-- De role die de user op dit moment heeft wordt laten zien.  -->
           <select name="role">
             <option <?php if ($roler) {print "selected";} ?> value="r">Read</option>
             <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
@@ -183,7 +195,7 @@ function edituser(){
 
 
 
-
+      <!-- Saved button een leuke opmaak geven. Wanneer er iets is veranderd veranderd deze van kleur d.m.v. Javascript.  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <script>
