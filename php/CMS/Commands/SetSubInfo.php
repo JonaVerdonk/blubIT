@@ -51,11 +51,11 @@ if($subFullArray[1] != $subFullArray["docName"]){
   rename("../../subpages/" . $subFullArray["docName"] . ".php" , "../../subpages/" . $subFullArray[1] . ".php");
 
   //Migrate all contentboxes to page (change url)
-  $sql = "SELECT contentID FROM Content WHERE url='" . $subFullArray["docName"] . ".php'";
+  $sql = "SELECT contentID FROM Content WHERE url='/php/subpages/" . $subFullArray["docName"] . ".php'";
   $result = executeSQL($sql,2);
 
   foreach ($result as $index => $record) {
-    $sql = "UPDATE Content SET url='$subFullArray[1].php' WHERE contentID = $record[0]";
+    $sql = "UPDATE Content SET url='/php/subpages/$subFullArray[1].php' WHERE contentID = $record[0]";
     executeSQL($sql);
   }
 

@@ -1,8 +1,6 @@
 body{
   position: relative;
   margin: 0px;
-  min-height: calc(100vh - 200px);
-  padding-bottom: 200px;
 }
 
 .clear {

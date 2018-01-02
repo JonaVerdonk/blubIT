@@ -25,9 +25,9 @@ class CMSMenu {
           <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-edit'>Edit Mode</div>
           <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-addcont'>Add content</div>
           <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-remcont'>Remove content</div>
-          <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-add'>Add</div>
-          <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-remove'>Remove</div>
-          <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-move'>Move</div>
+          <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-add'>Verander naar</div>
+          <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-remove'>Pas aan</div>
+          <div class='CMSToolbar-Body-item' id='CMSToolbar-Body-button-move'>Zet terug</div>
         </div>
       </div>
     ";
