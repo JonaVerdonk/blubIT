@@ -29,13 +29,15 @@ include("../scripts/registerScript.php");
 
         <div id="pageContent">
 
+            <!-- Wanneer er is ingelogd/geregistreerd wordt er een bericht getoond dat er succesvol is ingelogd/geregistreerd.  -->
           <?php if (isset ($registered) || isset ($login)) {
             print ('<div id="notificationgood">');
             print ($registered . $login);
             print ('</div>');
-          }?>
+          }
 
-          <?php
+
+          // Wanneer er iets fout gaat bij het inloggen/registreren krijg wordt er een foutmelding getoond.
             if ($error || $errorLogin){
               print ('<div id="notificationerror">');
               print ($errorMsg . $errorLoginMsg);
@@ -45,17 +47,20 @@ include("../scripts/registerScript.php");
 
 
           <div="both">
+
+          <!-- Loginscherm wordt getoond.  -->
             <div id="login">
               <h1>Login</h1>
                 <form method="POST" action="">
-                    E-mailadres: <input type="email" name="email" placeholder="Your Email" value="" maxlength="40"><br>
+                    E-mailadres: <input type="email" name="email" placeholder="Uw emailadres" value="" maxlength="40"><br>
                     <span class="text-danger"></span><br>
-                    Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="40"><br>
+                    Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Uw wachtwoord" maxlength="40"><br>
                     <br><input type="submit" name="btn-login" class="btnStandard">
                 </form>
 
             </div>
 
+            <!-- Registreer scherm wordt getoond.  -->
             <div id="register">
               <h1>Registreren</h1>
             <form method="POST" action="" secret="6LcD6D0UAAAAAGEF30jHYE8_p2Sn2S3nGjLUYihj">

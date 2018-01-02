@@ -8,13 +8,13 @@ $error = false;
 
 if (isset($_POST['btn-signup']) ) {
 
-    // clean user inputs to prevent sql injections
+    // Tegen SQL injectie.
   $name = clearString($_POST['name']);
   $email = clearString($_POST['email']);
   $pass = clearString($_POST['pass']);
   $confirmpass = clearString($_POST['confirmpass']);
 
-  // basic name validation
+  // Basis naam validatie.
   if (empty($name)) {
     $error = TRUE;
     $errorMsg = "Voer a.u.b. uw volledige naam in. ";
@@ -26,12 +26,12 @@ if (isset($_POST['btn-signup']) ) {
     $errorMsg  = "Uw volledige naam moet letters en een spatie bevatten.";
   }
 
-  //basic email validation
+  //Basis email verificatie
   if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
     $error = TRUE;
     $errorMsg  = "Voer a.u.b. een geldig emailadres in. ";
   } else {
-    // check email exist or not
+    // Controleer of het email adres al bestaat in de database.
     $result = executeSQL ("SELECT userEmail FROM User WHERE userEmail='$email'");
     $count = count($result);
     if($count!=0){
@@ -39,7 +39,7 @@ if (isset($_POST['btn-signup']) ) {
       $errorMsg  = "Dit emailadres is al in gebruik. Log in met uw bestaande account. Indien u uw wachtwoord vergeten bent kunt u via het contactformulier bij de beheerder een nieuw wachtwoord aanvragen. ";
     }
   }
-  // password validation
+  // Password validatie. Password moet aan verschillende eisen worden voldaan.
   if (empty($pass)){
     $error = TRUE;
     $errorMsg  = "Vul een wachtwoord in.";
@@ -60,17 +60,12 @@ if (isset($_POST['btn-signup']) ) {
     $errorMsg  = "De wachtwoorden komen niet overeen.";
   }
 
-   // password encrypt using SHA256();
+   // Password wordt geencrypt met SHA256.
   $password = hash('sha256', $pass);
-   //Salt the password with cost of 15(Hardware difficulty) and PASSWORD_BCRYPT
+   //Password wordt gesalt. Cost is 10.
   $password = HashPass($password);
 
-  //Error handling
-  // print $passError;
-  // print $nameError;
-  // print $emailError;
-
-  // if there's no error, continue to signup
+  // Wanneer er geen error is, gaan de registratie verder.
   if( !$error ) {
     executeSQL ("INSERT INTO User(userName,userEmail,userPass, role, attempts) VALUES('$name','$email','$password', 'r', '0')");
     $registered = ("Je bent succesvol geregistreerd. Log nu in om je account te gebruiken");
