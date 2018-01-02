@@ -1,10 +1,12 @@
 class ImgSelection {
     constructor(dir, el) {
+        //Set the variables to the arguments gotten
         this.dir = dir;
         this.el = el;
     }
 
     drawModal() {
+        //Create the modal with two containers, 'imgListContainer' and 'imgPreviewContainer'
         var html = "<div id='modal'>";
         html += "<button id='btnCloseModal'>&#10008;</button>";
         html += "<div id='imgList'><div id='imgListContainer'></div></div>";
@@ -14,6 +16,7 @@ class ImgSelection {
 
         var obj = this;
 
+        //If the 'close' button is clicked, remove the modal
         $("#btnCloseModal").on("click", function() {
             obj.removeModal();
         });
@@ -22,6 +25,7 @@ class ImgSelection {
     }
 
     showImgs() {
+        //Get all images from a specific directory and show the images
         $.ajax({
             url: "/scripts/getDir.php",
             type: "POST",
@@ -33,12 +37,10 @@ class ImgSelection {
                 //data[1] = folders
                 //data[2] = imgs
 
-                console.log(data);
-
                 var html = "<div id='imgListDir'>"+data[0][0]+"</div>";
                 app(html);
 
-                //Print all folders
+                //Print all folders in the 'imgListContainer'
                 html = "<div id='imgListFolders'>";
                 for (i = 0; i < data[1].length; ++ i) {
                     html += "<div class='imgListFolder'>";
@@ -48,7 +50,7 @@ class ImgSelection {
                 html += "</div>";
                 app(html);
 
-                //Print all images
+                //Print all images in the 'imgListContainer'
                 html = "<div id='imgListImgs'>";
                 for (i = 0; i < data[2].length; ++ i) {
                     html += "<div class='imgListItem'>";
@@ -58,11 +60,17 @@ class ImgSelection {
                 html += "</div>";
                 app(html);
 
+                //If the user hovers over an img in the list of images, show in the preview
                 var imgs = $(".imgListItem");
                 imgs.hover(function() {
                     $("#imgPreview img").attr("src", data[0][0]+"/"+$(this).html());
                 });
 
+                //If the user double clicks in an image set to elements with specific id's
+                // on the page to the new img url and the id that needs to be changed.
+                // Javascript on the page that called this object then reads the values of those
+                // textfields.
+                //Should be rewritten, but it works.
                 imgs.on("dblclick", function() {
                     var url = data[0][0]+"/"+$(this).html();
                     var id = $(data[0][1]).attr("id");
@@ -74,6 +82,7 @@ class ImgSelection {
                     $("#imgChanged").click();
                 });
 
+                //Function so I don't have to keep typing the whole element
                 function app(html) {
                     $("#imgListContainer").append(html);
                 }

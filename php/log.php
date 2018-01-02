@@ -1,6 +1,9 @@
 <?php
+    //If the submit button is set, show the amount of rows that the user requested. default to 25
     if (isset($_POST["submit"])) {
         $rows = intval($_POST["rows"]);
+    } else {
+        $rows = 25;
     }
 ?>
 
@@ -42,15 +45,15 @@
                 <input type="submit" class="btnStandard" name="submit">
             </form><br><br>
 
+            <!--Create the table and add table headers-->
             <table id="logs">
                 <tr><th>ID</th><th>Gebruiker ID</th><th>Naam</th><th>Datum/tijd</th><th>Verandering</th></tr>
 
                 <?php
-                    if (isset($rows)) {
-                        $logs = executeSql("SELECT logId, user, timestamp, message, userName FROM Log JOIN User ON user = userId ORDER BY logID DESC LIMIT $rows", 0);
-                    } else {
-                        $logs = executeSql("SELECT logId, user, timestamp, message, userName FROM Log JOIN User ON user = userId ORDER BY logID DESC LIMIT 25", 0);
-                    }
+                    //Select all data from 'log' and the username that matches the userId in 'log' and limit the result to 'rows' amount
+                    $logs = executeSql("SELECT logId, user, timestamp, message, userName FROM Log JOIN User ON user = userId ORDER BY logID DESC LIMIT $rows", 0);
+
+                    //Print a new row in the table for every row in '$logs'
                     for ($i = 0; $i < count($logs); ++ $i) {
                         print("<tr><td>".$logs[$i][0]."</td><td>".$logs[$i][1]."</td><td>".$logs[$i][4]."</td><td>".$logs[$i][2]."</td><td>".$logs[$i][3]."</td></tr>");
                     }

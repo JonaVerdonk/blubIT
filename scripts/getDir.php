@@ -1,16 +1,10 @@
 <?php
-    require("databaseConnection.php");
 
     //Get whole dir
     $array = scandir("../".$_POST["dir"]);
 
     //Remove dots at the beginning of the array
     $a = array_diff($array, [".", ".."]);
-
-    //Move the whole array two back to account for the two null-values and the 'dir' value
-    // for ($i = 0; $i < count($a); ++ $i) {
-    //     $a[$i] = $a[$i+2];
-    // }
 
     $a = array_filter($a);
     $a = array_values($a);
@@ -22,13 +16,13 @@
             unset($a[$i]);
         }
     }
-
     $a = array_filter($a);
 
+    //Data[1] contains all folders
     $data[1] = $folders;
-
+    //Data[2] contains all files in current directory
     $data[2] = array_values($a);
-
+    //data[0] contains data to make the img selection work. Not pretty, but it works.
     $data[0][0] = $_POST["dir"];
     $data[0][1] = $_POST["el"];
 

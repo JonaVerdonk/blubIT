@@ -53,20 +53,6 @@
             </div>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script>
-            function updateDB(sql, print=false) {
-                $.ajax({
-                    url: "../../scripts/executeQuery.php",
-                    type: "POST",
-                    data: {"sql": sql},
-                    success: function(json, status) {
-                        if (print) {
-                            printItems();
-                        }
-                    }
-                });
-            }
-            </script>
             <script src="/js/ImgSelection"></script>
             <script>
                 $(document).ready(function() {
@@ -74,6 +60,7 @@
                 });
 
                 function printItems() {
+                    //Ajax request to get all info from the homepageItem table in the database
                     $.ajax({
                         url: "../../scripts/executeQuery.php",
                         type: "POST",
@@ -82,9 +69,12 @@
                             //When the ajax query is succesfull, save the databse data as an array in 'data'.
                             var data = $.parseJSON(json);
 
+                            //Empty the 'items' div
                             $("#items").empty();
 
+                            //For every item on the homepage append html to the 'items' div
                             for (i = 0; i < data.length; ++ i) {
+                                //Create the 'html' variable with the img, title, text, edit and delete button
                                 var html = "";
                                 html += "<div class='content-body-item' id='"+i+"'>";
                                 html += "<img id='" + i + "' src='../../"+data[i][1]+"' alt='itemImg'>";
@@ -97,28 +87,33 @@
                                 $("#items").append(html);
                             }
 
+                            //Set the actions for the buttons
                             setEditItem(data);
                             setDeleteItem(data);
                             setNewItem(data);
 
                             //Set image updating
                             $("#imgChanged").on("click", function() {
+                                //Get the new url for the img and the id for the database entry that should be changed
                                 var url = $(this).find("#url").html();
                                 var id = $(this).find("#id").html();
 
+                                //Create the query and execute it
                                 var sql = "UPDATE HomepageItem SET img='"+url+"' WHERE order="+id+";";
-                                //updateDB(sql);
-                                alert(sql);
+                                updateDB(sql);
                             });
                         }
                     });
                 }
 
                 function setEditItem(data) {
+                    //Get all buttons with class 'editItem'
                     var btnEditItem = $(".editItem");
 
+                    //Unbind all events to avoid duplicates
                     btnEditItem.unbind("click");
                     btnEditItem.on("click", function() {
+                        //When the button is clicked, get the item it belongs to
                         var item = $(this).val();
                         var num = item;
                         item = "#"+item;
@@ -167,6 +162,7 @@
                         }
                     });
 
+                    //Remove all events to avoid duplicates
                     $(".content-body-item img").unbind("click");
                     $(".content-body-item img").on("click", function() {
                         alert("Change image for item "+$(this).attr("id"));
@@ -177,29 +173,37 @@
                 }
 
                 function setNewItem(data) {
+                    //Unbind all events to avoid duplicates
                     $("#btnNew button").unbind("click");
                     $("#btnNew button").on("click", function() {
+                        //Get the id of the last item and add one to it to get the new id
                         var newOrder = parseInt(data[data.length-1][0]) + 1;
+                        //Create and execute query to insert a new item with standard values that can than be changed
                         var sql = "INSERT INTO HomepageItem VALUES("+newOrder+", 'Image', 'New item', 'New text');";
                         updateDB(sql, true);
                     });
                 }
 
                 function setDeleteItem(data) {
+                    //Get all delete buttons
                     var btnDeleteItem = $(".deleteItem");
 
+                    //Unbind all events to avoid duplicates
                     btnDeleteItem.unbind("click");
                     btnDeleteItem.on("click", function() {
+                        //Get the item to be deleted
                         var item = $(this).val();
                         var id = $(this).attr("id");
 
                         if (confirm("Weet je zeker dat je dit item wil verwijderen?")) {
+                            //If the admin confirms, delete the item from the database
                             var sql = "DELETE FROM HomepageItem WHERE HomepageItem.order="+id+";";
                             updateDB(sql, true);
                         }
                     });
                 }
 
+                //All characters that need to be changed to sanitize HTML
                 var entityMap = {
                     '&': '&amp;',
                     '<': '&lt;',
@@ -210,15 +214,29 @@
                     '`': '&#x60;',
                     '=': '&#x3D;'
                 };
-
+                //Function to sanitize HTML to prevent cross site scripting
                 function escapeHtml (string) {
                     return String(string).replace(/[&<>"'`=\/]/g, function (s) {
                         return entityMap[s];
                     });
                 }
 
+                //Easier log function to prevent extra typing
                 function log(str) {
                     console.log(str);
+                }
+
+                function updateDB(sql, print=false) {
+                    $.ajax({
+                        url: "../../scripts/executeQuery.php",
+                        type: "POST",
+                        data: {"sql": sql},
+                        success: function(json, status) {
+                            if (print) {
+                                printItems();
+                            }
+                        }
+                    });
                 }
             </script>
             <script src="../../js/cmsHomepageHeader"></script>
