@@ -23,11 +23,17 @@ function print(selectedMsg = 0, selectSelected = true) {
             messages.unbind("click");
             messages.on("click", function() {
                 msg = $(this).attr("id");
+                if (data[msg][10] !== "" && data[msg][10] !== "NULL" && data[msg][10] !== "null" && typeof(data[msg][10]) ) {
+                    var message = data[msg][8] + "<br><br><br>_______________<br>Toegevoegde connectoren: " + data[msg][10];
+                } else {
+                    var message = data[msg][8];
+                }
+
                 $("#name").     html(data[msg][4] + " " + data[msg][5]);
                 $("#email").    html(data[msg][6]);
                 $("#timestamp").html(data[msg][2]);
                 $("#subject").  html(data[msg][7]);
-                $("#message").  html(data[msg][8]);
+                $("#message").  html(message);
                 messages.removeClass("selected");
                 $(this).addClass("selected");
                 if (data[msg][9] == "0") {

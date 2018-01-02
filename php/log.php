@@ -43,7 +43,7 @@
             </form><br><br>
 
             <table id="logs">
-                <tr><th>ID</th><th>User ID</th><th>Name</th><th>Data/time</th><th>Change</th></tr>
+                <tr><th>ID</th><th>Gebruiker ID</th><th>Naam</th><th>Datum/tijd</th><th>Verandering</th></tr>
 
                 <?php
                     if (isset($rows)) {

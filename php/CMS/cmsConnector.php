@@ -109,7 +109,7 @@
 
                     select.unbind("change");
                     select.on("change", function() {
-                        var num = $(this).parent().parent().attr("id");
+                        var num = $(this).parent().parent().find(".img").find(".conImg").attr("id");
                         var val = $(this).val();
 
                         if (val == 'm') {type="multimode";} else {type="singlemode";}
@@ -124,7 +124,7 @@
                     btnEdit.unbind("click");
                     btnEdit.on("click", function() {
                         var item = $(this).parent().parent();
-                        var num = item.find(".img").find("img").attr("id");
+                        var num = item.find(".img").find(".conImg").attr("id");
 
                         if ($(this).html() == "Edit") {
                             $(this).html("Save");
@@ -140,7 +140,7 @@
                             item.find(".conText").html("<p>"+text+"</p>");
 
                             var sql = "UPDATE Connector SET connector_name='"+title+"', connector_text='"+text+"' WHERE connector_ID="+num+";";
-                            
+
                             updateDB(sql);
                         }
                     });
@@ -151,8 +151,7 @@
 
                     btnDelete.unbind("click");
                     btnDelete.on("click", function() {
-                        var num = $(this).parent().parent().attr("id");
-
+                        var num = $(this).parent().parent().find(".img").find(".conImg").attr("id");
                         if (confirm("Weet je zeker dat je deze connector wil verwijderen?")) {
                             updateDB("DELETE FROM Connector WHERE connector_id="+num+";", true);
                         }

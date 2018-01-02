@@ -14,14 +14,19 @@
         $email = strip_tags($_POST["email"]);
         $subject = strip_tags($_POST["subject"]);
         $message = strip_tags($_POST["commentaar"]);
+        if (isset($_POST["connectors"])) {
+            $conn = $_POST["connectors"];
+        } else {
+            $conn = "";
+        }
 
         if ($company == NULL) {
-            executeSql("INSERT INTO Message(messageId, userId, fName, lName, email, subject, message)
-                        VALUES($id, $userId, '$fName', '$lName', '$email', '$subject', '$message');");
+            executeSql("INSERT INTO Message(messageId, userId, fName, lName, email, subject, message, connectors)
+                        VALUES($id, $userId, '$fName', '$lName', '$email', '$subject', '$message', '$conn');");
             $message = "Bericht verzonden!";
         } else {
-            executeSql("INSERT INTO Message(messageId, userId, company, fName, lName, email, subject, message)
-                        VALUES($id, $userId, '$company', '$fName', '$lName', '$email', '$subject', '$message');");
+            executeSql("INSERT INTO Message(messageId, userId, company, fName, lName, email, subject, message, connectors)
+                        VALUES($id, $userId, '$company', '$fName', '$lName', '$email', '$subject', '$message', '$conn');");
             $message = "Bericht verzonden!";
         }
     }

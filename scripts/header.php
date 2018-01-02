@@ -58,7 +58,7 @@
         if (strpos($name, "Admin") !== false || strpos($name, "admin") !== false) {
             //Check if user is logged in as admin
             //If so, print the link containing admin
-            if ($_SESSION["role"] == "x") {
+            if ($_SESSION["role"] !== "r") {
                 print('<li '.$id.'><a class="navbarLink" href="'.$url.'">'.$name.'</a></li>');
             }
         } else if (strpos($name, "CMS") !== false || strpos($name, "cms") !== false) {
