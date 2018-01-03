@@ -48,6 +48,7 @@
             </div>
 
             <div id="itemsWrapper">
+                <span>Klik op de afbeelding om hem te wijzigen</span><br>
                 <div id='items'></div>
                 <div id='btnNew'><button class='btnStandard'>New item</button></div>
             </div>
@@ -97,9 +98,8 @@
                                 //Get the new url for the img and the id for the database entry that should be changed
                                 var url = $(this).find("#url").html();
                                 var id = $(this).find("#id").html();
-
                                 //Create the query and execute it
-                                var sql = "UPDATE HomepageItem SET img='"+url+"' WHERE order="+id+";";
+                                var sql = "UPDATE HomepageItem SET img='"+url+"' WHERE HomepageItem.order="+id+";";
                                 updateDB(sql);
                             });
                         }
@@ -165,7 +165,7 @@
                     //Remove all events to avoid duplicates
                     $(".content-body-item img").unbind("click");
                     $(".content-body-item img").on("click", function() {
-                        alert("Change image for item "+$(this).attr("id"));
+                        //Create a new ImgSelection object
                         var imgId = "#"+$(this).attr("id");
                         var imgSelection = new ImgSelection("/images", imgId);
                         imgSelection.drawModal();

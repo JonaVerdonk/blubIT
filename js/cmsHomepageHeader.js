@@ -18,7 +18,7 @@ $(document).ready(function() {
 
             //Print the current img and its url
             $("#image img").attr("src", "../../"+data[0][0]);
-            $("#url").html('<a href="../../'+data[0][0]+'">'+data[0][0]+'</a>');
+            $("#image span").html('<a href="../../'+data[0][0]+'">'+data[0][0]+'</a>');
             setEditImg(data);
 
             //Show current text
@@ -34,14 +34,14 @@ function setEditImg(data) {
             //If the 'editImg' button is clicked and the button is set to edit,
             // change the text to an input field with the value of the previous text
             $(this).html("Save");
-            var val = $("#url a").html();
-            $("#url").html("<input class='inpTextBig' type='text' value='"+val+"'>");
+            var val = $("#image span a").html();
+            $("#image span").html("<input class='inpTextBig' type='text' value='"+val+"'>");
         } else {
             //If the button is set to 'edit' get the data from the input field and
             // change it to text. Then update the image preview to the updated url
             $(this).html("Edit");
-            var val = $("#url input").val();
-            $("#url").html('<a href="../../'+val+'">'+val+'</a>');
+            var val = $("#image span input").val();
+            $("#image span").html('<a href="../../'+val+'">'+val+'</a>');
             $("#image img").attr("src", "../../"+val);
 
             //If the value changed, update it in the database. Only do it than to prevent

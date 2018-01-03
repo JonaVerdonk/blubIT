@@ -5,6 +5,7 @@
     } else {
         $rows = 25;
     }
+    print($rows);
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +52,7 @@
 
                 <?php
                     //Select all data from 'log' and the username that matches the userId in 'log' and limit the result to 'rows' amount
-                    $logs = executeSql("SELECT logId, user, timestamp, message, userName FROM Log JOIN User ON user = userId ORDER BY logID DESC LIMIT $rows", 0);
+                    $logs = executeSql("SELECT logId, user, timestamp, message, userName FROM Log LEFT JOIN User ON user = userId ORDER BY logID DESC LIMIT $rows", 0);
 
                     //Print a new row in the table for every row in '$logs'
                     for ($i = 0; $i < count($logs); ++ $i) {
@@ -60,7 +61,7 @@
                 ?>
 
             </table>
-
+            <?php print(count($logs)); ?>
         </div>
 
         <?php include("../scripts/footer.php"); ?>

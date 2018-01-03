@@ -61,7 +61,7 @@ include_once("databaseConnection.php");
               }
 
               //Elke rij heeft op het eind een edit knop. Hiermee kan je de geselecteerde user editten.
-              print ("<td><button value='$i' class='edit'>Edit</button></td>");
+              print ("<td><button value='$i' class='btnStandard edit'>Wijzig</button></td>");
             print ("</tr>");
           }
         print ("</table>");

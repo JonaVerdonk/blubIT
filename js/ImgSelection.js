@@ -10,7 +10,7 @@ class ImgSelection {
         var html = "<div id='modal'>";
         html += "<button id='btnCloseModal'>&#10008;</button>";
         html += "<div id='imgList'><div id='imgListContainer'></div></div>";
-        html += "<div id='imgPreview'><div id='imgPreviewContainer'><img src='' alt='Preview image'></div></div>"
+        html += "<div id='imgPreview'><div id='imgPreviewContainer'></div></div>"
         html += "</div>";
         $("body").append(html);
 
@@ -37,6 +37,11 @@ class ImgSelection {
                 //data[1] = folders
                 //data[2] = imgs
 
+                //Remove last two entries because for some reason it doesn't
+                // work properly in the getDir file
+                data[2].pop();
+                data[2].pop();
+
                 var html = "<div id='imgListDir'>"+data[0][0]+"</div>";
                 app(html);
 
@@ -60,10 +65,17 @@ class ImgSelection {
                 html += "</div>";
                 app(html);
 
+                //If the user hovers over a folder, print folder
+                var folders = $("#imgListFolders");
+                folders.hover(function() {
+                    $("#imgPreview").html("Folder");
+                });
+
                 //If the user hovers over an img in the list of images, show in the preview
                 var imgs = $(".imgListItem");
                 imgs.hover(function() {
-                    $("#imgPreview img").attr("src", data[0][0]+"/"+$(this).html());
+                    var img = $(this).html();
+                    $("#imgPreview").html("<img src='"+data[0][0]+"/"+img+"' alt='Afbeelding'>");
                 });
 
                 //If the user double clicks in an image set to elements with specific id's
@@ -75,7 +87,12 @@ class ImgSelection {
                     var url = data[0][0]+"/"+$(this).html();
                     var id = $(data[0][1]).attr("id");
 
-                    $(data[0][1]).attr("src", url);
+                    var attr = $(data[0][1]).attr("src");
+                    if (typeof(attr) !== typeof(undefined) && attr !== false) {
+                        $(data[0][1]).attr("src", url);
+                    } else {
+                        $(data[0][1] + " img").attr("src", url);
+                    }
 
                     $("#imgChanged #url").html(url);
                     $("#imgChanged #id").html(id);

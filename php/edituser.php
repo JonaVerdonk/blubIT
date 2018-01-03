@@ -144,52 +144,59 @@ function edituser(){
         ?>
 
        <div id="both">
-       <h1>Aanpassen gebruikersgegevens</h1>
-       <form id="edituser" method="POST" action="" onsubmit="return confirm('Weet u zeker dat u deze actie wilt uitvoeren?');">
+           <h1>Aanpassen gebruikersgegevens</h1>
+           <form id="edituser" method="POST" action="" onsubmit="return confirm('Weet u zeker dat u deze actie wilt uitvoeren?');">
+               <!-- De tabel wordt aangemaakt waarin alle gebruikersgegevens worden laten zien.  -->
+               <table>
+                   <tr><td>
+                       Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
+                    </td></tr>
+                    <tr><td>
+                        Volledige naam: </td><td> <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
+                    </td></tr>
+                    <tr><td>
+                        Email adres: </td><td><input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
+                    </td></tr>
+                    <tr><td>
+                        Wachtwoord (leeg laten om geen wijziging te maken): </td><td><input type="password" name="password" id="password"></br>
+                    </td></tr>
+                    <tr><td>
+                        Wachtwoord bevestigen: </td><td><input type="password" name="confirmpassword" id="confirmpassword"></br>
+                    </td></tr>
+                    <tr><td>
 
+                    <!-- De rechten worden d.m.v. een dropdown menu gekozen.  -->
+                    Rechten:
+                    <?php
+                    if (($edituser[0][3]) == "x"){
+                        $rolex = true;
+                    }elseif (($edituser[0][3]) == "w"){
+                        $rolew = true;
+                    }else {
+                        $roler = true;
+                    }
+                    ?>
+                    </td><td>
 
-         <!-- De tabel wordt aangemaakt waarin alle gebruikersgegevens worden laten zien.  -->
-         <table>
-          <tr><td>
-            Gebruikers ID: </td><td> <input type="text" readonly name="userid" id="userid" value="<?php print ($edituser[0][0]); ?>"></br>
-          </td></tr>
-          <tr><td>
-            Volledige naam: </td><td> <input type="text" name="userName" id="userName" value="<?php print ($edituser[0][1]); ?>"></br>
-          </td></tr>
-          <tr><td>
-            Email adres: </td><td><input type="text" name="userEmail" id="userEmail" value="<?php print ($edituser[0][2]); ?>"></br>
-        </td></tr>
-        <tr><td>
-            Wachtwoord (leeg laten om geen wijziging te maken): </td><td><input type="password" name="password" id="password"></br>
-        </td></tr>
-        <tr><td>
-            Wachtwoord bevestigen: </td><td><input type="password" name="confirmpassword" id="confirmpassword"></br>
-        </td></tr>
-        <tr><td>
-
-            <!-- De rechten worden d.m.v. een dropdown menu gekozen.  -->
-            Rechten:
-          <?php
-            if (($edituser[0][3]) == "x"){
-              $rolex = true;
-            }elseif (($edituser[0][3]) == "w"){
-              $rolew = true;
-            }else {
-              $roler = true;
-            }
-          ?>
-        </td><td>
-
-            <!-- De role die de user op dit moment heeft wordt laten zien.  -->
-          <select name="role">
-            <option <?php if ($roler) {print "selected";} ?> value="r">Read</option>
-            <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
-            <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
-          </select></br></td></tr><table>
-              <input type="submit" id="deleteuser" name="deleteuser" value="Delete">
-          <input type="submit" id="btnSave" name="btn-edit" class="notClickable" value="Save">
-        </form>
-      </div>
+                    <!-- De role die de user op dit moment heeft wordt laten zien.  -->
+                    <select name="role">
+                        <option <?php if ($roler) {print "selected";} ?> value="r">Read</option>
+                        <option <?php if ($rolew) {print "selected";} ?> value="w">Write</option>
+                        <option <?php if ($rolex) {print "selected";} ?> value="x">Execute</option>
+                    </select>
+                    </br>
+                    </td></tr>
+                    <tr>
+                        <td><br>
+                            <input type="submit" class='btnStandard' id="deleteuser" name="deleteuser" value="Delete">
+                        </td>
+                        <td><br>
+                            <input type="submit" id="btnSave" name="btn-edit" class="btnStandard" value="Save">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
 
 
 
@@ -199,25 +206,25 @@ function edituser(){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <script>
-        $(document).ready(function() {
-            $("input").on("change",function(){
-                changed();
-            });
-
-            function changed() {
-                //Every time this function is called add class clickable and remove notClickable to the save btn.
-                $("#btnSave").addClass("clickable");
-                $("#btnSave").removeClass("notClickable");
-
-                //Add an event listener to the save btn, but unbind it first so it is never called twice.
-                $("#btnSave").unbind("click");
-                $("#btnSave").on("click", function() {
-                    //When clicked, set its class to notClickable
-                    $("#btnSave").addClass("notClickable");
-                    $("#btnSave").removeClass("clickable");
-                });
-            }
-        });
+        //$(document).ready(function() {
+        //     $("input").on("change",function(){
+        //         changed();
+        //     });
+        //
+        //     function changed() {
+        //         //Every time this function is called add class clickable and remove notClickable to the save btn.
+        //         $("#btnSave").addClass("clickable");
+        //         $("#btnSave").removeClass("notClickable");
+        //
+        //         //Add an event listener to the save btn, but unbind it first so it is never called twice.
+        //         $("#btnSave").unbind("click");
+        //         $("#btnSave").on("click", function() {
+        //             //When clicked, set its class to notClickable
+        //             $("#btnSave").addClass("notClickable");
+        //             $("#btnSave").removeClass("clickable");
+        //         });
+        //     }
+        // });
 
         </script>
 

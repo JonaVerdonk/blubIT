@@ -2,7 +2,7 @@
   background-color: #eee;
 }
 #table tr:nth-child(odd){
-  background-color: #ccc;
+  background-color: #bbb;
 }
 #table td{
   padding: 8px;
@@ -22,4 +22,14 @@
 
 #form{
   display: none;
+}
+
+.btnStandard {
+    font-size: 17px;
+    margin-left: 0px;
+    transition:  margin-left .1s, border-left .1s;
+}
+.btnStandard:hover {
+    margin-left: -6px;
+    transition:  margin-left .1s, border-left .1s;
 }

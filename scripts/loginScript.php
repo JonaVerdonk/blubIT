@@ -41,7 +41,7 @@
                 $Realpass = $SQL[0]["userPass"]; //Queryresult[rownumber]["collumnname"]
                  //Validate the password
                 $ValidPass = password_verify($password, $Realpass);
-                print ("blocked: " . $SQL[0]["blocked"] . " einde blocked");
+                /*print ("blocked: " . $SQL[0]["blocked"] . " einde blocked");*/
 
                 //Wanneer er geen foutmeldingen zijn wordt de user ingelogd.
                 if($ValidPass && count($SQL) && $SQL[0]["blocked"] == 0){
@@ -53,7 +53,7 @@
                   $login = ("Je bent succesvol ingelogd.");
 
             }else{
-                //Bij fouteive inlog wordt dit geregistreerd. Bij 3 fouteive inloggen wordt de user voor 15 minuten geblockt. 
+                //Bij fouteive inlog wordt dit geregistreerd. Bij 3 fouteive inloggen wordt de user voor 15 minuten geblockt.
                 $attempts = executeSQL("SELECT attempts,blocked FROM User WHERE userEmail='$email'", 1);
                 if($attempts[0]["attempts"] == 3){
                     executeSQL("UPDATE User SET attempts= 0, blocked= 1, lastLogin=NOW() WHERE userEmail='$email'", 1);
@@ -63,11 +63,11 @@
                     $now = date("Y-m-d H:i:s");
                     $lastLoginAttempt = executeSQL("SELECT lastLogin FROM User WHERE userEmail='$email'", 1);
                     $time_difference = strtotime($now) - strtotime($lastLoginAttempt);
-                    print ("na timediffference " . $time_difference);
+                    /*print ("na timediffference " . $time_difference);*/
                     if($time_difference >= 900){
                         executeSQL("UPDATE User SET blocked = 0, lastLogin=NOW() WHERE userEmail='$email'", 1);
                     }else{
-                        print "in else voor errormessages ";
+                        /*print "in else voor errormessages ";*/
                         $errorLogin = true;
                         $errorLoginMsg = "Uw account is tijdelijk geblokkeerd probeer het straks opnieuw";
                     }

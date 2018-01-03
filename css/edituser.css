@@ -26,28 +26,6 @@ input{
   background-color: lightgrey;
 }
 
-#btnSave {
-    margin-left: 80%;
-    margin-top: 1%;
-    width: auto;
-    height: 40px;
-    border: none;
-    outline: 0;
-}
-
-#deleteuser{
-    margin-left: 0%;
-    margin-top: 1%;
-    width: auto;
-    height: 40px;
-    border: none;
-    outline: 0;
-    background-color: #aaa;
-    color: #666;
-    border-radius: 5px;
-    transition: background-color .2s, border-radius .2s;
-}
-
 .notClickable {
     background-color: #aaa;
     color: #666;

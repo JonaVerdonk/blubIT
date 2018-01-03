@@ -30,10 +30,10 @@
 }
 
 #navbarTable tr:nth-child(even) {
-    background-color: #eee;
+    background-color: #ddd;
 }
 #navbarTable tr:nth-child(odd) {
-    background-color: #ccc;
+    background-color: #bbb;
 }
 
 .edit, .delete, #saveNew {
