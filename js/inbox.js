@@ -27,10 +27,16 @@ function print(selectedMsg = 0, selectSelected = true) {
                 //When a message is clicked, get the message id
                 msg = $(this).attr("id");
                 //If there are no added connectors, just print the message. Else print the message plus the connectors
-                if (data[msg][10] !== "" && data[msg][10] !== "NULL" && data[msg][10] !== "null"/* && typeof(data[msg][10]) */) {
+                if (data[msg][10] !== "" && data[msg][10] !== "NULL" && data[msg][10] !== "null") {
                     var message = data[msg][8] + "<br><br><br>_______________<br>Toegevoegde connectoren: " + data[msg][10];
                 } else {
                     var message = data[msg][8];
+                }
+
+                if (data[msg][3] !== "" && data[msg][3] !== null) {
+                    $("#company").html("Bedrijf: <b>" + data[msg][3] + "</b>");
+                } else {
+                    $("#company").empty();
                 }
 
                 //Set the names, time etc. in the messagebox to the currently selected message

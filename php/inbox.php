@@ -40,7 +40,8 @@
                     <div id="formList"></div>
 
                     <div id="formReader">
-                        <p id="sendInfo">Verzonden door <span id="name"></span> via <span id="email"></span> op <span id="timestamp"></span></p>
+                        <p id="sendInfo">Verzonden door <span id="name"></span> via <span id="email"></span> op <span id="timestamp"></span>
+                        <br><span id="company"></span></p>
                         <div id="actions"><span id="delete">&#10008;</span><span id="setUnread">&#9993;</span><span id="reply">&#8617;</span></div>
                         <h2 id="subject"></h2>
                         <p id="message"></p>
