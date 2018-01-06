@@ -1,3 +1,9 @@
+textarea{
+  width: calc(100% - 20px);
+  height: calc(100% - 70px);
+  font-size: 20px;
+  font-family: 'Quicksand', sans-serif;
+}
 
 #CMSToolbar{
   width: 200px;
@@ -123,3 +129,4 @@
   background-color: #ff2d12;
    transition: background-color 0.3s;
 }
+
