@@ -202,7 +202,7 @@ $(document).ready(function(){
           //The type is now img
           window.Type = "img";
         }
-        
+
         //if record is found update else insert into
         $.ajax({
             url: "/scripts/executeQuery.php",
@@ -288,10 +288,46 @@ $(document).ready(function(){
     }
   }).on("click","#CMSToolbar-Body-button-add",function(){ //Add is change between img and p
     if($("textarea").length != 0){
-      $("textarea").replaceWith("<img src='/images/350x150.png' class='img'>");
+      //if record is found update else insert into
+      var contentid = $(window.editObj).prop("className").split(" ")[1];
+      $.ajax({
+          url: "/scripts/executeQuery.php",
+          type: "POST",
+          data: {"sql": "SELECT * FROM Image WHERE contentID = " + contentid},
+          success: function(json, status) {
+              data = $.parseJSON(json);
+              if(data.length == 0){ //No record
+                //Create record
+                SQL_Ajax("INSERT INTO Image(contentID, url) VALUES(" + contentid + ",'/images/350x150.png')");
+                $(window.editObj).children("textarea").replaceWith("<img class='img' src='/images/350x150.png' class='img'>");
+              }else{ //record found
+                //Use record
+                $(window.editObj).children("textarea").replaceWith("<img class='img' src='" + data[0][5] + "'>");
+              }
+          }
+      });
+
       $("#CMSToolbar-Body-button-add").text("Verander naar text");
     }else{
-      $(window.editObj).children("img").replaceWith("<textarea class='text'>" + window.Text + "</textarea>");
+      //if record is found update else insert into
+      var contentid = $(window.editObj).prop("className").split(" ")[1];
+      $.ajax({
+          url: "/scripts/executeQuery.php",
+          type: "POST",
+          data: {"sql": "SELECT * FROM Text WHERE contentID = " + contentid},
+          success: function(json, status) {
+              data = $.parseJSON(json);
+              if(data.length == 0){ //No record
+                //Create record
+                SQL_Ajax("INSERT INTO Text(contentID, content) VALUES(" + contentid + ",'This a a new texfield')");
+                $(window.editObj).children("img").replaceWith("<textarea class='text'>This a a new texfield</textarea>");
+              }else{ //record found
+                //Use record
+                $(window.editObj).children("img").replaceWith("<textarea class='text'>" + data[0][3] + "</textarea>");
+              }
+          }
+      });
+
       $("#CMSToolbar-Body-button-add").text("Verander naar image");
     }
   }).on("dblclick", "img", function(){

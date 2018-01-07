@@ -244,3 +244,14 @@ textarea{
   background-color: #00fd07;
   transition: background-color 0.3s;
 }
+
+@media (max-width: 600px) {
+  #MODALIMG-body{
+    width: 100%;
+    left: 0;
+  }
+
+  #MODALIMG-body-buttons{
+  font-size: 20px;
+  }
+}
