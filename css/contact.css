@@ -12,7 +12,16 @@
 }
 
 #verzonden{
-    background-color: lightgreen;
+    background-color: #lightgreen;
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+#fail{
+    background-color: #ff4444;
     width: 90%;
     margin: 10px auto;
     border-radius: 10px;

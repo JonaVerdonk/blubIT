@@ -7,6 +7,8 @@
         $id = intval($prevId[0][0]);
         $id ++;
 
+        $response = $_POST["g-recaptcha-response"];
+        if ($response){
         if ($_SESSION["logged_in"] == 1) {$userId = strip_tags($_SESSION["user"]);} else {$userId = "NULL";}
         if (isset($_POST["bedrijfsnaam"])) {$company = strip_tags($_POST["bedrijfsnaam"]);} else {$company = NULL;}
         $fName = strip_tags($_POST["firstname"]);
@@ -14,22 +16,26 @@
         $email = strip_tags($_POST["email"]);
         $subject = strip_tags($_POST["subject"]);
         $message = strip_tags($_POST["commentaar"]);
+
         if (isset($_POST["connectors"])) {
             $conn = $_POST["connectors"];
         } else {
             $conn = "";
         }
-
+        if ($response){}
         if ($company == NULL) {
             executeSql("INSERT INTO Message(messageId, userId, fName, lName, email, subject, message, connectors)
                         VALUES($id, $userId, '$fName', '$lName', '$email', '$subject', '$message', '$conn');");
-            $message = "Bericht verzonden!";
+            $messagesucces = "Bericht verzonden!";
         } else {
             executeSql("INSERT INTO Message(messageId, userId, company, fName, lName, email, subject, message, connectors)
                         VALUES($id, $userId, '$company', '$fName', '$lName', '$email', '$subject', '$message', '$conn');");
-            $message = "Bericht verzonden!";
+            $messagesucces = "Bericht verzonden!";
         }
+    }else{
+        $messagefail = "Vul de reCaptcha juist in.";
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,10 +61,17 @@
 
         <div id="pageContent">
 
-             <?php if (isset($message)){
-                 print ("<div id='verzonden'>");
-                 print($message);
-                print ("</div>");}?><br>
+             <?php if (isset($messagesucces)){
+                    print ("<div id='verzonden'>");
+                    print($messagesucces);
+                    print ("</div>");
+                }
+
+                if (isset($messagefail)){
+                    print ("<div id='fail'>");
+                    print($messagefail);
+                   print ("</div>");
+                }?><br>
 
             <div id="form">
                 <form action="" method="post" secret="6Led1zsUAAAAAJ-pZ1hIcAzudqKLOV-c5DkriEk9">
@@ -71,7 +84,7 @@
                     <?php include_once("../scripts/Save.php"); ?>
                     <textarea id="comment" name="commentaar" type="text" placeholder="Typ hier je bericht"></textarea><br>
                     <span>
-                        <div class="g-recaptcha text" data-sitekey="6LeSEDwUAAAAAIo_9WJde77o8BReLbuLaap-tCLE"></div>
+                        <div class="g-recaptcha" data-sitekey="6LeSEDwUAAAAAIo_9WJde77o8BReLbuLaap-tCLE"></div>
                         <input id="submit" type="submit" name="Verstuur" value="Verstuur" class="btnStandard">
                     </span>
                 </form>
