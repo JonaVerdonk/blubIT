@@ -6,7 +6,7 @@
     $imgs = $array;
 
     for ($i = 0; $i < count($array); ++ $i) {
-        if ($imgs[$i] == "." || $imgs[$i] == ".." || $imgs[$i] == "old") {
+        if ($imgs[$i] == "." || $imgs[$i] == "whytho" || $imgs[$i] == "old") {
             array_splice($imgs, $i, 1);
         }
     }

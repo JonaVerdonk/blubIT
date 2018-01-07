@@ -14,7 +14,7 @@
 
             gtag('config', 'UA-109575524-1');
           </script>
-          <title>Connector page</title>
+          <title>Connectors kiezen</title>
     </head>
 
     <body>

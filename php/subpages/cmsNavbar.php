@@ -2,16 +2,15 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Navigatiebalk</title>
+        <title>CMS</title>
         <link rel="stylesheet" type="text/css" href="../../css/style.css">
         <link rel="stylesheet" type="text/css" href="../../css/cmsNavbar.css">
     </head>
     <body>
 
         <?php include($_SERVER['DOCUMENT_ROOT']."scripts/header.php");
-        include("../scripts/header.php");
-        if ($_SESSION['role'] == 'r') {
-            header("Location: redirect.php");
+        if ($_SESSION['role'] !== 'x') {
+            header("Location: /php/redirect.php");
         }
         ?>
 
@@ -33,7 +32,7 @@
 
             <table id="navbarTable"></table>
             <br><br>
-            <button id="btnSave" class="notClickable btnStandard">Save</button>
+            <button id="btnSave" class="notClickable">Save</button>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script>
                 $(document).ready(function() {
@@ -79,10 +78,10 @@
                         //Sorry voor deze lijn, dit is de enige manier dat ik dit werkend kon krijgen zonder dat jquery automatisch tags begon te sluiten.
                         for (row = 0; row < data.length; ++ row) {
                             //For every data entry create a table row
-                            app("<tr id='"+row+"'><td class='position'><button value='"+row+"' class='up'>&#9650;</button><br>"+data[row][2]+"<br><button class='down' value='"+row+"'>&#9660;</button></td><td class='url'>"+data[row][0]+"</td><td class='name'>"+data[row][1]+"</td><td><button value='"+row+"' class='edit btnStandard'>Edit</button> <button value='"+row+"' class='delete btnStandard'>Delete</button></td></tr>");
+                            app("<tr id='"+row+"'><td class='position'><button value='"+row+"' class='up'>&#9650;</button><br>"+data[row][2]+"<br><button class='down' value='"+row+"'>&#9660;</button></td><td class='url'>"+data[row][0]+"</td><td class='name'>"+data[row][1]+"</td><td><button value='"+row+"' class='edit'>Edit</button> <button value='"+row+"' class='delete'>Delete</button></td></tr>");
                         }
                         //Append a row for adding a new navbar entry
-                        app("<tr><td id='positionNew'></td><td><input id='urlNew' type='text'></td><td><input id='nameNew' type='text'></td><td><button id='saveNew' class='btnStandard'>Save new entry</button></td>");
+                        app("<tr><td id='positionNew'></td><td><input id='urlNew' type='text'></td><td><input id='nameNew' type='text'></td><td><button id='saveNew'>Save new entry</button></td>");
 
                         //Set event listeners to buttons
                         setEditClick();
@@ -186,6 +185,7 @@
 
                     function changed() {
                         //Every time this function is called add class clickable and remove notClickable to the save btn.
+                        $("#btnSave").addClass("clickable");
                         $("#btnSave").removeClass("notClickable");
 
                         //Add an event listener to the save btn, but unbind it first so it is never called twice.
@@ -193,6 +193,7 @@
                         $("#btnSave").on("click", function() {
                             //When clicked, set its class to notClickable
                             $("#btnSave").addClass("notClickable");
+                            $("#btnSave").removeClass("clickable");
 
                             //Delete everything from navbar because I don't know how else to do this.
                             var sql = "DELETE FROM Navbar;";

@@ -5,24 +5,24 @@ class ImgSelection {
         this.el = el;
     }
 
-    drawModal() {
-        //Create the modal with two containers, 'imgListContainer' and 'imgPreviewContainer'
-        var html = "<div id='modal'>";
-        html += "<button id='btnCloseModal'>&#10008;</button>";
-        html += "<div id='imgList'><div id='imgListContainer'></div></div>";
-        html += "<div id='imgPreview'><div id='imgPreviewContainer'></div></div>"
-        html += "</div>";
-        $("body").append(html);
-
-        var obj = this;
-
-        //If the 'close' button is clicked, remove the modal
-        $("#btnCloseModal").on("click", function() {
-            obj.removeModal();
-        });
-
-        this.showImgs();
-    }
+    // drawModal() {
+    //     //Create the modal with two containers, 'imgListContainer' and 'imgPreviewContainer'
+    //     var html = "<div id='modal'>";
+    //     html += "<button id='btnCloseModal'>&#10008;</button>";
+    //     html += "<div id='imgList'><div id='imgListContainer'></div></div>";
+    //     html += "<div id='imgPreview'><div id='imgPreviewContainer'></div></div>"
+    //     html += "</div>";
+    //     $("body").append(html);
+    //
+    //     var obj = this;
+    //
+    //     //If the 'close' button is clicked, remove the modal
+    //     $("#btnCloseModal").on("click", function() {
+    //         obj.removeModal();
+    //     });
+    //
+    //     this.showImgs();
+    // }
 
     showImgs() {
         //Get all images from a specific directory and show the images

@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width" initial-scale="1.0">
         <meta charset="UTF-8">
-        <title>Home</title>
+        <title>Inbox</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="stylesheet" type="text/css" href="../css/inbox.css">
     </head>
