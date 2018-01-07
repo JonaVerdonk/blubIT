@@ -48,7 +48,7 @@
         <meta name="viewport" content="width=device-width", initial-scale="1.0">
         <link rel="stylesheet" type="text/css" href="../css/contact.css">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
-        <title></title>
+        <title>Contact</title>
     </head>
     <body>
         <?php include("../scripts/header.php"); ?>
