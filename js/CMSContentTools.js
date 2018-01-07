@@ -1,4 +1,8 @@
 $(document).ready(function(){
+  //initialize the modalimg
+  initModalIMG();
+
+  //Function to parse quarrries
   function SQL_Ajax(SQLsting, Specialmode = 0){
     $.ajax({
         url: "/scripts/executeQuery.php",
@@ -10,18 +14,18 @@ $(document).ready(function(){
         }
     });
   }
-
+  //Function to easyly clear the editobj and background
   function cleareditobj(){
     $(window.editObj).css({"border":"", "background":""});
     window.editObj = null;
   }
-
+  //Function removes <script> and <style> from input
   function stripHTML(html){
    //take string and remove <script> and <style>
    // regex /.../ what to search after are modifiers in this case: case-insensitive(i) and global(g)(all not only first)
    return html.replace(/<script>|<style>/ig,"");
   }
-
+  //Function when called makes sure nothing is selected and is put to start
   function deselectContent(ChangeMenu = true){
     //Deselect selection
 
@@ -34,26 +38,49 @@ $(document).ready(function(){
     }
     //Remove the message if exist
     $("#CMSToolbar-Message").remove();
+
+    //Cancel changes
+      //Change the type back
+      if($(window.editObj).children("textarea").length != 0){
+        //its a text area
+        if(window.Type != $(window.editObj).children("textarea").prop("className")){
+          $(window.editObj).children("textarea").replaceWith("<img src='/images/350x150.png' class='img'>");
+        }
+      }else{
+        //its a img area
+        if(window.Type != $(window.editObj).children("img").prop("className")){
+          $(window.editObj).children("img").replaceWith("<textarea class='text'>" + window.Text + "</textarea>");
+        }
+      }
+
+      //Reset back
+    if($(window.editObj).children("textarea").length != 0){
+      //Set textareas in the document to what global variable winow.text is(latest original text)
+      $("textarea").val(window.Text);
+      //Change the tags to p and set the innerhtml to the value of textarea
+      $("textarea").replaceWith("<p class='" + window.Type + "'>" + window.Text + "</p>");
+    }else{
+      //set src back
+      $(window.editObj).children("img").attr("src",window.Src);
+    }
+
+    //Remove the buttons
+    $("#CMSToolbar-Message-buttons").remove();
+    //null the msgtype (will be reset later if needed)
+    window.MSGtype = null;
     //set the editobject to null
     cleareditobj();
     //Now not anymore in edit mode
     window.editmode = null;
-
-    //Cancel changes
-    if($("textarea").length != 0){
-      //Set textareas in the document to what global variable winow.text is(latest original text)
-      $("textarea").val(window.Text);
-      //Change the tags to p and set the innerhtml to the value of textarea
-      $("textarea").replaceWith("<p class='" + $("textarea").prop('className') + "'>" + $("textarea").val() + "</p>");
-    }
-    //Remove the buttons
-    $("#CMSToolbar-Message-buttons").remove();
-    //null the msgtype (will be reset later)
-    window.MSGtype = null;
+    //clear text
+    window.Text = null;
+    //clear the type
+    window.Type = null;
+    //clear the Src
+    window.Src = null;
   }
 
   //Declare and initialize the global variables
-
   window.editmode = false; //track if in edit mode
   window.cmsMenu = false; //track if menu is up or down
   window.editObj = null; //get id of currently editing obj
@@ -61,12 +88,16 @@ $(document).ready(function(){
 
   window.Text = null; //Hold the old text
   window.Type = null; //hold the original type
+  window.Src = null; //hold the original src
 
   /* window.MSGtype list */
   // null = not selected
   // 1 = add contentbox
   // 2 = remove contentbox
   // 3 = confirm text change
+
+  ////////////////
+  //EVENT LISTENERS
 
   //Auto remove editmode items
   $("#CMSToolbar-Body-button-add, #CMSToolbar-Body-button-remove, #CMSToolbar-Body-button-move").slideUp();
@@ -143,15 +174,56 @@ $(document).ready(function(){
       //Reload page
       location.reload();
     }else if(window.MSGtype == 3){
-      //variables
-      var NewText = stripHTML($("textarea").val());
-      var contentid = $("textarea").parent().attr('class').split(" ")[1];
-      var fullClass = $("textarea").attr('class');
+      if($(window.editObj).children("textarea").length != 0){
+        //variables
+        var NewText = stripHTML($("textarea").val());
+        var contentid = $("textarea").parent().attr('class').split(" ")[1];
+        var Type = $("textarea").attr('class');
 
-      $("textarea").replaceWith("<p class = '"+ fullClass +"'>" + NewText + "</p>");
+        //Check if imagefield is now text
+        if(window.Type != $(window.editObj).children("textarea").prop("className")){
+          //Update type to text
+          SQL_Ajax("UPDATE Content SET type = 'text' WHERE contentID = " + contentid);
+          //The type is now text
+          window.Type = "text";
+        }
+        //Replace to p tag
+        $("textarea").replaceWith("<p class = '"+ Type +"'>" + NewText + "</p>");
+        //Update in db
+        SQL_Ajax("UPDATE Text SET content = '" + NewText + "' WHERE contentID = " + contentid + "");
+      }else{
+        var newURL = stripHTML($(window.editObj).children("img").attr("src"));
+        var contentid = $(window.editObj).attr('class').split(" ")[1];
 
-      SQL_Ajax("UPDATE Text SET content = '" + NewText + "' WHERE contentID = " + contentid + "");
+        //Check if imagefield is now text
+        if(window.Type != $(window.editObj).children("img").prop("className")){
+          //Update type to text
+          SQL_Ajax("UPDATE Content SET type = 'img' WHERE contentID = " + contentid);
+          //The type is now img
+          window.Type = "img";
+        }
+        
+        //if record is found update else insert into
+        $.ajax({
+            url: "/scripts/executeQuery.php",
+            type: "POST",
+            data: {"sql": "SELECT * FROM Image WHERE contentID = " + contentid},
+            success: function(json, status) {
+                data = $.parseJSON(json);
+                if(data.length == 0){ //No record
+                  //Create record
+                  SQL_Ajax("INSERT INTO Image(contentID, url) VALUES(" + contentid + ",'" + newURL + "')");
+                }else{ //record found
+                  //update record
+                  SQL_Ajax("UPDATE Image SET url = '" + newURL + "' WHERE contentID = " + contentid);
+                }
+            }
+        });
 
+        //set the src to current url
+        window.Src = newURL;
+      }
+      //always do this
       $("#CMSToolbar-Message-buttons").remove();
       window.MSGtype = null;
 
@@ -186,20 +258,26 @@ $(document).ready(function(){
       if(parentID == editobjID){
         //Change the menu item name
         $("#CMSToolbar-Body-button-add").text("Verander naar" + ($(this).children("p").prop('className') == "text"? " image" : " text"));
-        if($(this).children("p") != 0){ //It is a text
-          //Create the buttons
+        if($(this).children("p").length != 0){ //It is a text
+           //Create the buttons
           $(this).children("p").after("<div id='CMSToolbar-Message-buttons' style='color: white;text-shadow: 0.5px 1px #7622ffb8;text-align: center;font-size: 20px;font-family: 'Quicksand', sans-serif;line-height: 40px;'><div id='CMSToolbar-Message-buttons-confirm'>Confirm</div><div id='CMSToolbar-Message-buttons-cancel'>Cancel</div></div>");
-          //change the p tags to textarea
+           //change the p tags to textarea
           $(this).children("p").replaceWith("<textarea class='" + $(this).children("p").prop('className')  + "'>" + $(this).children("p").text() + "</textarea>");
+           //set the original type to text
+          window.Type = "text";
+           //set the original text to current text
+          window.Text = $(this).text();
+          window.Text = window.Text.replace('ConfirmCancel', '');
         }else{ //its a img
-          console.log("Img");
+           //Create the buttons
+          $(this).children("img").after("<div id='CMSToolbar-Message-buttons' style='color: white;text-shadow: 0.5px 1px #7622ffb8;text-align: center;font-size: 20px;font-family: 'Quicksand', sans-serif;line-height: 40px;'><div id='CMSToolbar-Message-buttons-confirm'>Confirm</div><div id='CMSToolbar-Message-buttons-cancel'>Cancel</div></div>");
+           //Set the original type to img
+          window.Type = "img";
+          window.Src = $(this).children("img").attr("src");
         }
 
         //Set type to 3 and get the text however remove ""ConfirmCancel"" and set the type.
         window.MSGtype = 3;
-        window.Text = $(this).text();
-        window.Text = window.Text.replace('ConfirmCancel', '');
-        window.Type = $(this).children("p").prop('className');
       }
     }
 
@@ -210,13 +288,24 @@ $(document).ready(function(){
     }
   }).on("click","#CMSToolbar-Body-button-add",function(){ //Add is change between img and p
     if($("textarea").length != 0){
-      $("textarea").replaceWith("<img src='/images/350x150.png' class='" + $("textarea").prop('className')  + "'>");
+      $("textarea").replaceWith("<img src='/images/350x150.png' class='img'>");
       $("#CMSToolbar-Body-button-add").text("Verander naar text");
     }else{
-      $(window.editObj).children("img").replaceWith("<textarea class='" + $(window.editObj).children("img").prop('className')  + "'>" + window.Text + "</textarea>");
+      $(window.editObj).children("img").replaceWith("<textarea class='text'>" + window.Text + "</textarea>");
       $("#CMSToolbar-Body-button-add").text("Verander naar image");
     }
+  }).on("dblclick", "img", function(){
+    //check if in edit mode
+    if(window.editmode){
+      //check if correct img is pressed
+      //Edit text
+     var clickedID = $(this).parent().prop('className').split(" ")[1];
+     var editobjID = $(window.editObj).prop('className').split(" ")[1];
 
-
+     if(clickedID == editobjID){
+      //Call modal and it will set it for us
+      DrawModalIMG($(this));
+    }
+  }
   });
 });

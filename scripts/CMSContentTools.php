@@ -41,6 +41,7 @@ class CMSMenu {
   public function printJquary(){
     echo "<script type='text/javascript'>var url = '\"" . $_SERVER['PHP_SELF'] . "\"';var userID = '" . $_SESSION['user'] . "';</script>";
     echo "<script src='/js/CMSContentTools.js'></script>";
+    echo "<script src='/js/modalIMG.js'></script>";
   }
 }
 
