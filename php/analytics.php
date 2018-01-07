@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width" initial-scale="1.0">
         <meta charset="UTF-8">
-        <title>Analytics</title>
+        <title>Home</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="stylesheet" type="text/css" href="../css/analytics.css">
     </head>

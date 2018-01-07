@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Navigatiebalk</title>
+        <title>CMS</title>
         <link rel="stylesheet" type="text/css" href="../../css/style.css">
         <link rel="stylesheet" type="text/css" href="../../css/cmsNavbar.css">
     </head>

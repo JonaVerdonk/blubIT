@@ -17,7 +17,7 @@ include_once("databaseConnection.php");
          <meta name="viewport" content="width=device-width" initial-scale="1.0">
          <link rel="stylesheet" type="text/css" href="../css/style.css">
          <link rel="stylesheet" type="text/css" href="../css/users.css">
-         <title>Gebruikers</title>
+         <title></title>
      </head>
      <body>
        <?php

@@ -24,7 +24,7 @@
         <meta name="viewport" content="width=device-width", initial-scale="1.0">
         <link rel="stylesheet" type="text/css" href="../css/log.css">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
-        <title>Logs</title>
+        <title></title>
     </head>
     <body>
         <?php
