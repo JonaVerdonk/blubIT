@@ -23,7 +23,6 @@
 
             gtag('config', 'UA-109575524-1');
         </script>
-        <script src='/js/modalIMG.js'></script> <!-- Zelfafhandelende image select browser -->
 
         <div id="pageContent">
 
@@ -37,6 +36,7 @@
                 <div id="image">
                     Afbeelding op de homepagina:<br><br>
                     <img src="" alt="Homepage image"><br><br>
+                    URL: <span id="url"></span><br><br>
                     <button class="btnStandard btnEdit" id="editImg">Edit</button>
                 </div>
 
@@ -54,12 +54,10 @@
             </div>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="/js/ImgSelection"></script>
             <script>
                 $(document).ready(function() {
                     printItems();
-
-                    //Initialize the image select
-                    initModalIMG();
                 });
 
                 function printItems() {
@@ -146,17 +144,15 @@
                             data[num][2] = $(item + " h2 input").val();
                             data[num][3] = $(item + " p textarea").val();
                             data[num][4] = $(item + " select").val();
-                            data[num][1] = $(item + " img").attr("src");
 
                             log(data[num][4]);
                             $(item + " h2").html(data[num][2]);
                             $(item + " p").html(data[num][3]);
                             $(item + " div").html(data[num][4]);
 
-                            console.log(data[num][1]);
                             var id = $(this).attr("id");
 
-                            var sql = "UPDATE HomepageItem SET title='"+data[num][2]+"', text='"+data[num][3]+"', subpage='" + data[num][4] + "', img = '" + data[num][1] + "' WHERE HomepageItem.order="+id+";";
+                            var sql = "UPDATE HomepageItem SET title='"+data[num][2]+"', text='"+data[num][3]+"', subpage='" + data[num][4] + "' WHERE HomepageItem.order="+id+";";
                             log(sql);
                             escapeHtml(sql);
                             updateDB(sql);
@@ -167,19 +163,12 @@
                     });
 
                     //Remove all events to avoid duplicates
-                    $("img").unbind("click");
-                    $("img").on("click", function() {
+                    $(".content-body-item img").unbind("click");
+                    $(".content-body-item img").on("click", function() {
                         //Create a new ImgSelection object
-                        // var imgId = "#"+$(this).attr("id");
-                        // var imgSelection = new ImgSelection("/images", imgId);
-                        // imgSelection.drawModal();
-                        console.log();
-                        if($(this)[0] == $("#image img")[0] && $("#editImg").html() == "Save"){
-                          //header img
-                          DrawModalIMG($(this));
-                        }else if($(this).siblings("span").first().children().html() == "Save"){
-                          DrawModalIMG($(this));
-                        }
+                        var imgId = "#"+$(this).attr("id");
+                        var imgSelection = new ImgSelection("/images", imgId);
+                        imgSelection.drawModal();
                     });
                 }
 
@@ -190,7 +179,7 @@
                         //Get the id of the last item and add one to it to get the new id
                         var newOrder = parseInt(data[data.length-1][0]) + 1;
                         //Create and execute query to insert a new item with standard values that can than be changed
-                        var sql = "INSERT INTO HomepageItem VALUES("+newOrder+", '/images/350x150.png', 'New item', 'New text', null);";
+                        var sql = "INSERT INTO HomepageItem VALUES("+newOrder+", 'Image', 'New item', 'New text');";
                         updateDB(sql, true);
                     });
                 }

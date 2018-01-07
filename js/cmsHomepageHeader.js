@@ -17,7 +17,8 @@ $(document).ready(function() {
             data = $.parseJSON(json);
 
             //Print the current img and its url
-            $("#image img").attr("src", data[0][0]);
+            $("#image img").attr("src", "../../"+data[0][0]);
+            $("#image span").html('<a href="../../'+data[0][0]+'">'+data[0][0]+'</a>');
             setEditImg(data);
 
             //Show current text
@@ -39,9 +40,9 @@ function setEditImg(data) {
             //If the button is set to 'edit' get the data from the input field and
             // change it to text. Then update the image preview to the updated url
             $(this).html("Edit");
-            var val = $("#image img").attr("src");
-            $("#image span").html('<a href="'+val+'">'+val+'</a>');
-            $("#image img").attr("src", val);
+            var val = $("#image span input").val();
+            $("#image span").html('<a href="../../'+val+'">'+val+'</a>');
+            $("#image img").attr("src", "../../"+val);
 
             //If the value changed, update it in the database. Only do it than to prevent
             // unnecessary database connections

@@ -8,9 +8,9 @@ function find_all_files($dir){
   $scan = scandir($dir);
   foreach ($scan as $value) {
     if($value === '.' || $value === '..'){continue;}
-    if(is_file("$dir/$value")){$result[]=str_replace("../../..","","$dir/$value");continue;}
+    if(is_file("$dir/$value")){$result[]="$dir/$value";continue;}
     foreach(find_all_files("$dir/$value") as $value){
-      $result[]=str_replace("../../..","",$value);;
+      $result[]=$value;
     }
   }
   return $result;

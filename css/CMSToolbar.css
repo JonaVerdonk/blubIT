@@ -1,9 +1,3 @@
-textarea{
-  width: calc(100% - 20px);
-  height: calc(100% - 70px);
-  font-size: 20px;
-  font-family: 'Quicksand', sans-serif;
-}
 
 #CMSToolbar{
   width: 200px;
@@ -113,13 +107,12 @@ textarea{
 #CMSToolbar-Message-buttons-confirm{
   right: 0;
   background-color: #13f798;
-  z-index: 9;
+  z-index: 1;
 }
 
 #CMSToolbar-Message-buttons-cancel{
   left: 0;
   background-color: #FF6854;
-  z-index: 9;
 }
 
 #CMSToolbar-Message-buttons-confirm:hover{
@@ -129,129 +122,4 @@ textarea{
 #CMSToolbar-Message-buttons-cancel:hover{
   background-color: #ff2d12;
    transition: background-color 0.3s;
-}
-
-/* THE IMAGE MODAL */
-#MODALIMG-background{
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: fixed;
-  z-index: 100;
-}
-
-#MODALIMG-body{
-  background-color: #2e6ca5;
-  width: 75%;
-  height: 75%;
-  left: 12.5%;
-  top: 12.5%;
-  position: absolute;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 2px solid white;
-  box-shadow: 2px 2px 1px;
-  z-index: 101;
-}
-
-#MODALIMG-body-list{
-  height: 100%;
-  width: 60%;
-  overflow-y: auto;
-  overflow-x: visible;
-}
-
-#MODALIMG-body-list span{
-  width: 100%;
-  float: left;
-  font-size: 20px;
-  font-family: 'quicksand', arial;
-  background-color: gray;
-  padding: 10px 0;
-  z-index: 101;
-}
-
-#MODALIMG-body-list span:nth-child(even){
-  background-color: lightgray;
-}
-
-#MODALIMG-body-list span:hover{
-  background-color: white;
-  border: black double 3px;
-  box-sizing: border-box;
-}
-
-
-#MODALIMG-body-preview{
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 101;
-  width: 40%;
-  height: 50%;
-
-  /* for the alt */
-  font-family: 'quicksand', arial;
-  text-align: center;
-  color: white;
-  text-shadow: 0.5px 0.5px 0px black;
-}
-
-#MODALIMG-body-buttons{
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 40%;
-  height: 50%;
-  text-align: center;
-  font-size: 30px;
-  font-family: 'Quicksand', arial;
-  color: white;
-  text-shadow: 0.5px 0.5px 0px black;
-  line-height: 93px;
-}
-
-#MODALIMG-body-buttons-cancel{
-  width: calc(100% - 50px);
-  height: calc(50% - 50px);
-  background-color: #FF6854;
-  border-radius: 10px;
-
-  margin: 25px;
-  box-shadow: 2px 2px black;
-  z-index: 101;
-}
-#MODALIMG-body-buttons-confirm{
-  width: calc(100% - 50px);
-  height: calc(50% - 50px);
-  background-color: #13f798;
-
-  border-radius: 10px;
-    margin: 25px;
-    box-shadow: 2px 2px black;
-    
-  z-index: 101;
-}
-
-#MODALIMG-body-buttons-cancel:hover{
-  background-color: #ff2d12;
-  transition: background-color 0.3s;
-}
-
-#MODALIMG-body-buttons-confirm:hover{
-  background-color: #00fd07;
-  transition: background-color 0.3s;
-}
-
-@media (max-width: 600px) {
-  #MODALIMG-body{
-    width: 100%;
-    left: 0;
-  }
-
-  #MODALIMG-body-buttons{
-  font-size: 20px;
-  }
 }

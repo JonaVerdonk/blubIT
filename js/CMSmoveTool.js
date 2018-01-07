@@ -104,7 +104,7 @@ $(document).ready(function(){
 
     var ObjID = $(window.callObj).attr('class').split(' ')[1];
     //EXECUTE UPDATE SQL (content)
-    SQL_Ajax("UPDATE Content SET position = '" + locationString + "', row = " + gridvalues[0] + ", kolomn = " + gridvalues[1] + " WHERE contentID = " + ObjID);
+    SQL_Ajax("UPDATE Content SET position = '" + locationString + "' WHERE contentID = " + ObjID);
     //EXECUTE INSERT SQL (LOG)
     var msg = "On " + window.location.href + " a contentbox with id " + ObjID + " has been moved the element was on " + originalLocString + " now it is on " + locationString;
     SQL_Ajax("INSERT INTO Log(user, message) values(" + userID + ",'" + msg + "')");
