@@ -2,6 +2,7 @@
     /*
         File made to handle ajax requests so you can execute queries from javascript
     */
+    session_start();
     if(isset($_SESSION['role'])){
       if(isset($_POST['sql']) && $_SESSION['role'] !== "r") {
           $sql = $_POST["sql"];
