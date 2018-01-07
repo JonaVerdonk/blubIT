@@ -98,7 +98,7 @@ function edituser(){
          <link rel="stylesheet" type="text/css" href="../css/style.css">
          <link rel="stylesheet" type="text/css" href="../css/edituser.css">
 
-         <title></title>
+         <title>Gebruiker</title>
      </head>
      <body>
        <?php include("../scripts/header.php");
