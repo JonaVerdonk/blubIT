@@ -42,8 +42,8 @@
             </div><br><br>
 
             <form action="" method="POST" id="logForm">
-                <input type="text" placeholder="Rows" name="rows"><br><br>
-                <input type="submit" class="btnStandard" name="submit">
+                <input type="text" placeholder="Aantal rijen" name="rows"><br><br>
+                <input type="submit" class="btnStandard" name="submit" value="Verzenden">
             </form><br><br>
 
             <!--Create the table and add table headers-->

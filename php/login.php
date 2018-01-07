@@ -55,7 +55,7 @@ include("../scripts/registerScript.php");
                     E-mailadres: <input type="email" name="email" placeholder="Uw emailadres" value="" maxlength="40"><br>
                     <span class="text-danger"></span><br>
                     Wachtwoord: <input type="password" name="pass" class="form-control" placeholder="Uw wachtwoord" maxlength="40"><br>
-                    <br><input type="submit" name="btn-login" class="btnStandard">
+                    <br><input type="submit" name="btn-login" class="btnStandard" value="Inloggen">
                 </form>
 
             </div>
@@ -72,7 +72,7 @@ include("../scripts/registerScript.php");
               <span class="text-danger"></span><br>
               Bevestig password: <input type="password" name="confirmpass" class="form-control" placeholder="Bevestig Wachtwoord" maxlength="40"><br>
               <!--<br><div class="g-recaptcha" data-sitekey="6Lf26D0UAAAAAPfiQcHfLL_F6xm3h8zUb-tpH_3w"></div>-->
-              <br><input type="submit" name="btn-signup" class="btnStandard">
+              <br><input type="submit" name="btn-signup" class="btnStandard" value="Registreren">
             </form>
             </div>
 

@@ -84,7 +84,7 @@ input.boxer[type='checkbox'] {
     outline: 0;
 }
 .boxer[type='checkbox']:checked {
-    background-color: #0000004f;
+    background-color: gray;
 }
 
 #imgklein{
@@ -109,6 +109,7 @@ input.boxer[type='checkbox'] {
 .btnStandard {
     float: right;
     margin-right: 10px;
+    margin-bottom: 120px;
 }
 
 header{
@@ -122,6 +123,7 @@ header{
     margin-bottom: -180px;
     border-radius: 0px;
     border: 0px ridge;
+    display: none;
 
 }
 
@@ -144,3 +146,4 @@ p{
     width: 20%;
     float: left;
 }
+

@@ -58,7 +58,6 @@
         }
     }
 
-    //Function made to test if the file was succesfully included
     function testFunction() {
         return("The file is succesfully added");
     }
