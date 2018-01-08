@@ -5,7 +5,7 @@
     } else {
         $rows = 25;
     }
-    print($rows);
+    // ($rows);
 ?>
 
 <!DOCTYPE html>
