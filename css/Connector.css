@@ -107,9 +107,12 @@ input.boxer[type='checkbox'] {
 }
 
 .btnStandard {
-    float: right;
+    float: left;
     margin-right: 10px;
     margin-bottom: 120px;
+    right: 0px;
+    bottom: -175px;
+    position: absolute;
 }
 
 header{
@@ -147,6 +150,6 @@ p{
     float: left;
 }
 
-#info {
+#info{
   margin-bottom: 20px;
 }
