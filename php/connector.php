@@ -27,6 +27,7 @@
 
         <div id="pageContent">
             <h2>Connector Informatie</h2>
+            <p>Indien u uw glasvezel wilt laten meten, selecteer de connector(en) die u heeft  en neem meteen contact op door onderaan de pagina op "opslaan" te klikken!</p>
 
             <input type="radio" id="all"  name="category" checked> <div id="radio-color"> Alle Connectors</div>
             <input type="radio" id="singlemode"  name="category"> <div id="radio-color"> Single-mode Connectors</div>
