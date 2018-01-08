@@ -11,6 +11,10 @@
     text-align: left;
 }
 
+#form h1 {
+    margin-left: 15%;
+}
+
 #verzonden{
     background-color: #lightgreen;
     width: 90%;
