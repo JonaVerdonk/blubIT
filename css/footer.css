@@ -9,7 +9,7 @@ body{
 }
 
 footer{
-  height: 100px;
+  height: 40px;
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -79,10 +79,11 @@ footer{
 }
 
 #footer-reference{
-  height: 61px;
+  height: 0px;
   overflow: hidden;
   position:fixed;
   bottom: 40px;
+  /* z-index: -10000; */
 }
 
 .footer-reference-container{
