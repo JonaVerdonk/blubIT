@@ -235,6 +235,10 @@ textarea{
   z-index: 101;
 }
 
+.content-body{
+  box-sizing: border-box;
+  border: 0.5px solid black;
+}
 #MODALIMG-body-buttons-cancel:hover{
   background-color: #ff2d12;
   transition: background-color 0.3s;

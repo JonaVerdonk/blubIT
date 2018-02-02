@@ -1,0 +1,11 @@
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+Options -Indexes
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]

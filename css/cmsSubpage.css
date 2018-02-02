@@ -97,6 +97,7 @@ option{
 }
 
 /* Buttons */
+#File-buttons-gotoPag,
 #File-buttons,
 #File-buttons-Lower{
   width: 560px;
@@ -129,6 +130,7 @@ option{
   font-size: 25px;
   text-align: right;
 }
+
 #File-buttons > div > div:last-child{
   width: 70px;
   margin: 0;
@@ -142,7 +144,7 @@ option{
   font-weight: bold;
   font-size: 30px;
   text-align: center;
-  background-color: #c7c7c7;
+  background-color: gainsboro;
 
 }
 
@@ -175,6 +177,46 @@ option{
   font-size: 29px;
   z-index: 10;
 
+}
+
+[readonly]{
+  background-color: gainsboro;
+}
+[readonly]:focus{
+  background-color: gainsboro;
+}
+input:focus{
+  background-color: #faf7f3;
+  color: black;
+  text-shadow: 0.5px 0.5px #b4f4ff;
+}
+#File-buttons-gotoPag{
+  width: 145px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position: absolute;
+  text-shadow: 0.5px 0.5px 1px black;
+  font-weight: bold;
+  font-size: 35px;
+  text-align: center;
+  line-height: 85px;
+}
+#File-buttons-gotoPag:hover{
+  background-color: #5e8ebd;
+  border: 10px double white;
+  
+  line-height: 70px;
+}
+
+#File-buttons-gotoPag a{
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  text-decoration: none;
+  
+  color: white;
 }
 #File-buttons-Save{background-color: #13f798;}
 #File-buttons-Discard{background-color: #FF6854;}

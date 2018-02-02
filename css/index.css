@@ -51,6 +51,8 @@ This style is now printed in the body by some PHP code because it wasn't applied
     max-height: 700px;
     overflow: hidden;
     margin-top: 10px;
+
+    position: relative;
 }
 
 .content-body-item img {
@@ -92,6 +94,24 @@ This style is now printed in the body by some PHP code because it wasn't applied
     box-shadow: 0.5px 0.5px 1px black;
 
     overflow: hidden;
+}
+
+.content-body-item div{
+    position: absolute;
+    bottom: 30px;
+   
+    background-color: #2e6ca5;
+    width: 100%;
+}
+.content-body-item div a{
+    display: block;
+    color: white;
+    text-shadow: 0.5px 0.5px black;
+    text-decoration: none;
+    font-size: 30px; 
+    line-height: 55px;
+    height: 60px;
+    width: 100%;
 }
 @media (max-width: 680px) {
     #content {

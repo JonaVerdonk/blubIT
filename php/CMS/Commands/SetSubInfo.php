@@ -2,6 +2,11 @@
 //Allow usage of sessions
 session_start();
 
+//User needs to be logged in and authorized
+if ($_SESSION['role'] == 'r' || $_SESSION['logged_in'] != 1) {
+    header("Location: ../../redirect.php");
+}
+
 //Get all data and filter it
 $args = array(
   "Textfields" => array(
@@ -80,8 +85,11 @@ if(!empty($subFullArray[2])){
   if($ValidPass){
     //Actually remove file
     unlink("../../subpages/$subFullArray[1].php");
+    echo json_encode("DELFILE");
+    return;
   }else{
     echo json_encode("INVALID PASSWORD");
+    return;
   }
 }
 echo json_encode($subFullArray);

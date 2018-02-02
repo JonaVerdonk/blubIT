@@ -40,8 +40,13 @@
                data : {"Textfields":inputField, "ORGTextfields": window.OriginalFields},
                success: function(json, status){
                   data = $.parseJSON(json);
-                  console.log(data);
-                  alert("de subpagina is successvol veranderd");
+                  if(data == "DELFILE"){
+                    location.reload();
+                  }else if(data == "INVALID PASSWORD"){
+                    alert(data);
+                  }else{
+                    alert("de subpagina is successvol veranderd");
+                  }
 
                   //Change options text
                   var oldText = $(".File option:selected").text();
@@ -67,6 +72,8 @@
                 $("#File-buttons-NumElem").val(data["NumElem"]);
                 window.OriginalFields = data;
                 window.OriginalFields["docName"] = $(".File").val().replace('.php','');
+
+                $("#File-buttons-gotoPag").children().attr("href","../subpages/" + $(".File").val());
               }
             });
           }
@@ -79,7 +86,7 @@
               //Create buttons if it does not exist else change them to pint to new subpage
               if($("#File-buttons").length == 0){
                 //create buttons
-                $(".PageContentList").append("<div id='File-buttons'><div><div>Titel: </div><input id='File-buttons-title' placeholder='Idem als bestandnaam' title='Indien het veld leeg is zal dit de bestandnaam zonder \".php\" worden'></div><div><div>Document naam: </div><input id='File-buttons-docnamin'><div>.php</div></div><div><div>Aantal elementen: </div><input id='File-buttons-NumElem' readonly></div><div><div>Verwijder bestand: </div><input type='password' placeholder='voer wachtwoord in om de subpagina te verwijderen' style='font-size:20px' id='File-buttons-delpass'></div></div><div id='File-buttons-Lower'><div id='File-buttons-Save'>Save Changes</div><div id='File-buttons-Discard'>Revert Changes</div></div>");
+                $(".PageContentList").append("<div id='File-buttons'><div id='File-buttons-gotoPag'><a>Ga naar de subpagina</a></div><div><div>Titel: </div><input id='File-buttons-title' placeholder='Idem als bestandnaam' title='Indien het veld leeg is zal dit de bestandnaam zonder \".php\" worden'></div><div><div>Document naam: </div><input id='File-buttons-docnamin'><div>.php</div></div><div><div>Aantal elementen: </div><input id='File-buttons-NumElem' readonly></div><div><div>Verwijder bestand: </div><input type='password' placeholder='voer wachtwoord in om de subpagina te verwijderen' style='font-size:20px' id='File-buttons-delpass'></div></div><div id='File-buttons-Lower'><div id='File-buttons-Save'>Save Changes</div><div id='File-buttons-Discard'>Revert Changes</div></div>");
                 AlterFields();
               }else{
                 //alter buttons
