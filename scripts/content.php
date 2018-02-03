@@ -27,28 +27,30 @@ foreach($array as $indexMain => $Record){
 
   if(is_null($Row)){
     executeSQL("UPDATE Content SET row = $position[2] WHERE contentID = $ContentID;");
+    $Row = $position[2];
   }
 
   if(is_null($kolomn)){
     executeSQL("UPDATE Content SET kolomn = $position[0] WHERE contentID = $ContentID;");
+    $kolomn = $position[0];
   }
     //Creates the div
   echo "<div class='content-body $ContentID' style='grid-area: " . $positionString . "'>";
   echo "<div style='display: none'></div>"; //Fixes some weird bug in firefox where white backgrounds appears
-  if($Type == "text" || empty($Type)){
+  if($Type == "text"){
      //Get all the text fields in the contentBox
     $textFields = executeSQL("SELECT content, id FROM Text WHERE contentID = $ContentID LIMIT 1");
      //Cycles and prints all texts
     foreach ($textFields as $key => $value) {
       echo "<p class = '$Type'>" . $value[0] . "</p>";
     }
-    if(empty($Type)){ //Entry exists in content however no type //New content box
-      //Set type to text
-      executeSQL("UPDATE Content SET type='text' WHERE contentID = $ContentID");
-      //Create new entry in text to lorem ipsum it up!
-      executeSQL("INSERT INTO Text(contentID,content) VALUES($ContentID,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
-      header("Refresh:0");
-    }
+
+  }else if(empty($Type)){ //Entry exists in content however no type //New content box
+    //Set type to text
+    executeSQL("UPDATE Content SET type='text' WHERE contentID = $ContentID");
+    //Create new entry in text to lorem ipsum it up!
+    executeSQL("INSERT INTO Text(contentID,content) VALUES($ContentID,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')");
+    echo "<p class = 'text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>";
   }else if($Type == "img"){
      //Get all the images in the contentBox
     $ImageFields = executeSQL("SELECT width,height,alt,url FROM Image WHERE contentID = $ContentID LIMIT 1");

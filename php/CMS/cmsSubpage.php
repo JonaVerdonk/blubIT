@@ -55,6 +55,8 @@
                   }else{
                     $(".File option:selected").text(inputField[1] + ".php");
                   }
+
+                  $("#File-buttons-gotoPag").children().attr("href","../subpages/" + inputField[1]);
                }
             });
           });
