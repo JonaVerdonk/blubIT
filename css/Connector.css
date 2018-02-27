@@ -143,7 +143,7 @@ p{
 }
 
 .square{
-    display: table;
+    display: block;
     padding: 8px;
     height: auto;
     width: 20%;
@@ -152,4 +152,26 @@ p{
 
 #info{
   margin-bottom: 20px;
+}
+
+@media (max-width: 400px) {
+   .square{
+        width: 100%;
+    } 
+}
+@media (min-width:400px) and (max-width: 550px) {
+    .square{
+        width: 50%;
+    }
+}
+@media (min-width:550px) and (max-width: 750px) {
+    .square{
+        width: 33%;
+    }
+}
+
+@media (min-width:750px) and (max-width: 950px) {
+    .square{
+        width: 25%;
+    }
 }

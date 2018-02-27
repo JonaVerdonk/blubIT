@@ -1,7 +1,7 @@
 body{
   position: relative;
   margin: 0px;
-  margin-bottom: 100px; /* change to 100p if references */
+  margin-bottom: 130px; /* change to 100p if references */
 }
 
 .clear {
@@ -9,7 +9,7 @@ body{
 }
 
 footer{
-  height: 40px;
+  height: 120px;
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -79,13 +79,16 @@ footer{
 }
 
 #footer-reference{
-  height: 0px;
+  height: 80px;
   overflow: hidden;
   position:fixed;
   bottom: 40px;
   /* z-index: -10000; */
+  width: max-content;
+  width: -moz-max-content;
+  width: -webkit-max-content;
 }
-
+/*
 .footer-reference-container{
   height: 100%;
   float: left;
@@ -96,7 +99,7 @@ footer{
   box-sizing: border-box;
   background: #2E6CA5;
 
-}
+}*/
 
 .footer-reference-item{
   width: 100%;
@@ -117,57 +120,67 @@ a[href^="tel:"]:before {
   margin-left: 0.3em;
 }
 
+.reference-img{
+  width: calc(25% - 20px);
+  padding: 10px;
+  height: 100%;
+  border-radius: 20px 20px 0 0;
+  opacity: 0.8;
+  position: relative;
+}
+
 @media (min-width: 1700px){
   .footer-reference-container{
-    width: calc((100% - 140px)/7);
+    width: calc((100vw - 140px)/7);
   }
 }
 
 @media (min-width: 1500px) and (max-width: 1699px) {
   .footer-reference-container{
-    width: calc((100% - 120px)/6);
+    width: calc((100vw - 120px)/6);
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1499px) {
   .footer-reference-container{
-    width: calc((100% - 100px)/5);
+    width: calc((100vw - 100px)/5);
   }
 }
 
 
 @media (min-width: 768px) and (max-width: 1199px) {
   .footer-reference-container{
-    width: calc((100% - 80px)/4);
+    width: calc((100vw - 80px)/4);
   }
 }
 
 
 @media (max-width: 767px) {
   .footer-reference-container{
-    width: calc((100% - 60px)/3);
+    width: calc((100vw - 60px)/3);
   }
   #footer-contact span{
     font-size: 15px;
   }
 }
 @media (max-width: 680px) {
-  #footer-contact span{
-    font-size: 20px;
+  #footer-bottom{
+    text-align: center;
   }
-}
-
-@media (max-width: 480px) {
-  body{
-    padding-bottom: 240px;
+  
+  #footer-contact{
+    right: 0;
+    left: 0;
+    top: 2px;
   }
-
 }
 @media (max-width: 350px) {
- #footer-contact span{
-    left: 12.5vw;
+  #footer-contact span{
+    font-size: 12px;
   }
-  #footer-icon{
-    left: 12.5vw;
+}
+@media (max-width: 350px) {
+  .footer-reference-container{
+    width: calc((100vw - 40px)/2);
   }
 }
